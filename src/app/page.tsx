@@ -4,6 +4,15 @@ import React, { useState } from "react";
 
 type Language = "EN" | "ID";
 
+interface Certification {
+  title: string;
+  issuer: string;
+  year: string;
+  badge: string;
+  credentialId: string;
+  image: string;
+}
+
 const DATA = {
   profile: {
     name: "Lukman Fatkhurozi",
@@ -47,9 +56,12 @@ const DATA = {
       sub: { EN: "Medium & GitHub Repositories", ID: "Medium & Repositori GitHub" },
     },
     {
-      value: "6",
+      value: "7",
       label: { EN: "Certifications", ID: "Sertifikasi Resmi" },
-      sub: { EN: "BNSP, Dibimbing, RevoU, DQLab, Dicoding", ID: "BNSP, Dibimbing, RevoU, DQLab, Dicoding" },
+      sub: {
+        EN: "BNSP, Dibimbing, RevoU, DQLab, Dicoding",
+        ID: "BNSP, Dibimbing, RevoU, DQLab, Dicoding",
+      },
     },
   ],
   projects: [
@@ -266,40 +278,60 @@ const DATA = {
     {
       title: "Certified Database Administrator (Data Management)",
       issuer: "BNSP — LSP Universitas Bina Sarana Informatika",
-      year: "Mar 2026",
+      year: "06 Mar 2026",
       badge: "BNSP National Competence",
+      credentialId: "No. Reg. DMS.1241.00955 2026",
+      image: "/certifications/BNSP.jpg",
+    },
+    {
+      title: "DSF 52.0 — Data Analyst & Business Intelligence",
+      issuer: "Dibimbing.id",
+      year: "17 – 19 Jun 2026",
+      badge: "Business Intelligence",
+      credentialId: "Certificate of Appreciation",
+      image: "/certifications/DSF.jpg",
     },
     {
       title: "Fundamental SQL Using SELECT Statement",
       issuer: "DQLab",
       year: "12 Jun 2026",
       badge: "SQL & Data Analytics",
+      credentialId: "#DQLABSQLT1RUFLNG",
+      image: "/certifications/DQLab.png",
     },
     {
       title: "Intro to Data Analytics (1-Week Certified Mini Course)",
       issuer: "RevoU",
       year: "12 Jun 2026",
       badge: "Data Analytics",
+      credentialId: "DAMC-080626-01-1-00413",
+      image: "/certifications/RevoU.jpg",
     },
     {
-      title: "DSF 52.0 — Data Analyst & Business Intelligence",
-      issuer: "Dibimbing.id",
-      year: "19 Jun 2026",
-      badge: "Business Intelligence",
+      title: "Memulai Pemrograman dengan Python",
+      issuer: "Dicoding Indonesia",
+      year: "07 Jun 2026",
+      badge: "Python Programming",
+      credentialId: "dicoding.com/certificates/53XE1GG7VZRN",
+      image: "/certifications/Dicoding.png",
     },
     {
       title: "Belajar Dasar Structured Query Language (SQL)",
       issuer: "Dicoding Indonesia",
       year: "04 Jun 2026",
       badge: "Relational Database",
+      credentialId: "dicoding.com/certificates/MRZMWJK1RPYQ",
+      image: "/certifications/Dicoding2.png",
     },
     {
-      title: "Memulai Pemrograman dengan Python",
+      title: "Belajar Dasar Data Science",
       issuer: "Dicoding Indonesia",
-      year: "2026",
-      badge: "Python Programming",
+      year: "03 Jun 2026",
+      badge: "Data Science",
+      credentialId: "dicoding.com/certificates/07Z67MN92PQR",
+      image: "/certifications/dicoding3.png",
     },
-  ],
+  ] as Certification[],
   skills: {
     hardSkills: [
       {
@@ -355,6 +387,7 @@ const DATA = {
 export default function PortfolioPage() {
   const [lang, setLang] = useState<Language>("ID");
   const [activeFilter, setActiveFilter] = useState<string>("ALL");
+  const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
 
   const filteredProjects =
     activeFilter === "ALL"
@@ -364,7 +397,7 @@ export default function PortfolioPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#FAFAFA] text-slate-900">
       {/* Sticky Minimal Navigation */}
-      <header className="sticky top-0 z-50 border-b border-slate-200/80 bg-white/85 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/85 backdrop-blur-md">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <a
             href="#top"
@@ -387,7 +420,7 @@ export default function PortfolioPage() {
               {lang === "EN" ? "Experience" : "Pengalaman"}
             </a>
             <a href="#skills" className="transition-colors hover:text-slate-900">
-              {lang === "EN" ? "Skills & Certs" : "Keahlian"}
+              {lang === "EN" ? "Skills & Certs" : "Sertifikasi"}
             </a>
             <a href="#contact" className="transition-colors hover:text-slate-900">
               {lang === "EN" ? "Contact" : "Kontak"}
@@ -503,7 +536,11 @@ export default function PortfolioPage() {
               download="Portofolio_Data_Analyst_Lukman_Fatkhurozi.pdf"
               className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition-all hover:border-slate-400 hover:bg-slate-50"
             >
-              <span>{lang === "EN" ? "Download Portfolio Deck (PDF)" : "Unduh Slide Portofolio (PDF)"}</span>
+              <span>
+                {lang === "EN"
+                  ? "Download Portfolio Deck (PDF)"
+                  : "Unduh Slide Portofolio (PDF)"}
+              </span>
             </a>
           </div>
 
@@ -551,7 +588,11 @@ export default function PortfolioPage() {
                   { icon: "📗", title: "Microsoft Excel", sub: "Pivot Table, Slicer, Lookup" },
                   { icon: "🗄️", title: "SQL", sub: "BigQuery & MySQL" },
                   { icon: "📈", title: "Data Visualization", sub: "Interactive Dashboards" },
-                  { icon: "🔍", title: "Exploratory Data Analysis", sub: "Pattern & Trend Discovery" },
+                  {
+                    icon: "🔍",
+                    title: "Exploratory Data Analysis",
+                    sub: "Pattern & Trend Discovery",
+                  },
                 ].map((item) => (
                   <div
                     key={item.title}
@@ -567,7 +608,7 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* PROJECTS SECTION — UPDATED TO MATCH PORTFOLIO PDF */}
+        {/* PROJECTS SECTION */}
         <section id="projects" className="scroll-mt-24 border-t border-slate-200 py-16">
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
@@ -575,7 +616,9 @@ export default function PortfolioPage() {
                 02 / {lang === "EN" ? "PORTFOLIO PROJECTS" : "PROYEK PORTOFOLIO"}
               </p>
               <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
-                {lang === "EN" ? "Featured Data Analyst Projects" : "Proyek Analisis Data & Dashboard"}
+                {lang === "EN"
+                  ? "Featured Data Analyst Projects"
+                  : "Proyek Analisis Data & Dashboard"}
               </h2>
             </div>
 
@@ -591,7 +634,11 @@ export default function PortfolioPage() {
                       : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900"
                   }`}
                 >
-                  {filter === "ALL" ? (lang === "EN" ? "All Projects (3)" : "Semua Proyek (3)") : filter}
+                  {filter === "ALL"
+                    ? lang === "EN"
+                      ? "All Projects (3)"
+                      : "Semua Proyek (3)"
+                    : filter}
                 </button>
               ))}
             </div>
@@ -641,7 +688,9 @@ export default function PortfolioPage() {
                       <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-blue-100 bg-blue-50/50 p-3.5">
                         <div className="min-w-0">
                           <div className="text-[11px] font-semibold uppercase tracking-wider text-blue-800">
-                            {lang === "EN" ? "Full Documentation Link" : "Link Lengkap Pengerjaan"}
+                            {lang === "EN"
+                              ? "Full Documentation Link"
+                              : "Link Lengkap Pengerjaan"}
                           </div>
                           <a
                             href={project.externalLink}
@@ -690,10 +739,9 @@ export default function PortfolioPage() {
                       </span>
                     </div>
 
-                    {/* PROYEK 1 PREVIEW: Online Store Orders Dataset (Python + Excel Dashboard) */}
+                    {/* PROYEK 1 PREVIEW */}
                     {project.previewType === "excel" && (
                       <div className="my-4 space-y-3">
-                        {/* Python Snippet from Slide 5 */}
                         <div className="rounded-lg bg-slate-900 p-3 font-mono text-[11px] text-slate-200">
                           <div className="text-emerald-400">
                             # Cek Tipe data dan missing value
@@ -703,11 +751,12 @@ export default function PortfolioPage() {
                               df.<span className="text-amber-300">info</span>() &nbsp;|&nbsp; df.
                               <span className="text-amber-300">head</span>()
                             </span>
-                            <span className="text-[10px] text-emerald-400">✓ 1200 rows × 14 cols</span>
+                            <span className="text-[10px] text-emerald-400">
+                              ✓ 1200 rows × 14 cols
+                            </span>
                           </div>
                         </div>
 
-                        {/* 4 Actual KPI Values from Slide 5 Dashboard */}
                         <div className="grid grid-cols-2 gap-2">
                           <div className="rounded-lg border border-slate-200 bg-white p-2.5">
                             <div className="text-[10px] font-medium text-slate-400">
@@ -743,7 +792,6 @@ export default function PortfolioPage() {
                           </div>
                         </div>
 
-                        {/* Top Products & Customer Source Breakdown from Slide 5 */}
                         <div className="rounded-lg border border-slate-200 bg-white p-3 text-xs">
                           <div className="flex items-center justify-between font-semibold text-slate-800">
                             <span>Sumber Pelanggan & Produk Terlaris</span>
@@ -769,7 +817,7 @@ export default function PortfolioPage() {
                       </div>
                     )}
 
-                    {/* PROYEK 2 PREVIEW: Dashboard Penjualan Game Power BI (Slide 6) */}
+                    {/* PROYEK 2 PREVIEW */}
                     {project.previewType === "powerbi" && (
                       <div className="my-4 space-y-3">
                         <div className="grid grid-cols-2 gap-2">
@@ -834,7 +882,7 @@ export default function PortfolioPage() {
                       </div>
                     )}
 
-                    {/* PROYEK 3 PREVIEW: Exact BigQuery SQL Query from Slide 7 */}
+                    {/* PROYEK 3 PREVIEW */}
                     {project.previewType === "sql" && (
                       <div className="my-4 space-y-2.5">
                         <div className="rounded-lg bg-slate-900 p-3.5 font-mono text-[10.5px] leading-relaxed text-slate-200">
@@ -976,18 +1024,74 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* SKILLS & CERTIFICATIONS SECTION */}
+        {/* SKILLS & CERTIFICATIONS SECTION (WITH CERTIFICATE IMAGES) */}
         <section id="skills" className="scroll-mt-24 border-t border-slate-200 py-16">
           <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-700">
-            05 / {lang === "EN" ? "COMPETENCIES & CREDENTIALS" : "KEAHLIAN & SERTIFIKASI"}
+            05 / {lang === "EN" ? "CERTIFICATIONS & SKILLS" : "SERTIFIKASI & KEAHLIAN"}
           </p>
           <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
-            {lang === "EN" ? "Technical Skills & Certifications" : "Keahlian Utama & Sertifikasi"}
+            {lang === "EN"
+              ? "Verified Certifications & Technical Skills"
+              : "Sertifikasi Kompetensi & Keahlian Teknis"}
           </h2>
+          <p className="mt-2 text-sm text-slate-600">
+            {lang === "EN"
+              ? "Click on any certificate card below to inspect the full-resolution certificate."
+              : "Klik pada gambar sertifikat di bawah ini untuk melihat tampilan sertifikat ukuran penuh."}
+          </p>
 
-          <div className="mt-8 grid gap-8 lg:grid-cols-12">
-            {/* Hard Skills */}
-            <div className="space-y-4 lg:col-span-6">
+          {/* Certifications Gallery Grid with Images */}
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {DATA.certifications.map((cert) => (
+              <div
+                key={cert.title}
+                onClick={() => setSelectedCert(cert)}
+                className="group cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xs transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md flex flex-col justify-between"
+              >
+                <div>
+                  {/* Certificate Image Container */}
+                  <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-slate-100 bg-slate-100">
+                    <img
+                      src={cert.image}
+                      alt={cert.title}
+                      className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center bg-slate-900/0 opacity-0 transition-all group-hover:bg-slate-900/35 group-hover:opacity-100">
+                      <span className="rounded-lg bg-white/95 px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm">
+                        🔍 {lang === "EN" ? "View Certificate" : "Lihat Sertifikat"}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Certificate Metadata */}
+                  <div className="p-4">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="rounded bg-blue-50 px-2 py-0.5 font-mono text-[10px] font-semibold text-blue-700">
+                        {cert.badge}
+                      </span>
+                      <span className="font-mono text-[11px] text-slate-400">{cert.year}</span>
+                    </div>
+                    <h3 className="mt-2.5 text-sm font-bold leading-snug text-slate-950 group-hover:text-blue-700">
+                      {cert.title}
+                    </h3>
+                    <p className="mt-1 text-xs font-medium text-slate-600">{cert.issuer}</p>
+                  </div>
+                </div>
+
+                <div className="border-t border-slate-100 bg-slate-50/60 px-4 py-2.5 flex items-center justify-between">
+                  <span className="truncate font-mono text-[10px] text-slate-500">
+                    {cert.credentialId}
+                  </span>
+                  <span className="text-xs font-semibold text-blue-700">↗</span>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Technical Stack & Soft Skills Below Certifications */}
+          <div className="mt-14 grid gap-8 lg:grid-cols-12">
+            <div className="space-y-4 lg:col-span-7">
               <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-500">
                 {lang === "EN" ? "Core Technical Stack (Hard Skills)" : "Keahlian Teknis Utama"}
               </h3>
@@ -1004,9 +1108,13 @@ export default function PortfolioPage() {
                   </div>
                 ))}
               </div>
+            </div>
 
-              {/* Soft Skills & Languages */}
-              <div className="rounded-xl border border-slate-200 bg-white p-5">
+            <div className="lg:col-span-5">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+                {lang === "EN" ? "Soft Skills & Languages" : "Soft Skills & Bahasa"}
+              </h3>
+              <div className="mt-4 rounded-xl border border-slate-200 bg-white p-5">
                 <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                   {lang === "EN" ? "Professional Soft Skills" : "Soft Skills"}
                 </h4>
@@ -1021,48 +1129,20 @@ export default function PortfolioPage() {
                   ))}
                 </div>
 
-                <h4 className="mt-5 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <h4 className="mt-6 text-xs font-semibold uppercase tracking-wider text-slate-500">
                   {lang === "EN" ? "Languages" : "Bahasa"}
                 </h4>
                 <div className="mt-2.5 grid grid-cols-2 gap-2.5">
                   {DATA.skills.languages.map((l) => (
                     <div
                       key={l.name}
-                      className="rounded-lg border border-slate-100 bg-slate-50 p-2.5"
+                      className="rounded-lg border border-slate-100 bg-slate-50 p-3"
                     >
                       <div className="text-xs font-semibold text-slate-900">{l.name}</div>
-                      <div className="text-[11px] text-slate-500">{l.level[lang]}</div>
+                      <div className="mt-0.5 text-[11px] text-slate-500">{l.level[lang]}</div>
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-
-            {/* Certifications */}
-            <div className="space-y-4 lg:col-span-6">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-500">
-                {lang === "EN" ? "Verified Certifications (6)" : "Sertifikasi Kompetensi & Pelatihan (6)"}
-              </h3>
-              <div className="grid gap-3 sm:grid-cols-2">
-                {DATA.certifications.map((cert) => (
-                  <div
-                    key={cert.title}
-                    className="flex flex-col justify-between rounded-xl border border-slate-200 bg-white p-4"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="rounded bg-blue-50 px-2 py-0.5 font-mono text-[10px] font-semibold text-blue-700">
-                          {cert.badge}
-                        </span>
-                        <span className="font-mono text-[11px] text-slate-400">{cert.year}</span>
-                      </div>
-                      <div className="mt-2.5 text-sm font-bold text-slate-950">{cert.title}</div>
-                    </div>
-                    <div className="mt-2 border-t border-slate-100 pt-2 text-xs text-slate-500">
-                      {cert.issuer}
-                    </div>
-                  </div>
-                ))}
               </div>
             </div>
           </div>
@@ -1076,9 +1156,7 @@ export default function PortfolioPage() {
                 06 / {lang === "EN" ? "CONTACT" : "KONTAK"}
               </p>
               <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
-                {lang === "EN"
-                  ? "Let’s discuss further."
-                  : "Mari Berdiskusi Lebih Lanjut."}
+                {lang === "EN" ? "Let’s discuss further." : "Mari Berdiskusi Lebih Lanjut."}
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
                 {lang === "EN"
@@ -1130,6 +1208,48 @@ export default function PortfolioPage() {
           </div>
         </section>
       </main>
+
+      {/* Lightbox Modal for Viewing Full-Resolution Certificate Image */}
+      {selectedCert && (
+        <div
+          onClick={() => setSelectedCert(null)}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/75 p-4 backdrop-blur-xs"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl flex flex-col"
+          >
+            <div className="flex items-center justify-between border-b border-slate-200 px-5 py-3.5">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="rounded bg-blue-50 px-2 py-0.5 font-mono text-[10px] font-semibold text-blue-700">
+                    {selectedCert.badge}
+                  </span>
+                  <span className="font-mono text-xs text-slate-400">{selectedCert.year}</span>
+                </div>
+                <h3 className="mt-1 text-base font-bold text-slate-950">{selectedCert.title}</h3>
+                <p className="text-xs text-slate-500">
+                  {selectedCert.issuer} • {selectedCert.credentialId}
+                </p>
+              </div>
+              <button
+                onClick={() => setSelectedCert(null)}
+                className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100"
+              >
+                ✕ {lang === "EN" ? "Close" : "Tutup"}
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-auto bg-slate-100 p-4 flex items-center justify-center">
+              <img
+                src={selectedCert.image}
+                alt={selectedCert.title}
+                className="max-h-[72vh] w-auto rounded-lg object-contain shadow-sm"
+              />
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Minimal Footer */}
       <footer className="border-t border-slate-200 bg-white py-8">
