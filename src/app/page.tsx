@@ -14,7 +14,7 @@ interface Certification {
   image: string;
 }
 
-/* Vector SVG Icons (UI/UX Pro Max Standard: No Emojis as Structural Icons) */
+/* Vector SVG Icons (UI/UX Pro Max Standard: Clean SVG Icons) */
 const Icons = {
   Sun: () => (
     <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -27,52 +27,8 @@ const Icons = {
       <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
     </svg>
   ),
-  MapPin: () => (
-    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-      <circle cx="12" cy="10" r="3" />
-    </svg>
-  ),
-  Mail: () => (
-    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect width="20" height="16" x="2" y="4" rx="2" />
-      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
-    </svg>
-  ),
-  Phone: () => (
-    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-    </svg>
-  ),
-  LinkedIn: () => (
-    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-      <rect width="4" height="12" x="2" y="9" />
-      <circle cx="4" cy="4" r="2" />
-    </svg>
-  ),
-  GitHub: () => (
-    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-      <path d="M9 18c-4.51 2-5-2-7-2" />
-    </svg>
-  ),
-  Instagram: () => (
-    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-    </svg>
-  ),
-  Download: () => (
-    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-      <polyline points="7 10 12 15 17 10" />
-      <line x1="12" x2="12" y1="15" y2="3" />
-    </svg>
-  ),
   ArrowRight: () => (
-    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <path d="M5 12h14" />
       <path d="m12 5 7 7-7 7" />
     </svg>
@@ -83,49 +39,60 @@ const Icons = {
       <path d="M7 17 17 7" />
     </svg>
   ),
-  Code: () => (
-    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <polyline points="16 18 22 12 16 6" />
-      <polyline points="8 6 2 12 8 18" />
+  LinkedIn: () => (
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
     </svg>
   ),
-  BarChart: () => (
-    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <line x1="12" x2="12" y1="20" y2="10" />
-      <line x1="18" x2="18" y1="20" y2="4" />
-      <line x1="6" x2="6" y1="20" y2="16" />
+  GitHub: () => (
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+      <path d="M9 18c-4.51 2-5-2-7-2" />
     </svg>
   ),
-  Table: () => (
-    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  Instagram: () => (
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  ),
+  Mail: () => (
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  ),
+  WhatsApp: () => (
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  ),
+  AnalyticsMonitor: () => (
+    <svg className="h-10 w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="20" height="14" x="2" y="3" rx="2" />
+      <line x1="8" x2="16" y1="21" y2="21" />
+      <line x1="12" x2="12" y1="17" y2="21" />
+      <path d="M7 13v-3" />
+      <path d="M11 13V8" />
+      <path d="M15 13v-5" />
+    </svg>
+  ),
+  DashboardLayout: () => (
+    <svg className="h-10 w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <rect width="18" height="18" x="3" y="3" rx="2" />
       <path d="M3 9h18" />
-      <path d="M3 15h18" />
-      <path d="M9 9v12" />
+      <path d="M9 21V9" />
+      <path d="m13 15 2-2 3 3" />
     </svg>
   ),
-  Database: () => (
-    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+  DatabaseServer: () => (
+    <svg className="h-10 w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <ellipse cx="12" cy="5" rx="9" ry="3" />
       <path d="M3 5V19A9 3 0 0 0 21 19V5" />
       <path d="M3 12A9 3 0 0 0 21 12" />
-    </svg>
-  ),
-  PieChart: () => (
-    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
-      <path d="M22 12A10 10 0 0 0 12 2v10z" />
-    </svg>
-  ),
-  Search: () => (
-    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.3-4.3" />
-    </svg>
-  ),
-  Check: () => (
-    <svg className="h-4 w-4 shrink-0 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <polyline points="20 6 9 17 4 12" />
     </svg>
   ),
   ZoomIn: () => (
@@ -142,22 +109,31 @@ const Icons = {
       <path d="m6 6 12 12" />
     </svg>
   ),
+  Check: () => (
+    <svg className="h-4 w-4 shrink-0 text-amber-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  ),
 };
 
 const DATA = {
   profile: {
     name: "Lukman Fatkhurozi",
-    role: {
-      EN: "Data Analyst & Business Intelligence Specialist",
-      ID: "Data Analyst & Spesialis Business Intelligence",
+    photo: "/lukman-photo.png",
+    rolesLine: "Data Analyst || Business Intelligence || Database Administrator",
+    experienceHighlight: {
+      EN: {
+        prefix: "GPA 3.95/4.00 & ",
+        accent: "BNSP Certified Database Administrator",
+      },
+      ID: {
+        prefix: "IPK 3.95/4.00 & ",
+        accent: "BNSP Certified Database Administrator",
+      },
     },
-    tagline: {
-      EN: "Information Systems student (GPA 3.95/4.00) & BNSP Certified Database Administrator transforming raw datasets into clear, actionable business insights.",
-      ID: "Mahasiswa Sistem Informasi (IPK 3.95/4.00) & Database Administrator Tersertifikasi BNSP yang mengubah data mentah menjadi insight bisnis yang akurat dan siap dieksekusi.",
-    },
-    summary: {
-      EN: "Information Systems student with a strong interest in Data Analytics, Business Intelligence, and Data Visualization. Experienced in collecting, cleaning, analyzing, and visualizing data using SQL, Python, Microsoft Excel, and Power BI through academic projects and self-directed learning. Capable of transforming raw data into meaningful insights to support data-driven decision-making. Highly motivated to continuously develop analytical skills and contribute effectively in a collaborative and innovative work environment.",
-      ID: "Mahasiswa Program Studi Sistem Informasi yang memiliki minat di bidang data analisis. Berpengalaman mengolah, membersihkan, menganalisis, serta memvisualisasikan data menggunakan Microsoft Excel, SQL, Power BI, dan Python (Pandas) melalui berbagai proyek akademik dan portofolio. Mampu mengubah data mentah menjadi insight yang bermanfaat untuk mendukung pengambilan keputusan, serta memiliki semangat belajar yang tinggi dan siap berkontribusi dalam lingkungan kerja yang kolaboratif.",
+    quote: {
+      EN: '"Data is just raw numbers until structured analysis and clear visualization turn it into decisions."',
+      ID: '"Data hanyalah kumpulan angka mentah sampai analisis terstruktur dan visualisasi mengubahnya menjadi keputusan."',
     },
     location: "Jakarta Selatan, DKI Jakarta",
     email: "lukmanfatkhurozi@gmail.com",
@@ -170,29 +146,145 @@ const DATA = {
     cvUrl: "/CV_Lukman_Fatkhurozi.pdf",
     portfolioPdfUrl: "/Portofolio_Lukman_Fatkhurozi.pdf",
   },
-  stats: [
+  skillBadges: [
+    // Row 1: Core Square App-Tile Badges (matching Ps, Ai, Pr, Xd style in reference)
     {
-      value: "3.95 / 4.00",
-      label: { EN: "Cumulative GPA", ID: "IPK Kumulatif" },
-      sub: { EN: "Information Systems, UBSI", ID: "Sistem Informasi, UBSI" },
+      code: "Py",
+      name: "Python",
+      sub: "Pandas & NumPy",
+      bg: "bg-[#1e293b] border-[#38bdf8]",
+      text: "text-[#38bdf8]",
+      shape: "square",
     },
     {
-      value: "BNSP",
-      label: { EN: "Certified DBA", ID: "Sertifikasi DBA" },
-      sub: { EN: "Database Administrator", ID: "Database Administrator" },
+      code: "Xl",
+      name: "Microsoft Excel",
+      sub: "Pivot & Slicers",
+      bg: "bg-[#064e3b] border-[#34d399]",
+      text: "text-[#34d399]",
+      shape: "square",
     },
     {
-      value: "3",
-      label: { EN: "Published Case Studies", ID: "Proyek Portofolio" },
-      sub: { EN: "Medium & GitHub Repositories", ID: "Medium & Repositori GitHub" },
+      code: "BI",
+      name: "Power BI",
+      sub: "DAX & Power Query",
+      bg: "bg-[#451a03] border-[#fbbf24]",
+      text: "text-[#fbbf24]",
+      shape: "square",
     },
     {
-      value: "7",
-      label: { EN: "Certifications", ID: "Sertifikasi Resmi" },
-      sub: {
-        EN: "BNSP, Dibimbing, RevoU, DQLab, Dicoding",
-        ID: "BNSP, Dibimbing, RevoU, DQLab, Dicoding",
+      code: "SQL",
+      name: "SQL Query",
+      sub: "Relational DB",
+      bg: "bg-[#1e1b4b] border-[#818cf8]",
+      text: "text-[#818cf8]",
+      shape: "square",
+    },
+    {
+      code: "BQ",
+      name: "Google BigQuery",
+      sub: "Cloud Data Warehouse",
+      bg: "bg-[#172554] border-[#60a5fa]",
+      text: "text-[#60a5fa]",
+      shape: "square",
+    },
+    {
+      code: "Pd",
+      name: "Pandas",
+      sub: "Data Cleaning",
+      bg: "bg-[#2e1065] border-[#c084fc]",
+      text: "text-[#c084fc]",
+      shape: "square",
+    },
+    // Row 2: Secondary Circular/Pill Badges (matching row 2 in reference)
+    {
+      code: "EDA",
+      name: "Exploratory Data",
+      sub: "Pattern & Anomaly",
+      bg: "bg-[#3f1d2e] border-[#f472b6]",
+      text: "text-[#f472b6]",
+      shape: "circle",
+    },
+    {
+      code: "DBA",
+      name: "Database Admin",
+      sub: "BNSP Certified",
+      bg: "bg-[#431407] border-[#fb923c]",
+      text: "text-[#fb923c]",
+      shape: "circle",
+    },
+    {
+      code: "ETL",
+      name: "Power Query ETL",
+      sub: "Data Modeling",
+      bg: "bg-[#14532d] border-[#4ade80]",
+      text: "text-[#4ade80]",
+      shape: "circle",
+    },
+    {
+      code: "KPI",
+      name: "Data Visualization",
+      sub: "Executive Metrics",
+      bg: "bg-[#422006] border-[#facc15]",
+      text: "text-[#facc15]",
+      shape: "circle",
+    },
+    {
+      code: "My",
+      name: "MySQL",
+      sub: "RDBMS Schema",
+      bg: "bg-[#083344] border-[#22d3ee]",
+      text: "text-[#22d3ee]",
+      shape: "circle",
+    },
+    {
+      code: "Git",
+      name: "Git & GitHub",
+      sub: "Version Control",
+      bg: "bg-[#27272a] border-[#e4e4e7]",
+      text: "text-[#f4f4f5]",
+      shape: "circle",
+    },
+  ],
+  serviceCards: [
+    {
+      id: "data-analytics",
+      featured: false,
+      title: {
+        EN: "Data\nAnalytics",
+        ID: "Data\nAnalytics",
       },
+      desc: {
+        EN: "Collecting, cleaning, preprocessing, and exploring datasets using Python (Pandas, NumPy) and Microsoft Excel Pivot Tables.",
+        ID: "Mengolah, membersihkan, dan mengeksplorasi dataset menggunakan Python (Pandas, NumPy) serta Microsoft Excel Pivot Table.",
+      },
+      icon: "monitor",
+    },
+    {
+      id: "business-intelligence",
+      featured: true,
+      title: {
+        EN: "Business\nIntelligence",
+        ID: "Business\nIntelligence",
+      },
+      desc: {
+        EN: "Designing interactive Power BI & Excel KPI dashboards with dynamic slicers, regional distribution, and trend visualizations.",
+        ID: "Merancang dashboard KPI interaktif di Power BI & Excel dengan slicer dinamis, analisis tren, dan distribusi penjualan.",
+      },
+      icon: "dashboard",
+    },
+    {
+      id: "database-admin",
+      featured: false,
+      title: {
+        EN: "Database &\nBigQuery SQL",
+        ID: "Database &\nBigQuery SQL",
+      },
+      desc: {
+        EN: "BNSP Certified Database Administrator skilled in writing SQL queries, multi-table JOINs, and aggregations in Google BigQuery & MySQL.",
+        ID: "Database Administrator tersertifikasi BNSP yang mahir menulis query SQL, JOIN, dan agregasi di Google BigQuery & MySQL.",
+      },
+      icon: "database",
     },
   ],
   projects: [
@@ -463,74 +555,21 @@ const DATA = {
       image: "/certifications/dicoding3.png",
     },
   ] as Certification[],
-  skills: {
-    hardSkills: [
-      {
-        name: "Microsoft Excel",
-        detail:
-          "Pivot Tables, Pivot Charts, Interactive Slicers, Lookup Functions, KPI Sales Dashboards",
-      },
-      {
-        name: "SQL (MySQL & Google BigQuery)",
-        detail:
-          "SELECT, WHERE, INNER JOIN, GROUP BY, ORDER BY, Scalar Subqueries, Aggregate Functions",
-      },
-      {
-        name: "Power BI & Data Visualization",
-        detail:
-          "Power Query Editor (ETL), DAX KPI Cards, Multi-Region & Genre Sales Dashboards",
-      },
-      {
-        name: "Python for Data Analysis",
-        detail:
-          "Pandas, NumPy, Data Type & Missing Value Inspection (df.info, df.head), Data Cleaning & EDA",
-      },
-      {
-        name: "Exploratory Data Analysis (EDA) & Database Administration",
-        detail:
-          "BNSP Certified Database Administrator, Pattern & Trend Discovery, Inventory Data Management",
-      },
-    ],
-    softSkills: {
-      EN: [
-        "Analytical & Structured Problem Solving",
-        "Meticulous Attention to Detail in Data Processing",
-        "Collaborative Teamwork & Communication",
-        "Fast Adaptation to New Data Tools & Technologies",
-      ],
-      ID: [
-        "Pemikiran Analitis & Pemecahan Masalah Terstruktur",
-        "Ketelitian Tinggi dalam Pemrosesan Data",
-        "Kolaborasi Tim & Komunikasi Efektif",
-        "Adaptasi Cepat terhadap Teknologi & Tools Baru",
-      ],
-    },
-    languages: [
-      { name: "Bahasa Indonesia", level: { EN: "Native Speaker", ID: "Bahasa Ibu (Native)" } },
-      {
-        name: "English",
-        level: { EN: "Basic Working Proficiency", ID: "Kemampuan Dasar Profesional" },
-      },
-    ],
-  },
 };
 
 export default function PortfolioPage() {
   const [lang, setLang] = useState<Language>("ID");
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
   const [activeFilter, setActiveFilter] = useState<string>("ALL");
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
 
-  // Sync theme with localStorage and system preference on mount
+  // Default to Dark Mode (matching the reference screenshot), while supporting Light Mode toggle
   useEffect(() => {
     const savedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
-    if (savedTheme === "dark" || savedTheme === "light") {
-      setTheme(savedTheme);
-      document.documentElement.classList.toggle("dark", savedTheme === "dark");
-    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      setTheme("dark");
-      document.documentElement.classList.add("dark");
-    }
+    const initialTheme: Theme =
+      savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
+    setTheme(initialTheme);
+    document.documentElement.classList.toggle("dark", initialTheme === "dark");
   }, []);
 
   // Close certificate modal on Escape key
@@ -554,93 +593,59 @@ export default function PortfolioPage() {
       ? DATA.projects
       : DATA.projects.filter((p) => p.toolBadge === activeFilter);
 
-  const coreCompetencies = [
-    { icon: <Icons.Code />, title: "Python", sub: "Pandas, NumPy, Cleaning" },
-    { icon: <Icons.BarChart />, title: "Power BI", sub: "Power Query, DAX, KPI" },
-    { icon: <Icons.Table />, title: "Microsoft Excel", sub: "Pivot Table, Slicer, Lookup" },
-    { icon: <Icons.Database />, title: "SQL", sub: "BigQuery & MySQL" },
-    { icon: <Icons.PieChart />, title: "Data Visualization", sub: "Interactive Dashboards" },
-    {
-      icon: <Icons.Search />,
-      title: "Exploratory Data Analysis",
-      sub: "Pattern & Trend Discovery",
-    },
-  ];
-
   return (
-    <div className="min-h-screen flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-200">
-      {/* Sticky Minimal Navigation */}
-      <header className="sticky top-0 z-40 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white/85 dark:bg-zinc-950/85 backdrop-blur-md transition-colors duration-200">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3.5">
-          <a
-            href="#top"
-            className="flex items-center gap-2.5 text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 rounded-lg"
-          >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 dark:bg-blue-600 font-mono text-xs font-bold text-white shadow-xs">
-              LF
-            </span>
-            <span>Lukman Fatkhurozi</span>
-          </a>
-
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 dark:bg-[#232631] dark:text-slate-100 transition-colors duration-200">
+      {/* TOP NAVIGATION BAR (Matching Reference Design: HOME, PORTOFOLIO, SERTIFIKASI, CONTACT + Controls) */}
+      <header className="sticky top-0 z-40 border-b border-slate-200/80 dark:border-[#343847] bg-white/90 dark:bg-[#232631]/90 backdrop-blur-md transition-colors duration-200">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <nav
             aria-label="Primary Navigation"
-            className="hidden items-center gap-7 text-sm font-medium text-zinc-600 dark:text-zinc-400 md:flex"
+            className="flex items-center gap-5 sm:gap-8 text-xs sm:text-sm font-bold uppercase tracking-wider"
           >
             <a
-              href="#about"
-              className="transition-colors hover:text-zinc-950 dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 rounded"
+              href="#top"
+              className="text-amber-500 transition-colors hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
             >
-              {lang === "EN" ? "About" : "Tentang"}
+              HOME
+            </a>
+            <a
+              href="#about"
+              className="text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
+            >
+              {lang === "EN" ? "ABOUT" : "ABOUT"}
             </a>
             <a
               href="#projects"
-              className="transition-colors hover:text-zinc-950 dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 rounded"
+              className="text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
             >
-              {lang === "EN" ? "Projects" : "Proyek"}
+              PORTOFOLIO
             </a>
             <a
-              href="#experience"
-              className="transition-colors hover:text-zinc-950 dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 rounded"
+              href="#certifications"
+              className="hidden sm:inline text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
             >
-              {lang === "EN" ? "Experience" : "Pengalaman"}
-            </a>
-            <a
-              href="#skills"
-              className="transition-colors hover:text-zinc-950 dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 rounded"
-            >
-              {lang === "EN" ? "Certifications" : "Sertifikasi"}
+              {lang === "EN" ? "CERTIFICATES" : "SERTIFIKASI"}
             </a>
             <a
               href="#contact"
-              className="transition-colors hover:text-zinc-950 dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 rounded"
+              className="text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
             >
-              {lang === "EN" ? "Contact" : "Kontak"}
+              CONTACT
             </a>
           </nav>
 
-          <div className="flex items-center gap-2.5">
-            {/* Theme Toggle (Light / Dark) */}
+          {/* Theme & Language Controls */}
+          <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={toggleTheme}
               aria-label={
-                theme === "light"
-                  ? "Switch to Dark Mode"
-                  : "Switch to Light Mode"
+                theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"
               }
-              title={
-                theme === "light"
-                  ? lang === "EN"
-                    ? "Switch to Dark theme"
-                    : "Ganti ke tema Gelap"
-                  : lang === "EN"
-                  ? "Switch to Light theme"
-                  : "Ganti ke tema Terang"
-              }
-              className="cursor-pointer inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-950 dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+              className="cursor-pointer inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-[#3d4254] bg-slate-100 dark:bg-[#2c303d] px-2.5 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 transition-colors hover:border-amber-500/60 hover:text-amber-500"
             >
               {theme === "light" ? <Icons.Moon /> : <Icons.Sun />}
-              <span className="hidden sm:inline">
+              <span className="hidden md:inline">
                 {theme === "light"
                   ? lang === "EN"
                     ? "Dark"
@@ -651,20 +656,19 @@ export default function PortfolioPage() {
               </span>
             </button>
 
-            {/* Language Toggle */}
             <div
               role="group"
               aria-label="Language switcher"
-              className="inline-flex rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900 p-0.5 text-xs font-medium"
+              className="inline-flex rounded-lg border border-slate-200 dark:border-[#3d4254] bg-slate-100 dark:bg-[#2c303d] p-0.5 text-xs font-semibold"
             >
               <button
                 type="button"
                 onClick={() => setLang("ID")}
                 aria-pressed={lang === "ID"}
-                className={`cursor-pointer rounded-md px-2.5 py-1 transition-all ${
+                className={`cursor-pointer rounded-md px-2 py-1 transition-all ${
                   lang === "ID"
-                    ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-xs"
-                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
+                    ? "bg-amber-500 text-zinc-950 shadow-xs"
+                    : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200"
                 }`}
               >
                 ID
@@ -673,207 +677,341 @@ export default function PortfolioPage() {
                 type="button"
                 onClick={() => setLang("EN")}
                 aria-pressed={lang === "EN"}
-                className={`cursor-pointer rounded-md px-2.5 py-1 transition-all ${
+                className={`cursor-pointer rounded-md px-2 py-1 transition-all ${
                   lang === "EN"
-                    ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-xs"
-                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
+                    ? "bg-amber-500 text-zinc-950 shadow-xs"
+                    : "text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200"
                 }`}
               >
                 EN
               </button>
             </div>
-
-            <a
-              href={DATA.profile.cvUrl}
-              download="CV_Lukman_Fatkhurozi.pdf"
-              className="hidden rounded-lg bg-zinc-900 dark:bg-blue-600 px-3.5 py-2 text-xs font-medium text-white transition-colors hover:bg-zinc-800 dark:hover:bg-blue-500 sm:inline-flex sm:items-center sm:gap-1.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-            >
-              <span>{lang === "EN" ? "Download CV" : "Unduh CV"}</span>
-              <Icons.Download />
-            </a>
           </div>
         </div>
       </header>
 
-      <main id="top" className="mx-auto w-full max-w-5xl flex-1 px-6 pt-12 pb-24">
-        {/* HERO SECTION */}
-        <section className="pb-16 pt-4 md:pb-24 md:pt-10">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 dark:border-blue-900/70 bg-blue-50/80 dark:bg-blue-950/60 px-3.5 py-1.5 text-xs font-medium text-blue-800 dark:text-blue-300">
-            <span className="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400"></span>
-            <span>
-              {lang === "EN"
-                ? "Available for Data Analyst / BI / Database Opportunities"
-                : "Terbuka untuk Peluang Data Analyst / BI / Database"}
-            </span>
-          </div>
+      <main id="top" className="flex-1">
+        {/* =====================================================================
+            HERO SECTION (Exact Layout from Reference Image + User's Cutout Photo)
+           ===================================================================== */}
+        <section className="relative overflow-hidden bg-white dark:bg-[#232631] pt-10 pb-16 md:py-20 transition-colors duration-200">
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="grid items-center gap-12 md:grid-cols-12">
+              {/* Left Column: Greeting, Name, Roles, Let's Talk CTA, Social Row, Download CV */}
+              <div className="md:col-span-7 order-2 md:order-1">
+                <p className="text-2xl sm:text-3xl font-medium text-slate-700 dark:text-slate-200">
+                  Hello,
+                </p>
+                <h1 className="mt-1 text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                  I Am {DATA.profile.name}
+                </h1>
 
-          <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-5xl md:text-6xl">
-            {DATA.profile.name}
-          </h1>
-          <p className="mt-3 text-lg font-medium text-blue-600 dark:text-blue-400 sm:text-xl">
-            {DATA.profile.role[lang]}
-          </p>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-600 dark:text-zinc-300 sm:text-lg">
-            {DATA.profile.tagline[lang]}
-          </p>
+                <p className="mt-3 text-sm sm:text-base font-medium text-slate-600 dark:text-slate-300">
+                  {DATA.profile.rolesLine}
+                </p>
+                <p className="mt-1 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+                  {DATA.profile.experienceHighlight[lang].prefix}
+                  <span className="font-bold text-amber-500">
+                    {DATA.profile.experienceHighlight[lang].accent}
+                  </span>
+                </p>
 
-          {/* Location & Direct Links */}
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2.5 text-sm text-zinc-600 dark:text-zinc-400">
-            <span className="inline-flex items-center gap-2">
-              <Icons.MapPin />
-              <span>{DATA.profile.location}</span>
-            </span>
-            <a
-              href={`mailto:${DATA.profile.email}`}
-              className="inline-flex items-center gap-2 hover:text-zinc-950 dark:hover:text-white underline-offset-4 hover:underline"
-            >
-              <Icons.Mail />
-              <span>{DATA.profile.email}</span>
-            </a>
-            <a
-              href={DATA.profile.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-zinc-950 dark:hover:text-white underline-offset-4 hover:underline"
-            >
-              <Icons.LinkedIn />
-              <span>linkedin.com/in/lukman-fatkhurozi</span>
-            </a>
-            <a
-              href={DATA.profile.instagram}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 hover:text-zinc-950 dark:hover:text-white underline-offset-4 hover:underline"
-            >
-              <Icons.Instagram />
-              <span>{DATA.profile.instagramHandle}</span>
-            </a>
-          </div>
-
-          {/* Primary Actions */}
-          <div className="mt-8 flex flex-wrap items-center gap-3.5">
-            <a
-              href="#projects"
-              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 px-5 py-3 text-sm font-medium text-white shadow-xs transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-            >
-              <span>{lang === "EN" ? "Explore Projects" : "Lihat Proyek Portofolio"}</span>
-              <Icons.ArrowRight />
-            </a>
-            <a
-              href={DATA.profile.cvUrl}
-              download="CV_Lukman_Fatkhurozi.pdf"
-              className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-5 py-3 text-sm font-medium text-zinc-800 dark:text-zinc-200 transition-all hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800/80"
-            >
-              <Icons.Download />
-              <span>{lang === "EN" ? "Download CV (PDF)" : "Unduh CV (PDF)"}</span>
-            </a>
-            <a
-              href={DATA.profile.portfolioPdfUrl}
-              download="Portofolio_Data_Analyst_Lukman_Fatkhurozi.pdf"
-              className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-5 py-3 text-sm font-medium text-zinc-800 dark:text-zinc-200 transition-all hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800/80"
-            >
-              <Icons.Download />
-              <span>
-                {lang === "EN"
-                  ? "Download Portfolio Deck (PDF)"
-                  : "Unduh Slide Portofolio (PDF)"}
-              </span>
-            </a>
-          </div>
-
-          {/* Key Highlights Strip */}
-          <div className="mt-14 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {DATA.stats.map((stat, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-5 shadow-2xs transition-colors"
-              >
-                <div className="font-mono text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-3xl">
-                  {stat.value}
+                {/* Primary Orange Button: Let's Talk -> */}
+                <div className="mt-7 flex flex-wrap items-center gap-3.5">
+                  <a
+                    href="#contact"
+                    className="inline-flex items-center gap-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 px-6 py-3 text-sm font-bold text-zinc-950 shadow-md shadow-amber-500/15 transition-all hover:-translate-y-0.5"
+                  >
+                    <span>Let&apos;s Talk</span>
+                    <Icons.ArrowRight />
+                  </a>
+                  <a
+                    href="#projects"
+                    className="inline-flex items-center gap-2 rounded-lg border border-slate-300 dark:border-slate-600 px-5 py-3 text-sm font-semibold text-slate-700 dark:text-slate-200 transition-colors hover:border-amber-500 hover:text-amber-500"
+                  >
+                    <span>{lang === "EN" ? "View Projects" : "Lihat Proyek"}</span>
+                  </a>
                 </div>
-                <div className="mt-1 text-sm font-semibold text-zinc-800 dark:text-zinc-200">
-                  {stat.label[lang]}
-                </div>
-                <div className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
-                  {stat.sub[lang]}
+
+                {/* Social Icons Row + "Download Curriculum Vitae" */}
+                <div className="mt-12 space-y-3">
+                  <div className="flex items-center gap-4 text-slate-600 dark:text-slate-200">
+                    <a
+                      href={DATA.profile.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="LinkedIn"
+                      className="transition-colors hover:text-amber-500"
+                    >
+                      <Icons.LinkedIn />
+                    </a>
+                    <a
+                      href={DATA.profile.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="GitHub"
+                      className="transition-colors hover:text-amber-500"
+                    >
+                      <Icons.GitHub />
+                    </a>
+                    <a
+                      href={DATA.profile.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Instagram"
+                      className="transition-colors hover:text-amber-500"
+                    >
+                      <Icons.Instagram />
+                    </a>
+                    <a
+                      href={`mailto:${DATA.profile.email}`}
+                      aria-label="Email"
+                      className="transition-colors hover:text-amber-500"
+                    >
+                      <Icons.Mail />
+                    </a>
+                    <a
+                      href={DATA.profile.whatsapp}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="WhatsApp"
+                      className="transition-colors hover:text-amber-500"
+                    >
+                      <Icons.WhatsApp />
+                    </a>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                    <a
+                      href={DATA.profile.cvUrl}
+                      download="CV_Lukman_Fatkhurozi.pdf"
+                      className="inline-flex items-center gap-1.5 font-bold group"
+                    >
+                      <span className="text-amber-500 group-hover:underline">
+                        Download
+                      </span>
+                      <span className="text-slate-800 dark:text-white group-hover:underline">
+                        Curriculum Vitae
+                      </span>
+                    </a>
+                    <span className="text-slate-300 dark:text-slate-600">|</span>
+                    <a
+                      href={DATA.profile.portfolioPdfUrl}
+                      download="Portofolio_Data_Analyst_Lukman_Fatkhurozi.pdf"
+                      className="inline-flex items-center gap-1.5 font-semibold text-xs text-slate-500 dark:text-slate-400 hover:text-amber-500"
+                    >
+                      <span>
+                        {lang === "EN" ? "Download Portfolio PDF" : "Unduh Slide Portofolio (PDF)"}
+                      </span>
+                    </a>
+                  </div>
                 </div>
               </div>
-            ))}
+
+              {/* Right Column: Circular Orange Backdrop + Lukman Cutout Photo */}
+              <div className="md:col-span-5 order-1 md:order-2 flex justify-center">
+                <div className="relative flex items-center justify-center">
+                  {/* Vibrant Orange Circle Backdrop */}
+                  <div className="h-64 w-64 sm:h-76 sm:w-76 rounded-full bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 shadow-2xl shadow-amber-500/20" />
+
+                  {/* Cutout Portrait Image overlapping the orange circle */}
+                  <div className="absolute inset-x-0 -top-8 bottom-0 flex items-end justify-center overflow-hidden rounded-b-full">
+                    <img
+                      src={DATA.profile.photo}
+                      alt={DATA.profile.name}
+                      className="h-[115%] w-auto max-w-none object-contain object-bottom drop-shadow-[0_14px_24px_rgba(0,0,0,0.45)] transition-transform duration-300 hover:scale-[1.02]"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* ABOUT & METHODOLOGY SECTION */}
+        {/* =====================================================================
+            ABOUT ME SECTION (Centered Title with Short Underline, Quote, Bio)
+           ===================================================================== */}
         <section
           id="about"
-          className="scroll-mt-24 border-t border-zinc-200 dark:border-zinc-800/90 py-16"
+          className="scroll-mt-16 bg-slate-100/90 dark:bg-[#2c303d] py-16 md:py-20 border-y border-slate-200/80 dark:border-[#363b4b] transition-colors duration-200"
         >
-          <div className="grid gap-10 md:grid-cols-12">
-            <div className="md:col-span-4">
-              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
-                01 / {lang === "EN" ? "ABOUT ME" : "TENTANG SAYA"}
+          <div className="mx-auto max-w-3xl px-6 text-center">
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+              About Me
+            </h2>
+            <div className="mx-auto mt-2.5 h-1 w-14 rounded-full bg-slate-400 dark:bg-slate-300" />
+
+            <p className="mt-7 text-sm sm:text-base font-semibold italic text-amber-600 dark:text-amber-400">
+              {DATA.profile.quote[lang]}
+            </p>
+
+            {lang === "ID" ? (
+              <p className="mt-4 text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-200">
+                Saya mahasiswa Program Studi{" "}
+                <strong className="font-bold text-slate-900 dark:text-white">
+                  S1 Sistem Informasi di Universitas Bina Sarana Informatika (IPK 3.95/4.00)
+                </strong>{" "}
+                yang memiliki minat kuat di bidang{" "}
+                <span className="underline decoration-amber-500 underline-offset-4">
+                  Data Analytics, Business Intelligence, dan Visualisasi Data
+                </span>
+                . Berpengalaman mengumpulkan, membersihkan, menganalisis, serta memvisualisasikan
+                data menggunakan{" "}
+                <strong className="font-bold text-slate-900 dark:text-white">
+                  SQL (MySQL &amp; Google BigQuery), Python (Pandas, NumPy), Microsoft Excel, dan
+                  Power BI
+                </strong>{" "}
+                melalui proyek akademik, magang, dan pembelajaran mandiri. Saya juga telah
+                tersertifikasi resmi{" "}
+                <strong className="font-bold text-amber-600 dark:text-amber-400">
+                  BNSP — Database Administrator
+                </strong>{" "}
+                dan siap berkontribusi secara kolaboratif untuk mendukung pengambilan keputusan
+                berbasis data.
               </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-                {lang === "EN" ? "Get to Know Me Closer" : "Mengenal Lebih Dekat dengan Saya"}
+            ) : (
+              <p className="mt-4 text-sm sm:text-base leading-relaxed text-slate-600 dark:text-slate-200">
+                I am an{" "}
+                <strong className="font-bold text-slate-900 dark:text-white">
+                  Information Systems undergraduate at Universitas Bina Sarana Informatika (GPA
+                  3.95/4.00)
+                </strong>{" "}
+                with a strong passion for{" "}
+                <span className="underline decoration-amber-500 underline-offset-4">
+                  Data Analytics, Business Intelligence, and Data Visualization
+                </span>
+                . Experienced in collecting, cleaning, analyzing, and visualizing datasets using{" "}
+                <strong className="font-bold text-slate-900 dark:text-white">
+                  SQL (MySQL &amp; Google BigQuery), Python (Pandas, NumPy), Microsoft Excel, and
+                  Power BI
+                </strong>
+                . I also hold a national{" "}
+                <strong className="font-bold text-amber-600 dark:text-amber-400">
+                  BNSP — Certified Database Administrator
+                </strong>{" "}
+                credential and thrive in collaborative, data-driven environments.
+              </p>
+            )}
+          </div>
+        </section>
+
+        {/* =====================================================================
+            SKILL SECTION (Centered Title, Colorful Tool Icon Grid + 3 Service Cards)
+           ===================================================================== */}
+        <section
+          id="skills"
+          className="scroll-mt-16 bg-white dark:bg-[#232631] py-16 md:py-20 transition-colors duration-200"
+        >
+          <div className="mx-auto max-w-4xl px-6">
+            <div className="text-center">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                Skill
               </h2>
+              <div className="mx-auto mt-2.5 h-1 w-12 rounded-full bg-slate-400 dark:bg-slate-300" />
             </div>
 
-            <div className="space-y-6 md:col-span-8">
-              <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
-                {DATA.profile.summary[lang]}
-              </p>
-
-              {/* 6 Core Skills from Portfolio Slide 4 with SVG Icons */}
-              <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3">
-                {coreCompetencies.map((item) => (
+            {/* 2-Row Colorful Tool Badge Grid (Matching Reference Image Layout) */}
+            <div className="mt-10 grid grid-cols-3 gap-4 sm:grid-cols-6 sm:gap-5">
+              {DATA.skillBadges.map((badge) => (
+                <div
+                  key={badge.name}
+                  className="group flex flex-col items-center text-center"
+                >
                   <div
-                    key={item.title}
-                    className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-2xs transition-colors hover:border-blue-300 dark:hover:border-blue-800"
+                    className={`flex h-16 w-16 sm:h-18 sm:w-18 items-center justify-center border-2 ${
+                      badge.shape === "circle" ? "rounded-full" : "rounded-2xl"
+                    } ${badge.bg} ${badge.text} font-mono text-lg sm:text-xl font-extrabold shadow-md transition-transform duration-200 group-hover:-translate-y-1`}
                   >
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-950/70">
-                      {item.icon}
-                    </div>
-                    <div className="mt-3 text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                      {item.title}
-                    </div>
-                    <div className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
-                      {item.sub}
-                    </div>
+                    {badge.code}
                   </div>
-                ))}
-              </div>
+                  <div className="mt-2 text-xs font-bold text-slate-800 dark:text-slate-100">
+                    {badge.name}
+                  </div>
+                  <div className="text-[10px] text-slate-500 dark:text-slate-400">
+                    {badge.sub}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 3 Vertical Service Pillar Cards (Center Card Highlighted in Vibrant Orange) */}
+            <div className="mt-14 grid gap-6 sm:grid-cols-3">
+              {DATA.serviceCards.map((card) => (
+                <div
+                  key={card.id}
+                  className={`rounded-xl p-7 transition-all duration-200 hover:-translate-y-1 ${
+                    card.featured
+                      ? "bg-amber-500 text-zinc-950 shadow-xl shadow-amber-500/20"
+                      : "border border-slate-200 dark:border-[#3c4153] bg-slate-100 dark:bg-[#323645] text-slate-900 dark:text-white shadow-sm"
+                  }`}
+                >
+                  <div
+                    className={`${
+                      card.featured
+                        ? "text-zinc-950"
+                        : "text-amber-500 dark:text-slate-100"
+                    }`}
+                  >
+                    {card.icon === "monitor" && <Icons.AnalyticsMonitor />}
+                    {card.icon === "dashboard" && <Icons.DashboardLayout />}
+                    {card.icon === "database" && <Icons.DatabaseServer />}
+                  </div>
+
+                  <h3 className="mt-5 whitespace-pre-line text-xl font-extrabold leading-tight">
+                    {card.title[lang]}
+                  </h3>
+
+                  <p
+                    className={`mt-3 text-xs leading-relaxed ${
+                      card.featured
+                        ? "font-medium text-zinc-900"
+                        : "text-slate-600 dark:text-slate-300"
+                    }`}
+                  >
+                    {card.desc[lang]}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* PROJECTS SECTION */}
+        {/* =====================================================================
+            PORTOFOLIO / PROJECTS SECTION (All 3 Projects from Portfolio PDF)
+           ===================================================================== */}
         <section
           id="projects"
-          className="scroll-mt-24 border-t border-zinc-200 dark:border-zinc-800/90 py-16"
+          className="scroll-mt-16 bg-slate-100/90 dark:bg-[#2c303d] py-16 md:py-20 border-t border-slate-200/80 dark:border-[#363b4b] transition-colors duration-200"
         >
-          <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
-            <div>
-              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
-                02 / {lang === "EN" ? "PORTFOLIO PROJECTS" : "PROYEK PORTOFOLIO"}
-              </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-3xl">
-                {lang === "EN"
-                  ? "Featured Data Analyst Projects"
-                  : "Proyek Analisis Data & Dashboard"}
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="text-center">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                {lang === "EN" ? "Portofolio Projects" : "Proyek Portofolio"}
               </h2>
+              <div className="mx-auto mt-2.5 h-1 w-16 rounded-full bg-amber-500" />
+              <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+                {lang === "EN"
+                  ? "Case studies in Data Analysis, Business Intelligence Dashboards, and Cloud SQL."
+                  : "Studi kasus analisis data, dashboard interaktif Power BI & Excel, serta Google BigQuery SQL."}
+              </p>
             </div>
 
             {/* Tool Filter */}
-            <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filter projects by tool">
+            <div
+              className="mt-7 flex flex-wrap justify-center gap-2"
+              role="group"
+              aria-label="Filter projects by tool"
+            >
               {["ALL", "Microsoft Excel", "Power BI", "Google BigQuery SQL"].map((filter) => (
                 <button
                   key={filter}
                   type="button"
                   onClick={() => setActiveFilter(filter)}
                   aria-pressed={activeFilter === filter}
-                  className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
+                  className={`cursor-pointer rounded-lg px-3.5 py-1.5 text-xs font-bold transition-all ${
                     activeFilter === filter
-                      ? "bg-zinc-900 dark:bg-blue-600 text-white shadow-xs"
-                      : "border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100"
+                      ? "bg-amber-500 text-zinc-950 shadow-sm"
+                      : "border border-slate-300 dark:border-[#43485b] bg-white dark:bg-[#232631] text-slate-700 dark:text-slate-300 hover:border-amber-500"
                   }`}
                 >
                   {filter === "ALL"
@@ -884,612 +1022,545 @@ export default function PortfolioPage() {
                 </button>
               ))}
             </div>
-          </div>
 
-          <div className="mt-8 space-y-8">
-            {filteredProjects.map((project) => (
-              <article
-                key={project.id}
-                className="group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-6 shadow-2xs transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md sm:p-8"
-              >
-                <div className="grid gap-8 lg:grid-cols-12">
-                  {/* Left column: details & link lengkap pengerjaan */}
-                  <div className="flex flex-col justify-between lg:col-span-7">
-                    <div>
-                      <div className="flex flex-wrap items-center gap-2.5 text-xs">
-                        <span className="rounded-md bg-zinc-900 dark:bg-zinc-800 px-2.5 py-1 font-mono font-bold text-white dark:text-zinc-100">
-                          {project.number}
-                        </span>
-                        <span className="rounded-md bg-blue-50 dark:bg-blue-950/80 px-2.5 py-1 font-mono font-semibold text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/60">
-                          {project.toolBadge}
-                        </span>
-                        <span className="font-medium text-zinc-500 dark:text-zinc-400">
-                          {project.category[lang]}
-                        </span>
+            <div className="mt-10 space-y-8">
+              {filteredProjects.map((project) => (
+                <article
+                  key={project.id}
+                  className="overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-6 shadow-md transition-all hover:border-amber-500/60 sm:p-8"
+                >
+                  <div className="grid gap-8 lg:grid-cols-12">
+                    {/* Left column: details & link lengkap pengerjaan */}
+                    <div className="flex flex-col justify-between lg:col-span-7">
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2.5 text-xs">
+                          <span className="rounded-md bg-amber-500 px-2.5 py-1 font-mono font-extrabold text-zinc-950">
+                            {project.number}
+                          </span>
+                          <span className="rounded-md bg-slate-100 dark:bg-[#2c303d] px-2.5 py-1 font-mono font-semibold text-amber-600 dark:text-amber-400 border border-slate-200 dark:border-[#3d4254]">
+                            {project.toolBadge}
+                          </span>
+                          <span className="font-medium text-slate-500 dark:text-slate-400">
+                            {project.category[lang]}
+                          </span>
+                        </div>
+
+                        <h3 className="mt-3.5 text-xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-2xl">
+                          {project.title[lang]}
+                        </h3>
+                        <p className="mt-1.5 font-mono text-xs font-medium text-slate-500 dark:text-slate-400">
+                          {project.subtitle[lang]}
+                        </p>
+
+                        <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                          {project.highlights[lang].map((point, idx) => (
+                            <li key={idx} className="flex items-start gap-2.5">
+                              <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
+                              <span>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
 
-                      <h3 className="mt-3.5 text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-2xl">
-                        {project.title[lang]}
-                      </h3>
-                      <p className="mt-1.5 font-mono text-xs font-medium text-zinc-500 dark:text-zinc-400">
-                        {project.subtitle[lang]}
-                      </p>
-
-                      <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
-                        {project.highlights[lang].map((point, idx) => (
-                          <li key={idx} className="flex items-start gap-2.5">
-                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600 dark:bg-blue-400"></span>
-                            <span>{point}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="mt-6 space-y-4 border-t border-zinc-100 dark:border-zinc-800 pt-5">
-                      {/* Link Lengkap Pengerjaan Call to Action */}
-                      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-blue-100 dark:border-blue-900/60 bg-blue-50/50 dark:bg-blue-950/30 p-3.5">
-                        <div className="min-w-0">
-                          <div className="text-[11px] font-semibold uppercase tracking-wider text-blue-800 dark:text-blue-300">
-                            {lang === "EN"
-                              ? "Full Documentation Link"
-                              : "Link Lengkap Pengerjaan"}
+                      <div className="mt-6 space-y-4 border-t border-slate-100 dark:border-[#343847] pt-5">
+                        {/* Link Lengkap Pengerjaan Call to Action */}
+                        <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5">
+                          <div className="min-w-0">
+                            <div className="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
+                              {lang === "EN"
+                                ? "Full Documentation Link"
+                                : "Link Lengkap Pengerjaan"}
+                            </div>
+                            <a
+                              href={project.externalLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="mt-0.5 block truncate font-mono text-xs text-slate-700 dark:text-slate-200 underline underline-offset-2 hover:text-amber-500"
+                            >
+                              {project.externalLink}
+                            </a>
                           </div>
                           <a
                             href={project.externalLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-0.5 block truncate font-mono text-xs text-blue-700 dark:text-blue-400 underline underline-offset-2 hover:text-blue-900 dark:hover:text-blue-300"
+                            className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 px-3.5 py-2 text-xs font-bold text-zinc-950 transition-colors"
                           >
-                            {project.externalLink}
+                            <span>{project.externalLabel[lang]}</span>
+                            <Icons.ExternalLink />
                           </a>
                         </div>
-                        <a
-                          href={project.externalLink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 px-3.5 py-2 text-xs font-semibold text-white transition-colors"
-                        >
-                          <span>{project.externalLabel[lang]}</span>
-                          <Icons.ExternalLink />
-                        </a>
+
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-2">
+                          {project.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded-md border border-slate-200 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-2.5 py-1 font-mono text-[11px] font-medium text-slate-600 dark:text-slate-300"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Right column: Visual Replica of the Slides from Portfolio PDF */}
+                    <div className="flex flex-col justify-between rounded-xl border border-slate-200 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] p-5 lg:col-span-5">
+                      <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#3d4254] pb-3">
+                        <div className="flex items-center gap-1.5">
+                          <span className="h-2.5 w-2.5 rounded-full bg-rose-400/80"></span>
+                          <span className="h-2.5 w-2.5 rounded-full bg-amber-400/80"></span>
+                          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80"></span>
+                        </div>
+                        <span className="font-mono text-[11px] font-semibold text-slate-500 dark:text-slate-300">
+                          {project.number} • {project.platformBadge}
+                        </span>
                       </div>
 
-                      {/* Tags */}
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 px-2.5 py-1 font-mono text-[11px] font-medium text-zinc-600 dark:text-zinc-400"
-                          >
-                            {tag}
-                          </span>
+                      {/* PROYEK 1 PREVIEW */}
+                      {project.previewType === "excel" && (
+                        <div className="my-4 space-y-3">
+                          <div className="rounded-lg bg-[#191b24] border border-[#3d4254] p-3 font-mono text-[11px] text-slate-200">
+                            <div className="text-emerald-400">
+                              # Cek Tipe data dan missing value
+                            </div>
+                            <div className="mt-0.5 flex items-center justify-between">
+                              <span>
+                                df.<span className="text-amber-300">info</span>() &nbsp;|&nbsp; df.
+                                <span className="text-amber-300">head</span>()
+                              </span>
+                              <span className="text-[10px] text-emerald-400">
+                                1200 rows × 14 cols
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className="grid grid-cols-2 gap-2">
+                            <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
+                              <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                                Total Pendapatan
+                              </div>
+                              <div className="mt-0.5 font-mono text-sm font-bold text-amber-600 dark:text-amber-400">
+                                $1.264.762
+                              </div>
+                            </div>
+                            <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
+                              <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                                Total Pesanan
+                              </div>
+                              <div className="mt-0.5 font-mono text-sm font-bold text-slate-900 dark:text-white">
+                                1.200
+                              </div>
+                            </div>
+                            <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
+                              <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                                Total Pelanggan
+                              </div>
+                              <div className="mt-0.5 font-mono text-sm font-bold text-slate-900 dark:text-white">
+                                1.189
+                              </div>
+                            </div>
+                            <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
+                              <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                                Total Barang Terjual
+                              </div>
+                              <div className="mt-0.5 font-mono text-sm font-bold text-slate-900 dark:text-white">
+                                3.535
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-3 text-xs">
+                            <div className="flex items-center justify-between font-semibold text-slate-800 dark:text-slate-200">
+                              <span>Sumber Pelanggan &amp; Produk Terlaris</span>
+                              <span className="font-mono text-[10px] text-amber-500">
+                                2023–2026
+                              </span>
+                            </div>
+                            <div className="mt-2 flex flex-wrap gap-1.5">
+                              {[
+                                "Instagram 22%",
+                                "Email 21%",
+                                "Google 20%",
+                                "Facebook 19%",
+                                "Referral 18%",
+                              ].map((src) => (
+                                <span
+                                  key={src}
+                                  className="rounded bg-amber-500/15 px-2 py-0.5 font-mono text-[10px] font-semibold text-amber-700 dark:text-amber-300"
+                                >
+                                  {src}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* PROYEK 2 PREVIEW */}
+                      {project.previewType === "powerbi" && (
+                        <div className="my-4 space-y-3">
+                          <div className="grid grid-cols-2 gap-2">
+                            <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
+                              <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                                Jumlah Game
+                              </div>
+                              <div className="mt-0.5 font-mono text-sm font-bold text-amber-600 dark:text-amber-400">
+                                16.327K
+                              </div>
+                            </div>
+                            <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
+                              <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                                Jumlah Penjualan
+                              </div>
+                              <div className="mt-0.5 font-mono text-sm font-bold text-slate-900 dark:text-white">
+                                797K
+                              </div>
+                            </div>
+                            <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
+                              <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                                Jumlah Publisher
+                              </div>
+                              <div className="mt-0.5 font-mono text-sm font-bold text-slate-900 dark:text-white">
+                                577
+                              </div>
+                            </div>
+                            <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
+                              <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
+                                Jumlah Platform
+                              </div>
+                              <div className="mt-0.5 font-mono text-sm font-bold text-slate-900 dark:text-white">
+                                31
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-3">
+                            <div className="flex items-center justify-between text-xs font-semibold text-slate-800 dark:text-slate-200">
+                              <span>Penjualan Berdasarkan Genre</span>
+                              <span className="font-mono text-[10px] text-amber-500">
+                                Power BI
+                              </span>
+                            </div>
+                            <div className="mt-2.5 space-y-1.5">
+                              {[
+                                { genre: "Action", val: "150K", w: "w-full" },
+                                { genre: "Sports", val: "114K", w: "w-[76%]" },
+                                { genre: "Shooter", val: "96K", w: "w-[64%]" },
+                                { genre: "Role-Playing", val: "80K", w: "w-[53%]" },
+                              ].map((g) => (
+                                <div key={g.genre}>
+                                  <div className="flex justify-between text-[11px] text-slate-600 dark:text-slate-400">
+                                    <span>{g.genre}</span>
+                                    <span className="font-mono font-semibold text-slate-800 dark:text-slate-200">
+                                      {g.val}
+                                    </span>
+                                  </div>
+                                  <div className="mt-0.5 h-1.5 w-full rounded-full bg-slate-100 dark:bg-[#2c303d]">
+                                    <div
+                                      className={`h-1.5 ${g.w} rounded-full bg-amber-500`}
+                                    ></div>
+                                  </div>
+                                </div>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* PROYEK 3 PREVIEW */}
+                      {project.previewType === "sql" && (
+                        <div className="my-4 space-y-2.5">
+                          <div className="rounded-lg bg-[#191b24] border border-[#3d4254] p-3.5 font-mono text-[10.5px] leading-relaxed text-slate-200">
+                            <div className="text-emerald-400">
+                              -- Top 10 Kategori Berdasarkan revenue
+                            </div>
+                            <div>
+                              <span className="text-amber-400">SELECT</span>
+                            </div>
+                            <div className="pl-3">p.category,</div>
+                            <div className="pl-3">
+                              <span className="text-sky-300">ROUND</span>(
+                              <span className="text-sky-300">SUM</span>(oi.sale_price), 2){" "}
+                              <span className="text-amber-400">AS</span> total_revenue
+                            </div>
+                            <div>
+                              <span className="text-amber-400">FROM</span>{" "}
+                              `bigquery-public-data.thelook_ecommerce.order_items`{" "}
+                              <span className="text-amber-400">AS</span> oi
+                            </div>
+                            <div>
+                              <span className="text-amber-400">INNER JOIN</span>{" "}
+                              `bigquery-public-data.thelook_ecommerce.products`{" "}
+                              <span className="text-amber-400">AS</span> p
+                            </div>
+                            <div className="pl-3">
+                              <span className="text-amber-400">ON</span> oi.product_id = p.id
+                            </div>
+                            <div>
+                              <span className="text-amber-400">WHERE</span> oi.status ={" "}
+                              <span className="text-emerald-300">&apos;Complete&apos;</span>
+                            </div>
+                            <div>
+                              <span className="text-amber-400">GROUP BY</span> p.category
+                            </div>
+                            <div>
+                              <span className="text-amber-400">ORDER BY</span> total_revenue{" "}
+                              <span className="text-amber-400">DESC</span>
+                            </div>
+                            <div>
+                              <span className="text-amber-400">LIMIT</span> 10;
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="grid grid-cols-3 gap-2 border-t border-slate-200 dark:border-[#3d4254] pt-3">
+                        {project.metrics.map((m) => (
+                          <div key={m.label}>
+                            <div className="text-[10px] text-slate-500 dark:text-slate-400">
+                              {m.label}
+                            </div>
+                            <div className="font-mono text-[11px] font-semibold text-slate-800 dark:text-slate-200">
+                              {m.value}
+                            </div>
+                          </div>
                         ))}
                       </div>
                     </div>
                   </div>
-
-                  {/* Right column: Visual Replica of the Slides from Portfolio PDF */}
-                  <div className="flex flex-col justify-between rounded-xl border border-zinc-200/80 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-950/80 p-5 lg:col-span-5">
-                    <div className="flex items-center justify-between border-b border-zinc-200/70 dark:border-zinc-800 pb-3">
-                      <div className="flex items-center gap-1.5">
-                        <span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
-                        <span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
-                        <span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
-                      </div>
-                      <span className="font-mono text-[11px] font-semibold text-zinc-500 dark:text-zinc-400">
-                        {project.number} • {project.platformBadge}
-                      </span>
-                    </div>
-
-                    {/* PROYEK 1 PREVIEW */}
-                    {project.previewType === "excel" && (
-                      <div className="my-4 space-y-3">
-                        <div className="rounded-lg bg-zinc-900 dark:bg-black border border-zinc-800 p-3 font-mono text-[11px] text-zinc-200">
-                          <div className="text-emerald-400">
-                            # Cek Tipe data dan missing value
-                          </div>
-                          <div className="mt-0.5 flex items-center justify-between">
-                            <span>
-                              df.<span className="text-amber-300">info</span>() &nbsp;|&nbsp; df.
-                              <span className="text-amber-300">head</span>()
-                            </span>
-                            <span className="text-[10px] text-emerald-400">
-                              1200 rows × 14 cols
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-2">
-                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
-                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
-                              Total Pendapatan
-                            </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                              $1.264.762
-                            </div>
-                          </div>
-                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
-                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
-                              Total Pesanan
-                            </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                              1.200
-                            </div>
-                          </div>
-                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
-                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
-                              Total Pelanggan
-                            </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                              1.189
-                            </div>
-                          </div>
-                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
-                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
-                              Total Barang Terjual
-                            </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                              3.535
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-3 text-xs">
-                          <div className="flex items-center justify-between font-semibold text-zinc-800 dark:text-zinc-200">
-                            <span>Sumber Pelanggan & Produk Terlaris</span>
-                            <span className="font-mono text-[10px] text-blue-600 dark:text-blue-400">
-                              2023–2026
-                            </span>
-                          </div>
-                          <div className="mt-2 flex flex-wrap gap-1.5">
-                            {[
-                              "Instagram 22%",
-                              "Email 21%",
-                              "Google 20%",
-                              "Facebook 19%",
-                              "Referral 18%",
-                            ].map((src) => (
-                              <span
-                                key={src}
-                                className="rounded bg-blue-50 dark:bg-blue-950/80 px-2 py-0.5 font-mono text-[10px] font-medium text-blue-800 dark:text-blue-300"
-                              >
-                                {src}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* PROYEK 2 PREVIEW */}
-                    {project.previewType === "powerbi" && (
-                      <div className="my-4 space-y-3">
-                        <div className="grid grid-cols-2 gap-2">
-                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
-                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
-                              Jumlah Game
-                            </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                              16.327K
-                            </div>
-                          </div>
-                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
-                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
-                              Jumlah Penjualan
-                            </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                              797K
-                            </div>
-                          </div>
-                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
-                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
-                              Jumlah Publisher
-                            </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                              577
-                            </div>
-                          </div>
-                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
-                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
-                              Jumlah Platform
-                            </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
-                              31
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-3">
-                          <div className="flex items-center justify-between text-xs font-semibold text-zinc-800 dark:text-zinc-200">
-                            <span>Penjualan Berdasarkan Genre</span>
-                            <span className="font-mono text-[10px] text-blue-600 dark:text-blue-400">
-                              Power BI
-                            </span>
-                          </div>
-                          <div className="mt-2.5 space-y-1.5">
-                            {[
-                              { genre: "Action", val: "150K", w: "w-full" },
-                              { genre: "Sports", val: "114K", w: "w-[76%]" },
-                              { genre: "Shooter", val: "96K", w: "w-[64%]" },
-                              { genre: "Role-Playing", val: "80K", w: "w-[53%]" },
-                            ].map((g) => (
-                              <div key={g.genre}>
-                                <div className="flex justify-between text-[11px] text-zinc-600 dark:text-zinc-400">
-                                  <span>{g.genre}</span>
-                                  <span className="font-mono font-semibold text-zinc-800 dark:text-zinc-200">
-                                    {g.val}
-                                  </span>
-                                </div>
-                                <div className="mt-0.5 h-1.5 w-full rounded-full bg-zinc-100 dark:bg-zinc-800">
-                                  <div
-                                    className={`h-1.5 ${g.w} rounded-full bg-blue-600 dark:bg-blue-500`}
-                                  ></div>
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* PROYEK 3 PREVIEW */}
-                    {project.previewType === "sql" && (
-                      <div className="my-4 space-y-2.5">
-                        <div className="rounded-lg bg-zinc-900 dark:bg-black border border-zinc-800 p-3.5 font-mono text-[10.5px] leading-relaxed text-zinc-200">
-                          <div className="text-emerald-400">
-                            -- Top 10 Kategori Berdasarkan revenue
-                          </div>
-                          <div>
-                            <span className="text-pink-400">SELECT</span>
-                          </div>
-                          <div className="pl-3">p.category,</div>
-                          <div className="pl-3">
-                            <span className="text-amber-300">ROUND</span>(
-                            <span className="text-amber-300">SUM</span>(oi.sale_price), 2){" "}
-                            <span className="text-pink-400">AS</span> total_revenue
-                          </div>
-                          <div>
-                            <span className="text-pink-400">FROM</span>{" "}
-                            `bigquery-public-data.thelook_ecommerce.order_items`{" "}
-                            <span className="text-pink-400">AS</span> oi
-                          </div>
-                          <div>
-                            <span className="text-pink-400">INNER JOIN</span>{" "}
-                            `bigquery-public-data.thelook_ecommerce.products`{" "}
-                            <span className="text-pink-400">AS</span> p
-                          </div>
-                          <div className="pl-3">
-                            <span className="text-pink-400">ON</span> oi.product_id = p.id
-                          </div>
-                          <div>
-                            <span className="text-pink-400">WHERE</span> oi.status ={" "}
-                            <span className="text-amber-200">&apos;Complete&apos;</span>
-                          </div>
-                          <div>
-                            <span className="text-pink-400">GROUP BY</span> p.category
-                          </div>
-                          <div>
-                            <span className="text-pink-400">ORDER BY</span> total_revenue{" "}
-                            <span className="text-pink-400">DESC</span>
-                          </div>
-                          <div>
-                            <span className="text-pink-400">LIMIT</span> 10;
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    <div className="grid grid-cols-3 gap-2 border-t border-zinc-200/70 dark:border-zinc-800 pt-3">
-                      {project.metrics.map((m) => (
-                        <div key={m.label}>
-                          <div className="text-[10px] text-zinc-500 dark:text-zinc-400">
-                            {m.label}
-                          </div>
-                          <div className="font-mono text-[11px] font-semibold text-zinc-800 dark:text-zinc-200">
-                            {m.value}
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* EXPERIENCE & EDUCATION SECTION */}
+        {/* =====================================================================
+            EXPERIENCE & EDUCATION SECTION
+           ===================================================================== */}
         <section
           id="experience"
-          className="scroll-mt-24 border-t border-zinc-200 dark:border-zinc-800/90 py-16"
+          className="scroll-mt-16 bg-white dark:bg-[#232631] py-16 md:py-20 border-t border-slate-200/80 dark:border-[#363b4b] transition-colors duration-200"
         >
-          <div className="grid gap-12 lg:grid-cols-12">
-            {/* Experience & Training Column */}
-            <div className="lg:col-span-7">
-              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
-                03 / {lang === "EN" ? "EXPERIENCE & TRAINING" : "PENGALAMAN & PELATIHAN"}
-              </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-                {lang === "EN" ? "Professional & Training Track" : "Pengalaman Kerja & Pelatihan"}
-              </h2>
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="grid gap-12 lg:grid-cols-12">
+              {/* Experience & Training Column */}
+              <div className="lg:col-span-7">
+                <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                  {lang === "EN" ? "Experience & Training" : "Pengalaman & Pelatihan"}
+                </h2>
+                <div className="mt-2 h-1 w-14 rounded-full bg-amber-500" />
 
-              <div className="mt-8 space-y-8 border-l-2 border-zinc-200 dark:border-zinc-800 pl-6">
-                {DATA.experiences.map((exp, idx) => (
-                  <div key={idx} className="relative">
-                    <span className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-blue-600 dark:border-blue-400 bg-white dark:bg-zinc-950"></span>
-                    <div className="flex flex-wrap items-center gap-2 text-xs">
-                      <span className="rounded-md bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 font-mono font-medium text-zinc-700 dark:text-zinc-300">
-                        {exp.period}
-                      </span>
-                      <span className="rounded-md bg-blue-50 dark:bg-blue-950/80 px-2.5 py-0.5 font-medium text-blue-700 dark:text-blue-300">
-                        {exp.type[lang]}
-                      </span>
+                <div className="mt-8 space-y-8 border-l-2 border-amber-500/50 pl-6">
+                  {DATA.experiences.map((exp, idx) => (
+                    <div key={idx} className="relative">
+                      <span className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-amber-500 bg-white dark:bg-[#232631]"></span>
+                      <div className="flex flex-wrap items-center gap-2 text-xs">
+                        <span className="rounded-md bg-slate-100 dark:bg-[#2c303d] px-2.5 py-0.5 font-mono font-medium text-slate-700 dark:text-slate-300">
+                          {exp.period}
+                        </span>
+                        <span className="rounded-md bg-amber-500/15 px-2.5 py-0.5 font-bold text-amber-600 dark:text-amber-400">
+                          {exp.type[lang]}
+                        </span>
+                      </div>
+                      <h3 className="mt-2 text-lg font-bold text-slate-900 dark:text-white">
+                        {exp.role}
+                      </h3>
+                      <p className="text-sm font-medium text-amber-600 dark:text-amber-400">
+                        {exp.organization}
+                      </p>
+                      <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
+                        {exp.points[lang].map((pt, i) => (
+                          <li key={i} className="flex items-start gap-2.5">
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
+                            <span>{pt}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <h3 className="mt-2 text-lg font-bold text-zinc-950 dark:text-zinc-100">
-                      {exp.role}
-                    </h3>
-                    <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
-                      {exp.organization}
-                    </p>
-                    <ul className="mt-3 space-y-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
-                      {exp.points[lang].map((pt, i) => (
-                        <li key={i} className="flex items-start gap-2.5">
-                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500"></span>
-                          <span>{pt}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Education Column */}
-            <div className="lg:col-span-5">
-              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
-                04 / {lang === "EN" ? "ACADEMIC BACKGROUND" : "PENDIDIKAN"}
-              </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-                {lang === "EN" ? "Education" : "Pendidikan"}
-              </h2>
-
-              <div className="mt-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-2xs">
-                <div className="flex items-center justify-between">
-                  <span className="rounded-md bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 font-mono text-xs font-medium text-zinc-700 dark:text-zinc-300">
-                    {DATA.education.period}
-                  </span>
-                  <span className="rounded-md bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200/60 dark:border-emerald-800/60 px-2.5 py-1 font-mono text-xs font-bold text-emerald-700 dark:text-emerald-300">
-                    GPA {DATA.education.gpa}
-                  </span>
-                </div>
-
-                <h3 className="mt-4 text-lg font-bold text-zinc-950 dark:text-zinc-100">
-                  {DATA.education.institution}
-                </h3>
-                <p className="mt-1 text-sm font-medium text-blue-600 dark:text-blue-400">
-                  {DATA.education.degree[lang]}
-                </p>
-
-                <ul className="mt-5 space-y-2.5 border-t border-zinc-100 dark:border-zinc-800 pt-4 text-sm text-zinc-600 dark:text-zinc-300">
-                  {DATA.education.highlights[lang].map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5">
-                      <span className="mt-0.5">
-                        <Icons.Check />
-                      </span>
-                      <span>{item}</span>
-                    </li>
                   ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* SKILLS & CERTIFICATIONS SECTION (WITH CERTIFICATE IMAGES) */}
-        <section
-          id="skills"
-          className="scroll-mt-24 border-t border-zinc-200 dark:border-zinc-800/90 py-16"
-        >
-          <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
-            05 / {lang === "EN" ? "CERTIFICATIONS & SKILLS" : "SERTIFIKASI & KEAHLIAN"}
-          </p>
-          <h2 className="mt-2 text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-3xl">
-            {lang === "EN"
-              ? "Verified Certifications & Technical Skills"
-              : "Sertifikasi Kompetensi & Keahlian Teknis"}
-          </h2>
-          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            {lang === "EN"
-              ? "Click on any certificate card below to inspect the full-resolution certificate."
-              : "Klik pada kartu sertifikat di bawah ini untuk melihat gambar sertifikat ukuran penuh."}
-          </p>
-
-          {/* Certifications Gallery Grid with Accessible Buttons */}
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {DATA.certifications.map((cert) => (
-              <button
-                key={cert.title}
-                type="button"
-                onClick={() => setSelectedCert(cert)}
-                className="group cursor-pointer text-left overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-              >
-                <div className="w-full">
-                  {/* Certificate Image Container */}
-                  <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-zinc-100 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-950">
-                    <img
-                      src={cert.image}
-                      alt={cert.title}
-                      className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center bg-zinc-950/0 opacity-0 transition-all group-hover:bg-zinc-950/45 group-hover:opacity-100">
-                      <span className="inline-flex items-center gap-1.5 rounded-lg bg-white dark:bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm">
-                        <Icons.ZoomIn />
-                        <span>{lang === "EN" ? "View Certificate" : "Lihat Sertifikat"}</span>
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Certificate Metadata */}
-                  <div className="p-4">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="rounded bg-blue-50 dark:bg-blue-950/80 px-2 py-0.5 font-mono text-[10px] font-semibold text-blue-700 dark:text-blue-300">
-                        {cert.badge}
-                      </span>
-                      <span className="font-mono text-[11px] text-zinc-500 dark:text-zinc-400">
-                        {cert.year}
-                      </span>
-                    </div>
-                    <h3 className="mt-2.5 text-sm font-bold leading-snug text-zinc-950 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
-                      {cert.title}
-                    </h3>
-                    <p className="mt-1 text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                      {cert.issuer}
-                    </p>
-                  </div>
                 </div>
-
-                <div className="w-full border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950/60 px-4 py-2.5 flex items-center justify-between">
-                  <span className="truncate font-mono text-[10px] text-zinc-500 dark:text-zinc-400">
-                    {cert.credentialId}
-                  </span>
-                  <span className="text-blue-600 dark:text-blue-400">
-                    <Icons.ExternalLink />
-                  </span>
-                </div>
-              </button>
-            ))}
-          </div>
-
-          {/* Technical Stack & Soft Skills Below Certifications */}
-          <div className="mt-14 grid gap-8 lg:grid-cols-12">
-            <div className="space-y-4 lg:col-span-7">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-                {lang === "EN" ? "Core Technical Stack (Hard Skills)" : "Keahlian Teknis Utama"}
-              </h3>
-              <div className="space-y-3">
-                {DATA.skills.hardSkills.map((skill) => (
-                  <div
-                    key={skill.name}
-                    className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 transition-colors hover:border-zinc-300 dark:hover:border-zinc-700"
-                  >
-                    <div className="font-semibold text-zinc-950 dark:text-zinc-100">
-                      {skill.name}
-                    </div>
-                    <div className="mt-1 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
-                      {skill.detail}
-                    </div>
-                  </div>
-                ))}
               </div>
-            </div>
 
-            <div className="lg:col-span-5">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-                {lang === "EN" ? "Soft Skills & Languages" : "Soft Skills & Bahasa"}
-              </h3>
-              <div className="mt-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-                  {lang === "EN" ? "Professional Soft Skills" : "Soft Skills"}
-                </h4>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {DATA.skills.softSkills[lang].map((soft) => (
-                    <span
-                      key={soft}
-                      className="rounded-lg bg-zinc-100 dark:bg-zinc-800 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300"
-                    >
-                      {soft}
+              {/* Education Column */}
+              <div className="lg:col-span-5">
+                <h2 className="text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                  {lang === "EN" ? "Education" : "Pendidikan"}
+                </h2>
+                <div className="mt-2 h-1 w-14 rounded-full bg-amber-500" />
+
+                <div className="mt-8 rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] p-6 shadow-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="rounded-md bg-white dark:bg-[#232631] px-2.5 py-1 font-mono text-xs font-medium text-slate-700 dark:text-slate-300">
+                      {DATA.education.period}
                     </span>
-                  ))}
-                </div>
+                    <span className="rounded-md bg-amber-500 px-2.5 py-1 font-mono text-xs font-extrabold text-zinc-950">
+                      GPA {DATA.education.gpa}
+                    </span>
+                  </div>
 
-                <h4 className="mt-6 text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-                  {lang === "EN" ? "Languages" : "Bahasa"}
-                </h4>
-                <div className="mt-2.5 grid grid-cols-2 gap-2.5">
-                  {DATA.skills.languages.map((l) => (
-                    <div
-                      key={l.name}
-                      className="rounded-lg border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-3"
-                    >
-                      <div className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
-                        {l.name}
-                      </div>
-                      <div className="mt-0.5 text-[11px] text-zinc-500 dark:text-zinc-400">
-                        {l.level[lang]}
-                      </div>
-                    </div>
-                  ))}
+                  <h3 className="mt-4 text-lg font-bold text-slate-900 dark:text-white">
+                    {DATA.education.institution}
+                  </h3>
+                  <p className="mt-1 text-sm font-semibold text-amber-600 dark:text-amber-400">
+                    {DATA.education.degree[lang]}
+                  </p>
+
+                  <ul className="mt-5 space-y-2.5 border-t border-slate-200 dark:border-[#3d4254] pt-4 text-sm text-slate-600 dark:text-slate-300">
+                    {DATA.education.highlights[lang].map((item, idx) => (
+                      <li key={idx} className="flex items-start gap-2.5">
+                        <span className="mt-0.5">
+                          <Icons.Check />
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* CONTACT SECTION */}
+        {/* =====================================================================
+            CERTIFICATIONS GALLERY SECTION (7 Verified Certificates with Lightbox)
+           ===================================================================== */}
+        <section
+          id="certifications"
+          className="scroll-mt-16 bg-slate-100/90 dark:bg-[#2c303d] py-16 md:py-20 border-t border-slate-200/80 dark:border-[#363b4b] transition-colors duration-200"
+        >
+          <div className="mx-auto max-w-5xl px-6">
+            <div className="text-center">
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                {lang === "EN" ? "Verified Certifications" : "Sertifikasi Kompetensi"}
+              </h2>
+              <div className="mx-auto mt-2.5 h-1 w-14 rounded-full bg-amber-500" />
+              <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
+                {lang === "EN"
+                  ? "Click on any certificate card below to inspect the full-resolution certificate."
+                  : "Klik pada kartu sertifikat di bawah ini untuk memperbesar gambar sertifikat."}
+              </p>
+            </div>
+
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {DATA.certifications.map((cert) => (
+                <button
+                  key={cert.title}
+                  type="button"
+                  onClick={() => setSelectedCert(cert)}
+                  className="group cursor-pointer text-left overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-amber-500 hover:shadow-lg flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
+                >
+                  <div className="w-full">
+                    <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-slate-100 dark:border-[#343847] bg-slate-100 dark:bg-[#1b1e26]">
+                      <img
+                        src={cert.image}
+                        alt={cert.title}
+                        className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/50 group-hover:opacity-100">
+                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-bold text-zinc-950 shadow-sm">
+                          <Icons.ZoomIn />
+                          <span>{lang === "EN" ? "View Certificate" : "Lihat Sertifikat"}</span>
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-4">
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="rounded bg-amber-500/15 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-600 dark:text-amber-400">
+                          {cert.badge}
+                        </span>
+                        <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                          {cert.year}
+                        </span>
+                      </div>
+                      <h3 className="mt-2.5 text-sm font-bold leading-snug text-slate-900 dark:text-white group-hover:text-amber-500">
+                        {cert.title}
+                      </h3>
+                      <p className="mt-1 text-xs font-medium text-slate-600 dark:text-slate-400">
+                        {cert.issuer}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="w-full border-t border-slate-100 dark:border-[#343847] bg-slate-50 dark:bg-[#1e212b] px-4 py-2.5 flex items-center justify-between">
+                    <span className="truncate font-mono text-[10px] text-slate-500 dark:text-slate-400">
+                      {cert.credentialId}
+                    </span>
+                    <span className="text-amber-500">
+                      <Icons.ExternalLink />
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =====================================================================
+            CONTACT SECTION
+           ===================================================================== */}
         <section
           id="contact"
-          className="scroll-mt-24 border-t border-zinc-200 dark:border-zinc-800/90 pt-16"
+          className="scroll-mt-16 bg-white dark:bg-[#232631] py-16 md:py-20 border-t border-slate-200/80 dark:border-[#363b4b] transition-colors duration-200"
         >
-          <div className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 shadow-2xs sm:p-12">
-            <div className="max-w-2xl">
-              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
-                06 / {lang === "EN" ? "CONTACT" : "KONTAK"}
-              </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
-                {lang === "EN" ? "Let’s discuss further." : "Mari Berdiskusi Lebih Lanjut."}
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300 sm:text-base">
-                {lang === "EN"
-                  ? "I am actively looking for internship and entry-level opportunities in Data Analytics, Business Intelligence, and Database Administration in Jakarta or remote."
-                  : "Saya terbuka untuk berdiskusi mengenai peluang magang maupun kerja di bidang Data Analytics, Business Intelligence, dan Database Administration."}
-              </p>
+          <div className="mx-auto max-w-4xl px-6 text-center">
+            <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+              Contact
+            </h2>
+            <div className="mx-auto mt-2.5 h-1 w-14 rounded-full bg-amber-500" />
+            <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base text-slate-600 dark:text-slate-300">
+              {lang === "EN"
+                ? "Available for Data Analyst, Business Intelligence, and Database Administrator opportunities. Let’s connect and discuss!"
+                : "Terbuka untuk peluang magang maupun kerja di bidang Data Analytics, Business Intelligence, dan Database Administration. Mari berdiskusi lebih lanjut!"}
+            </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href={`mailto:${DATA.profile.email}`}
-                  className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 px-5 py-3 text-sm font-medium text-white transition-all"
-                >
-                  <Icons.Mail />
-                  <span>{DATA.profile.email}</span>
-                </a>
-                <a
-                  href={DATA.profile.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 transition-all hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800"
-                >
-                  <Icons.LinkedIn />
-                  <span>linkedin.com/in/lukman-fatkhurozi</span>
-                </a>
-                <a
-                  href={DATA.profile.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 transition-all hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800"
-                >
-                  <Icons.Phone />
-                  <span>+62857 7646 1158</span>
-                </a>
-                <a
-                  href={DATA.profile.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 transition-all hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800"
-                >
-                  <Icons.Instagram />
-                  <span>Instagram ({DATA.profile.instagramHandle})</span>
-                </a>
-                <a
-                  href={DATA.profile.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 transition-all hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800"
-                >
-                  <Icons.GitHub />
-                  <span>GitHub (lukmanfatkhurozi03)</span>
-                </a>
-              </div>
+            <div className="mt-8 flex flex-wrap justify-center gap-3.5">
+              <a
+                href={`mailto:${DATA.profile.email}`}
+                className="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 px-6 py-3 text-sm font-bold text-zinc-950 shadow-md shadow-amber-500/15 transition-all"
+              >
+                <Icons.Mail />
+                <span>{DATA.profile.email}</span>
+              </a>
+              <a
+                href={DATA.profile.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-5 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
+              >
+                <Icons.WhatsApp />
+                <span>+62857 7646 1158</span>
+              </a>
+              <a
+                href={DATA.profile.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-5 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
+              >
+                <Icons.LinkedIn />
+                <span>linkedin.com/in/lukman-fatkhurozi</span>
+              </a>
+              <a
+                href={DATA.profile.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-5 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
+              >
+                <Icons.Instagram />
+                <span>{DATA.profile.instagramHandle}</span>
+              </a>
+              <a
+                href={DATA.profile.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-5 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
+              >
+                <Icons.GitHub />
+                <span>GitHub (lukmanfatkhurozi03)</span>
+              </a>
             </div>
           </div>
         </section>
@@ -1502,43 +1573,43 @@ export default function PortfolioPage() {
           aria-modal="true"
           aria-labelledby="cert-modal-title"
           onClick={() => setSelectedCert(null)}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xs"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-xs"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-2xl flex flex-col"
+            className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] shadow-2xl flex flex-col"
           >
-            <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 px-5 py-3.5">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#343847] px-5 py-3.5">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="rounded bg-blue-50 dark:bg-blue-950 px-2 py-0.5 font-mono text-[10px] font-semibold text-blue-700 dark:text-blue-300">
+                  <span className="rounded bg-amber-500/20 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-500">
                     {selectedCert.badge}
                   </span>
-                  <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
+                  <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
                     {selectedCert.year}
                   </span>
                 </div>
                 <h3
                   id="cert-modal-title"
-                  className="mt-1 text-base font-bold text-zinc-950 dark:text-zinc-50"
+                  className="mt-1 text-base font-bold text-slate-900 dark:text-white"
                 >
                   {selectedCert.title}
                 </h3>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                <p className="text-xs text-slate-500 dark:text-slate-400">
                   {selectedCert.issuer} • {selectedCert.credentialId}
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setSelectedCert(null)}
-                className="cursor-pointer inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 px-3 py-1.5 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700"
+                className="cursor-pointer inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-[#3d4254] bg-slate-100 dark:bg-[#2c303d] px-3 py-1.5 text-xs font-bold text-slate-700 dark:text-slate-200 hover:border-amber-500"
               >
                 <Icons.Close />
                 <span>{lang === "EN" ? "Close" : "Tutup"}</span>
               </button>
             </div>
 
-            <div className="flex-1 overflow-auto bg-zinc-100 dark:bg-zinc-950 p-4 flex items-center justify-center">
+            <div className="flex-1 overflow-auto bg-slate-100 dark:bg-[#191b24] p-4 flex items-center justify-center">
               <img
                 src={selectedCert.image}
                 alt={selectedCert.title}
@@ -1549,22 +1620,22 @@ export default function PortfolioPage() {
         </div>
       )}
 
-      {/* Minimal Footer */}
-      <footer className="border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 py-8 transition-colors">
-        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 text-xs text-zinc-500 dark:text-zinc-400 sm:flex-row">
+      {/* Footer */}
+      <footer className="border-t border-slate-200 dark:border-[#343847] bg-slate-50 dark:bg-[#1c1f28] py-8 transition-colors">
+        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 text-xs text-slate-500 dark:text-slate-400 sm:flex-row">
           <div>
             © 2026{" "}
-            <strong className="text-zinc-800 dark:text-zinc-200">
+            <strong className="text-amber-600 dark:text-amber-400">
               Lukman Fatkhurozi
             </strong>
-            . Built with Next.js & Tailwind CSS — Ready for Vercel.
+            . Data Analyst &amp; Business Intelligence Portfolio.
           </div>
           <div className="flex items-center gap-4">
             <a
               href={DATA.profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-zinc-900 dark:hover:text-zinc-100"
+              className="hover:text-amber-500"
             >
               LinkedIn
             </a>
@@ -1573,7 +1644,7 @@ export default function PortfolioPage() {
               href={DATA.profile.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-zinc-900 dark:hover:text-zinc-100"
+              className="hover:text-amber-500"
             >
               GitHub
             </a>
@@ -1581,7 +1652,7 @@ export default function PortfolioPage() {
             <a
               href={DATA.profile.cvUrl}
               download="CV_Lukman_Fatkhurozi.pdf"
-              className="font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white"
+              className="font-bold text-amber-500 hover:underline"
             >
               Download CV
             </a>
