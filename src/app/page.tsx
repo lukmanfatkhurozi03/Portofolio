@@ -8,8 +8,8 @@ type Theme = "light" | "dark";
 interface Certification {
   title: string;
   issuer: string;
-  year: string;
-  badge: string;
+  year: { EN: string; ID: string };
+  badge: { EN: string; ID: string };
   credentialId: string;
   image: string;
 }
@@ -120,7 +120,18 @@ const DATA = {
   profile: {
     name: "Lukman Fatkhurozi",
     photo: "/lukman-photo.png",
-    rolesLine: "Data Analyst || Business Intelligence || Database Administrator",
+    greeting: {
+      EN: "Hello,",
+      ID: "Halo,",
+    },
+    iamPrefix: {
+      EN: "I Am",
+      ID: "Saya",
+    },
+    rolesLine: {
+      EN: "Data Analyst || Business Intelligence || Database Administrator",
+      ID: "Analis Data || Business Intelligence || Administrator Basis Data",
+    },
     experienceHighlight: {
       EN: {
         prefix: "GPA 3.95/4.00 & ",
@@ -128,7 +139,7 @@ const DATA = {
       },
       ID: {
         prefix: "IPK 3.95/4.00 & ",
-        accent: "BNSP Certified Database Administrator",
+        accent: "Database Administrator Tersertifikasi BNSP",
       },
     },
     quote: {
@@ -147,100 +158,100 @@ const DATA = {
     portfolioPdfUrl: "/Portofolio_Lukman_Fatkhurozi.pdf",
   },
   skillBadges: [
-    // Row 1: Core Square App-Tile Badges (matching Ps, Ai, Pr, Xd style in reference)
+    // Row 1: Core Square App-Tile Badges
     {
       code: "Py",
-      name: "Python",
-      sub: "Pandas & NumPy",
+      name: { EN: "Python", ID: "Python" },
+      sub: { EN: "Pandas & NumPy", ID: "Pandas & NumPy" },
       bg: "bg-[#1e293b] border-[#38bdf8]",
       text: "text-[#38bdf8]",
       shape: "square",
     },
     {
       code: "Xl",
-      name: "Microsoft Excel",
-      sub: "Pivot & Slicers",
+      name: { EN: "Microsoft Excel", ID: "Microsoft Excel" },
+      sub: { EN: "Pivot & Slicers", ID: "Pivot & Slicer" },
       bg: "bg-[#064e3b] border-[#34d399]",
       text: "text-[#34d399]",
       shape: "square",
     },
     {
       code: "BI",
-      name: "Power BI",
-      sub: "DAX & Power Query",
+      name: { EN: "Power BI", ID: "Power BI" },
+      sub: { EN: "DAX & Power Query", ID: "DAX & Power Query" },
       bg: "bg-[#451a03] border-[#fbbf24]",
       text: "text-[#fbbf24]",
       shape: "square",
     },
     {
       code: "SQL",
-      name: "SQL Query",
-      sub: "Relational DB",
+      name: { EN: "SQL Query", ID: "Query SQL" },
+      sub: { EN: "Relational DB", ID: "Basis Data Relasional" },
       bg: "bg-[#1e1b4b] border-[#818cf8]",
       text: "text-[#818cf8]",
       shape: "square",
     },
     {
       code: "BQ",
-      name: "Google BigQuery",
-      sub: "Cloud Data Warehouse",
+      name: { EN: "Google BigQuery", ID: "Google BigQuery" },
+      sub: { EN: "Cloud Data Warehouse", ID: "Data Warehouse Cloud" },
       bg: "bg-[#172554] border-[#60a5fa]",
       text: "text-[#60a5fa]",
       shape: "square",
     },
     {
       code: "Pd",
-      name: "Pandas",
-      sub: "Data Cleaning",
+      name: { EN: "Pandas", ID: "Pandas" },
+      sub: { EN: "Data Cleaning", ID: "Pembersihan Data" },
       bg: "bg-[#2e1065] border-[#c084fc]",
       text: "text-[#c084fc]",
       shape: "square",
     },
-    // Row 2: Secondary Circular/Pill Badges (matching row 2 in reference)
+    // Row 2: Secondary Circular/Pill Badges
     {
       code: "EDA",
-      name: "Exploratory Data",
-      sub: "Pattern & Anomaly",
+      name: { EN: "Exploratory Data", ID: "Eksplorasi Data" },
+      sub: { EN: "Pattern & Anomaly", ID: "Pola & Anomali" },
       bg: "bg-[#3f1d2e] border-[#f472b6]",
       text: "text-[#f472b6]",
       shape: "circle",
     },
     {
       code: "DBA",
-      name: "Database Admin",
-      sub: "BNSP Certified",
+      name: { EN: "Database Admin", ID: "Admin Basis Data" },
+      sub: { EN: "BNSP Certified", ID: "Tersertifikasi BNSP" },
       bg: "bg-[#431407] border-[#fb923c]",
       text: "text-[#fb923c]",
       shape: "circle",
     },
     {
       code: "ETL",
-      name: "Power Query ETL",
-      sub: "Data Modeling",
+      name: { EN: "Power Query ETL", ID: "Power Query ETL" },
+      sub: { EN: "Data Modeling", ID: "Pemodelan Data" },
       bg: "bg-[#14532d] border-[#4ade80]",
       text: "text-[#4ade80]",
       shape: "circle",
     },
     {
       code: "KPI",
-      name: "Data Visualization",
-      sub: "Executive Metrics",
+      name: { EN: "Data Visualization", ID: "Visualisasi Data" },
+      sub: { EN: "Executive Metrics", ID: "Metrik & KPI" },
       bg: "bg-[#422006] border-[#facc15]",
       text: "text-[#facc15]",
       shape: "circle",
     },
     {
       code: "My",
-      name: "MySQL",
-      sub: "RDBMS Schema",
+      name: { EN: "MySQL", ID: "MySQL" },
+      sub: { EN: "RDBMS Schema", ID: "Skema RDBMS" },
       bg: "bg-[#083344] border-[#22d3ee]",
       text: "text-[#22d3ee]",
       shape: "circle",
     },
     {
       code: "Git",
-      name: "Git & GitHub",
-      sub: "Version Control",
+      name: { EN: "Git & GitHub", ID: "Git & GitHub" },
+      sub: { EN: "Version Control", ID: "Kontrol Versi" },
       bg: "bg-[#27272a] border-[#e4e4e7]",
       text: "text-[#f4f4f5]",
       shape: "circle",
@@ -252,7 +263,7 @@ const DATA = {
       featured: false,
       title: {
         EN: "Data\nAnalytics",
-        ID: "Data\nAnalytics",
+        ID: "Analisis\nData",
       },
       desc: {
         EN: "Collecting, cleaning, preprocessing, and exploring datasets using Python (Pandas, NumPy) and Microsoft Excel Pivot Tables.",
@@ -278,7 +289,7 @@ const DATA = {
       featured: false,
       title: {
         EN: "Database &\nBigQuery SQL",
-        ID: "Database &\nBigQuery SQL",
+        ID: "Basis Data &\nBigQuery SQL",
       },
       desc: {
         EN: "BNSP Certified Database Administrator skilled in writing SQL queries, multi-table JOINs, and aggregations in Google BigQuery & MySQL.",
@@ -290,13 +301,13 @@ const DATA = {
   projects: [
     {
       id: "proyek-1-online-store-orders",
-      number: "PROYEK 1",
+      number: { EN: "PROJECT 1", ID: "PROYEK 1" },
       category: {
         EN: "Data Analyst Project • E-Commerce Sales Dashboard",
-        ID: "Proyek Data Analyst • Dashboard Penjualan E-Commerce",
+        ID: "Proyek Analis Data • Dashboard Penjualan E-Commerce",
       },
       toolBadge: "Microsoft Excel",
-      period: "Jun 2026",
+      period: { EN: "Jun 2026", ID: "Juni 2026" },
       title: {
         EN: 'Analyzing "Online Store Orders Dataset" (E-Commerce Sales Dashboard)',
         ID: 'Menganalisis Dataset "Online Store Orders Dataset"',
@@ -310,14 +321,23 @@ const DATA = {
         EN: "Read Full Case Study on Medium",
         ID: "Lihat Lengkap Pengerjaan di Medium",
       },
-      platformBadge: "Medium Article",
-      tags: [
-        "Microsoft Excel",
-        "Pivot Tables & Slicers",
-        "Python (df.info / df.head)",
-        "excelx.com (1,200 rows × 14 cols)",
-        "KPI Dashboard",
-      ],
+      platformBadge: { EN: "Medium Article", ID: "Artikel Medium" },
+      tags: {
+        EN: [
+          "Microsoft Excel",
+          "Pivot Tables & Slicers",
+          "Python (df.info / df.head)",
+          "excelx.com (1,200 rows × 14 cols)",
+          "KPI Dashboard",
+        ],
+        ID: [
+          "Microsoft Excel",
+          "Pivot Table & Slicer",
+          "Python (df.info / df.head)",
+          "excelx.com (1.200 baris × 14 kolom)",
+          "Dashboard KPI",
+        ],
+      },
       highlights: {
         EN: [
           "Inspected data types and missing values across 1,200 records and 14 columns from excelx.com using Python Pandas (`df.info()`, `df.head()`).",
@@ -331,21 +351,24 @@ const DATA = {
         ],
       },
       metrics: [
-        { label: "Sumber Dataset", value: "excelx.com" },
-        { label: "Ukuran Dataset", value: "1.200 Baris × 14 Kolom" },
-        { label: "Total Pendapatan", value: "$1.264.762" },
+        { label: { EN: "Dataset Source", ID: "Sumber Dataset" }, value: "excelx.com" },
+        {
+          label: { EN: "Dataset Size", ID: "Ukuran Dataset" },
+          value: { EN: "1,200 Rows × 14 Cols", ID: "1.200 Baris × 14 Kolom" },
+        },
+        { label: { EN: "Total Revenue", ID: "Total Pendapatan" }, value: "$1.264.762" },
       ],
       previewType: "excel",
     },
     {
       id: "proyek-2-video-game-powerbi",
-      number: "PROYEK 2",
+      number: { EN: "PROJECT 2", ID: "PROYEK 2" },
       category: {
         EN: "Business Intelligence Project • Global Sales Analytics",
         ID: "Proyek Business Intelligence • Analisis Penjualan Global",
       },
       toolBadge: "Power BI",
-      period: "Apr – May 2025",
+      period: { EN: "Apr – May 2025", ID: "Apr – Mei 2025" },
       title: {
         EN: "Global Video Game Sales Analysis Dashboard Using Power BI",
         ID: "Dashboard Analisis Penjualan Video Game Global Menggunakan Power BI",
@@ -359,14 +382,23 @@ const DATA = {
         EN: "Read Full Case Study on Medium",
         ID: "Lihat Lengkap Pengerjaan di Medium",
       },
-      platformBadge: "Medium Article",
-      tags: [
-        "Power BI",
-        "Power Query Editor",
-        "Kaggle Dataset",
-        "Global Sales KPIs",
-        "Regional & Genre Analysis",
-      ],
+      platformBadge: { EN: "Medium Article", ID: "Artikel Medium" },
+      tags: {
+        EN: [
+          "Power BI",
+          "Power Query Editor",
+          "Kaggle Dataset",
+          "Global Sales KPIs",
+          "Regional & Genre Analysis",
+        ],
+        ID: [
+          "Power BI",
+          "Power Query Editor",
+          "Dataset Kaggle",
+          "KPI Penjualan Global",
+          "Analisis Wilayah & Genre",
+        ],
+      },
       highlights: {
         EN: [
           "Prepared and transformed the Kaggle video game sales dataset (`vgsales`) using Power Query Editor (`Table.TransformColumnTypes`, header promotion, and data cleaning).",
@@ -380,21 +412,27 @@ const DATA = {
         ],
       },
       metrics: [
-        { label: "Sumber Dataset", value: "Kaggle (vgsales)" },
-        { label: "Skala Data", value: "16.327K Game • 31 Platform" },
-        { label: "Total Penjualan", value: "797K • 577 Publisher" },
+        { label: { EN: "Dataset Source", ID: "Sumber Dataset" }, value: "Kaggle (vgsales)" },
+        {
+          label: { EN: "Data Scale", ID: "Skala Data" },
+          value: { EN: "16.327K Games • 31 Platforms", ID: "16.327K Game • 31 Platform" },
+        },
+        {
+          label: { EN: "Total Sales", ID: "Total Penjualan" },
+          value: { EN: "797K • 577 Publishers", ID: "797K • 577 Publisher" },
+        },
       ],
       previewType: "powerbi",
     },
     {
       id: "proyek-3-thelook-bigquery",
-      number: "PROYEK 3",
+      number: { EN: "PROJECT 3", ID: "PROYEK 3" },
       category: {
         EN: "Data Analyst Project • Cloud SQL Data Warehouse",
-        ID: "Proyek Data Analyst • Analisis SQL Cloud Data Warehouse",
+        ID: "Proyek Analis Data • Analisis SQL Cloud Data Warehouse",
       },
       toolBadge: "Google BigQuery SQL",
-      period: "Jul 2026",
+      period: { EN: "Jul 2026", ID: "Juli 2026" },
       title: {
         EN: "TheLook E-Commerce Data Analysis Using Google BigQuery",
         ID: "Analisis Data TheLook Ecommerce Menggunakan BigQuery",
@@ -408,14 +446,23 @@ const DATA = {
         EN: "View SQL Repository on GitHub",
         ID: "Lihat Lengkap Pengerjaan di GitHub",
       },
-      platformBadge: "GitHub Repository",
-      tags: [
-        "Google BigQuery",
-        "SQL (INNER JOIN, GROUP BY)",
-        "Scalar Subqueries",
-        "thelook_ecommerce",
-        "Revenue & Customer KPIs",
-      ],
+      platformBadge: { EN: "GitHub Repository", ID: "Repositori GitHub" },
+      tags: {
+        EN: [
+          "Google BigQuery",
+          "SQL (INNER JOIN, GROUP BY)",
+          "Scalar Subqueries",
+          "thelook_ecommerce",
+          "Revenue & Customer KPIs",
+        ],
+        ID: [
+          "Google BigQuery",
+          "SQL (INNER JOIN, GROUP BY)",
+          "Subquery Terstruktur",
+          "thelook_ecommerce",
+          "KPI Pendapatan & Pelanggan",
+        ],
+      },
       highlights: {
         EN: [
           "Queried `bigquery-public-data.thelook_ecommerce` (`orders`, `order_items`, `products`) using Google BigQuery SQL to evaluate completed transactions (`status = 'Complete'`).",
@@ -429,16 +476,22 @@ const DATA = {
         ],
       },
       metrics: [
-        { label: "Platform", value: "Google BigQuery" },
-        { label: "Dataset", value: "thelook_ecommerce" },
-        { label: "Repositori", value: "GitHub SQL Portfolio" },
+        { label: { EN: "Platform", ID: "Platform" }, value: "Google BigQuery" },
+        { label: { EN: "Dataset", ID: "Dataset" }, value: "thelook_ecommerce" },
+        {
+          label: { EN: "Repository", ID: "Repositori" },
+          value: { EN: "GitHub SQL Portfolio", ID: "Portofolio SQL GitHub" },
+        },
       ],
       previewType: "sql",
     },
   ],
   experiences: [
     {
-      role: "Data Management Intern",
+      role: {
+        EN: "Data Management Intern",
+        ID: "Magang Manajemen Data (Data Management Intern)",
+      },
       organization: "Yayasan Perguruan Advent Salemba",
       period: "Sep – Nov 2026",
       type: { EN: "Internship", ID: "Magang" },
@@ -458,9 +511,12 @@ const DATA = {
       },
     },
     {
-      role: "Data Analyst & Business Intelligence (DSF 52.0)",
+      role: {
+        EN: "Data Analyst & Business Intelligence (DSF 52.0)",
+        ID: "Analis Data & Business Intelligence (DSF 52.0)",
+      },
       organization: "Digital Skill Fair (DSF) by Dibimbing",
-      period: "17 – 19 Jun 2026",
+      period: { EN: "17 – 19 Jun 2026", ID: "17 – 19 Juni 2026" },
       type: { EN: "Intensive Training", ID: "Pelatihan Intensif" },
       points: {
         EN: [
@@ -482,7 +538,7 @@ const DATA = {
       EN: "Bachelor’s Degree in Information Systems",
       ID: "S1 Sistem Informasi",
     },
-    period: "2023 – Present",
+    period: { EN: "2023 – Present", ID: "2023 – Sekarang" },
     gpa: "3.95 / 4.00",
     highlights: {
       EN: [
@@ -501,56 +557,56 @@ const DATA = {
     {
       title: "Certified Database Administrator (Data Management)",
       issuer: "BNSP — LSP Universitas Bina Sarana Informatika",
-      year: "06 Mar 2026",
-      badge: "BNSP National Competence",
+      year: { EN: "06 Mar 2026", ID: "06 Maret 2026" },
+      badge: { EN: "BNSP National Competence", ID: "Sertifikasi Kompetensi BNSP" },
       credentialId: "No. Reg. DMS.1241.00955 2026",
       image: "/certifications/BNSP.jpg",
     },
     {
       title: "DSF 52.0 — Data Analyst & Business Intelligence",
       issuer: "Dibimbing.id",
-      year: "17 – 19 Jun 2026",
-      badge: "Business Intelligence",
-      credentialId: "Certificate of Appreciation",
+      year: { EN: "17 – 19 Jun 2026", ID: "17 – 19 Juni 2026" },
+      badge: { EN: "Business Intelligence", ID: "Business Intelligence" },
+      credentialId: "Sertifikat Apresiasi",
       image: "/certifications/DSF.jpg",
     },
     {
       title: "Fundamental SQL Using SELECT Statement",
       issuer: "DQLab",
-      year: "12 Jun 2026",
-      badge: "SQL & Data Analytics",
+      year: { EN: "12 Jun 2026", ID: "12 Juni 2026" },
+      badge: { EN: "SQL & Data Analytics", ID: "SQL & Analisis Data" },
       credentialId: "#DQLABSQLT1RUFLNG",
       image: "/certifications/DQLab.png",
     },
     {
       title: "Intro to Data Analytics (1-Week Certified Mini Course)",
       issuer: "RevoU",
-      year: "12 Jun 2026",
-      badge: "Data Analytics",
+      year: { EN: "12 Jun 2026", ID: "12 Juni 2026" },
+      badge: { EN: "Data Analytics", ID: "Analisis Data" },
       credentialId: "DAMC-080626-01-1-00413",
       image: "/certifications/RevoU.jpg",
     },
     {
       title: "Memulai Pemrograman dengan Python",
       issuer: "Dicoding Indonesia",
-      year: "07 Jun 2026",
-      badge: "Python Programming",
+      year: { EN: "07 Jun 2026", ID: "07 Juni 2026" },
+      badge: { EN: "Python Programming", ID: "Pemrograman Python" },
       credentialId: "dicoding.com/certificates/53XE1GG7VZRN",
       image: "/certifications/Dicoding.png",
     },
     {
       title: "Belajar Dasar Structured Query Language (SQL)",
       issuer: "Dicoding Indonesia",
-      year: "04 Jun 2026",
-      badge: "Relational Database",
+      year: { EN: "04 Jun 2026", ID: "04 Juni 2026" },
+      badge: { EN: "Relational Database", ID: "Basis Data Relasional" },
       credentialId: "dicoding.com/certificates/MRZMWJK1RPYQ",
       image: "/certifications/Dicoding2.png",
     },
     {
       title: "Belajar Dasar Data Science",
       issuer: "Dicoding Indonesia",
-      year: "03 Jun 2026",
-      badge: "Data Science",
+      year: { EN: "03 Jun 2026", ID: "03 Juni 2026" },
+      badge: { EN: "Data Science", ID: "Sains Data" },
       credentialId: "dicoding.com/certificates/07Z67MN92PQR",
       image: "/certifications/dicoding3.png",
     },
@@ -563,7 +619,6 @@ export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState<string>("ALL");
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
 
-  // Default to Dark Mode (matching the reference screenshot), while supporting Light Mode toggle
   useEffect(() => {
     const savedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
     const initialTheme: Theme =
@@ -572,7 +627,6 @@ export default function PortfolioPage() {
     document.documentElement.classList.toggle("dark", initialTheme === "dark");
   }, []);
 
-  // Close certificate modal on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") setSelectedCert(null);
@@ -595,30 +649,36 @@ export default function PortfolioPage() {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 dark:bg-[#232631] dark:text-slate-100 transition-colors duration-200">
-      {/* TOP NAVIGATION BAR (Matching Reference Design: HOME, PORTOFOLIO, SERTIFIKASI, CONTACT + Controls) */}
+      {/* TOP NAVIGATION BAR (Fully translated for ID and EN) */}
       <header className="sticky top-0 z-40 border-b border-slate-200/80 dark:border-[#343847] bg-white/90 dark:bg-[#232631]/90 backdrop-blur-md transition-colors duration-200">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <nav
             aria-label="Primary Navigation"
-            className="flex items-center gap-5 sm:gap-8 text-xs sm:text-sm font-bold uppercase tracking-wider"
+            className="flex items-center gap-4 sm:gap-8 text-xs sm:text-sm font-bold uppercase tracking-wider"
           >
             <a
               href="#top"
               className="text-amber-500 transition-colors hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
             >
-              HOME
+              {lang === "EN" ? "HOME" : "BERANDA"}
             </a>
             <a
               href="#about"
               className="text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
             >
-              {lang === "EN" ? "ABOUT" : "ABOUT"}
+              {lang === "EN" ? "ABOUT" : "TENTANG"}
+            </a>
+            <a
+              href="#skills"
+              className="hidden md:inline text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
+            >
+              {lang === "EN" ? "SKILLS" : "KEAHLIAN"}
             </a>
             <a
               href="#projects"
               className="text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
             >
-              PORTOFOLIO
+              {lang === "EN" ? "PORTFOLIO" : "PORTOFOLIO"}
             </a>
             <a
               href="#certifications"
@@ -630,7 +690,7 @@ export default function PortfolioPage() {
               href="#contact"
               className="text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
             >
-              CONTACT
+              {lang === "EN" ? "CONTACT" : "KONTAK"}
             </a>
           </nav>
 
@@ -692,22 +752,22 @@ export default function PortfolioPage() {
 
       <main id="top" className="flex-1">
         {/* =====================================================================
-            HERO SECTION (Exact Layout from Reference Image + User's Cutout Photo)
+            HERO SECTION (Fully Bilingual: ID = "Halo, Saya Lukman Fatkhurozi" / EN = "Hello, I Am Lukman Fatkhurozi")
            ===================================================================== */}
         <section className="relative overflow-hidden bg-white dark:bg-[#232631] pt-10 pb-16 md:py-20 transition-colors duration-200">
           <div className="mx-auto max-w-5xl px-6">
             <div className="grid items-center gap-12 md:grid-cols-12">
-              {/* Left Column: Greeting, Name, Roles, Let's Talk CTA, Social Row, Download CV */}
+              {/* Left Column */}
               <div className="md:col-span-7 order-2 md:order-1">
                 <p className="text-2xl sm:text-3xl font-medium text-slate-700 dark:text-slate-200">
-                  Hello,
+                  {DATA.profile.greeting[lang]}
                 </p>
                 <h1 className="mt-1 text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                  I Am {DATA.profile.name}
+                  {DATA.profile.iamPrefix[lang]} {DATA.profile.name}
                 </h1>
 
                 <p className="mt-3 text-sm sm:text-base font-medium text-slate-600 dark:text-slate-300">
-                  {DATA.profile.rolesLine}
+                  {DATA.profile.rolesLine[lang]}
                 </p>
                 <p className="mt-1 text-sm sm:text-base text-slate-600 dark:text-slate-300">
                   {DATA.profile.experienceHighlight[lang].prefix}
@@ -716,13 +776,13 @@ export default function PortfolioPage() {
                   </span>
                 </p>
 
-                {/* Primary Orange Button: Let's Talk -> */}
+                {/* Primary Orange Button */}
                 <div className="mt-7 flex flex-wrap items-center gap-3.5">
                   <a
                     href="#contact"
                     className="inline-flex items-center gap-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 px-6 py-3 text-sm font-bold text-zinc-950 shadow-md shadow-amber-500/15 transition-all hover:-translate-y-0.5"
                   >
-                    <span>Let&apos;s Talk</span>
+                    <span>{lang === "EN" ? "Let's Talk" : "Hubungi Saya"}</span>
                     <Icons.ArrowRight />
                   </a>
                   <a
@@ -733,7 +793,7 @@ export default function PortfolioPage() {
                   </a>
                 </div>
 
-                {/* Social Icons Row + "Download Curriculum Vitae" */}
+                {/* Social Icons Row + Download CV */}
                 <div className="mt-12 space-y-3">
                   <div className="flex items-center gap-4 text-slate-600 dark:text-slate-200">
                     <a
@@ -788,10 +848,10 @@ export default function PortfolioPage() {
                       className="inline-flex items-center gap-1.5 font-bold group"
                     >
                       <span className="text-amber-500 group-hover:underline">
-                        Download
+                        {lang === "EN" ? "Download" : "Unduh"}
                       </span>
                       <span className="text-slate-800 dark:text-white group-hover:underline">
-                        Curriculum Vitae
+                        Curriculum Vitae (CV)
                       </span>
                     </a>
                     <span className="text-slate-300 dark:text-slate-600">|</span>
@@ -801,7 +861,9 @@ export default function PortfolioPage() {
                       className="inline-flex items-center gap-1.5 font-semibold text-xs text-slate-500 dark:text-slate-400 hover:text-amber-500"
                     >
                       <span>
-                        {lang === "EN" ? "Download Portfolio PDF" : "Unduh Slide Portofolio (PDF)"}
+                        {lang === "EN"
+                          ? "Download Portfolio PDF"
+                          : "Unduh Slide Portofolio (PDF)"}
                       </span>
                     </a>
                   </div>
@@ -811,10 +873,7 @@ export default function PortfolioPage() {
               {/* Right Column: Circular Orange Backdrop + Lukman Cutout Photo */}
               <div className="md:col-span-5 order-1 md:order-2 flex justify-center">
                 <div className="relative flex items-center justify-center">
-                  {/* Vibrant Orange Circle Backdrop */}
                   <div className="h-64 w-64 sm:h-76 sm:w-76 rounded-full bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 shadow-2xl shadow-amber-500/20" />
-
-                  {/* Cutout Portrait Image overlapping the orange circle */}
                   <div className="absolute inset-x-0 -top-8 bottom-0 flex items-end justify-center overflow-hidden rounded-b-full">
                     <img
                       src={DATA.profile.photo}
@@ -829,7 +888,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* =====================================================================
-            ABOUT ME SECTION (Centered Title with Short Underline, Quote, Bio)
+            ABOUT ME / TENTANG SAYA SECTION
            ===================================================================== */}
         <section
           id="about"
@@ -837,7 +896,7 @@ export default function PortfolioPage() {
         >
           <div className="mx-auto max-w-3xl px-6 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              About Me
+              {lang === "EN" ? "About Me" : "Tentang Saya"}
             </h2>
             <div className="mx-auto mt-2.5 h-1 w-14 rounded-full bg-slate-400 dark:bg-slate-300" />
 
@@ -853,7 +912,7 @@ export default function PortfolioPage() {
                 </strong>{" "}
                 yang memiliki minat kuat di bidang{" "}
                 <span className="underline decoration-amber-500 underline-offset-4">
-                  Data Analytics, Business Intelligence, dan Visualisasi Data
+                  Analisis Data, Business Intelligence, dan Visualisasi Data
                 </span>
                 . Berpengalaman mengumpulkan, membersihkan, menganalisis, serta memvisualisasikan
                 data menggunakan{" "}
@@ -896,7 +955,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* =====================================================================
-            SKILL SECTION (Centered Title, Colorful Tool Icon Grid + 3 Service Cards)
+            SKILL / KEAHLIAN SECTION
            ===================================================================== */}
         <section
           id="skills"
@@ -905,16 +964,16 @@ export default function PortfolioPage() {
           <div className="mx-auto max-w-4xl px-6">
             <div className="text-center">
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                Skill
+                {lang === "EN" ? "Skill" : "Keahlian Utama"}
               </h2>
               <div className="mx-auto mt-2.5 h-1 w-12 rounded-full bg-slate-400 dark:bg-slate-300" />
             </div>
 
-            {/* 2-Row Colorful Tool Badge Grid (Matching Reference Image Layout) */}
+            {/* 2-Row Colorful Tool Badge Grid */}
             <div className="mt-10 grid grid-cols-3 gap-4 sm:grid-cols-6 sm:gap-5">
               {DATA.skillBadges.map((badge) => (
                 <div
-                  key={badge.name}
+                  key={badge.code}
                   className="group flex flex-col items-center text-center"
                 >
                   <div
@@ -925,16 +984,16 @@ export default function PortfolioPage() {
                     {badge.code}
                   </div>
                   <div className="mt-2 text-xs font-bold text-slate-800 dark:text-slate-100">
-                    {badge.name}
+                    {badge.name[lang]}
                   </div>
                   <div className="text-[10px] text-slate-500 dark:text-slate-400">
-                    {badge.sub}
+                    {badge.sub[lang]}
                   </div>
                 </div>
               ))}
             </div>
 
-            {/* 3 Vertical Service Pillar Cards (Center Card Highlighted in Vibrant Orange) */}
+            {/* 3 Vertical Service Pillar Cards */}
             <div className="mt-14 grid gap-6 sm:grid-cols-3">
               {DATA.serviceCards.map((card) => (
                 <div
@@ -977,7 +1036,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* =====================================================================
-            PORTOFOLIO / PROJECTS SECTION (All 3 Projects from Portfolio PDF)
+            PORTOFOLIO / PROJECTS SECTION
            ===================================================================== */}
         <section
           id="projects"
@@ -986,7 +1045,7 @@ export default function PortfolioPage() {
           <div className="mx-auto max-w-5xl px-6">
             <div className="text-center">
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-                {lang === "EN" ? "Portofolio Projects" : "Proyek Portofolio"}
+                {lang === "EN" ? "Portfolio Projects" : "Proyek Portofolio"}
               </h2>
               <div className="mx-auto mt-2.5 h-1 w-16 rounded-full bg-amber-500" />
               <p className="mt-3 text-sm text-slate-600 dark:text-slate-300">
@@ -1030,12 +1089,12 @@ export default function PortfolioPage() {
                   className="overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-6 shadow-md transition-all hover:border-amber-500/60 sm:p-8"
                 >
                   <div className="grid gap-8 lg:grid-cols-12">
-                    {/* Left column: details & link lengkap pengerjaan */}
+                    {/* Left column */}
                     <div className="flex flex-col justify-between lg:col-span-7">
                       <div>
                         <div className="flex flex-wrap items-center gap-2.5 text-xs">
                           <span className="rounded-md bg-amber-500 px-2.5 py-1 font-mono font-extrabold text-zinc-950">
-                            {project.number}
+                            {project.number[lang]}
                           </span>
                           <span className="rounded-md bg-slate-100 dark:bg-[#2c303d] px-2.5 py-1 font-mono font-semibold text-amber-600 dark:text-amber-400 border border-slate-200 dark:border-[#3d4254]">
                             {project.toolBadge}
@@ -1063,13 +1122,12 @@ export default function PortfolioPage() {
                       </div>
 
                       <div className="mt-6 space-y-4 border-t border-slate-100 dark:border-[#343847] pt-5">
-                        {/* Link Lengkap Pengerjaan Call to Action */}
                         <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5">
                           <div className="min-w-0">
                             <div className="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
                               {lang === "EN"
                                 ? "Full Documentation Link"
-                                : "Link Lengkap Pengerjaan"}
+                                : "Tautan Lengkap Pengerjaan"}
                             </div>
                             <a
                               href={project.externalLink}
@@ -1091,9 +1149,8 @@ export default function PortfolioPage() {
                           </a>
                         </div>
 
-                        {/* Tags */}
                         <div className="flex flex-wrap gap-2">
-                          {project.tags.map((tag) => (
+                          {project.tags[lang].map((tag) => (
                             <span
                               key={tag}
                               className="rounded-md border border-slate-200 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-2.5 py-1 font-mono text-[11px] font-medium text-slate-600 dark:text-slate-300"
@@ -1105,7 +1162,7 @@ export default function PortfolioPage() {
                       </div>
                     </div>
 
-                    {/* Right column: Visual Replica of the Slides from Portfolio PDF */}
+                    {/* Right column */}
                     <div className="flex flex-col justify-between rounded-xl border border-slate-200 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] p-5 lg:col-span-5">
                       <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#3d4254] pb-3">
                         <div className="flex items-center gap-1.5">
@@ -1114,7 +1171,7 @@ export default function PortfolioPage() {
                           <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80"></span>
                         </div>
                         <span className="font-mono text-[11px] font-semibold text-slate-500 dark:text-slate-300">
-                          {project.number} • {project.platformBadge}
+                          {project.number[lang]} • {project.platformBadge[lang]}
                         </span>
                       </div>
 
@@ -1123,7 +1180,9 @@ export default function PortfolioPage() {
                         <div className="my-4 space-y-3">
                           <div className="rounded-lg bg-[#191b24] border border-[#3d4254] p-3 font-mono text-[11px] text-slate-200">
                             <div className="text-emerald-400">
-                              # Cek Tipe data dan missing value
+                              {lang === "EN"
+                                ? "# Check data types and missing values"
+                                : "# Cek Tipe data dan missing value"}
                             </div>
                             <div className="mt-0.5 flex items-center justify-between">
                               <span>
@@ -1131,7 +1190,7 @@ export default function PortfolioPage() {
                                 <span className="text-amber-300">head</span>()
                               </span>
                               <span className="text-[10px] text-emerald-400">
-                                1200 rows × 14 cols
+                                {lang === "EN" ? "1200 rows × 14 cols" : "1200 baris × 14 kolom"}
                               </span>
                             </div>
                           </div>
@@ -1139,7 +1198,7 @@ export default function PortfolioPage() {
                           <div className="grid grid-cols-2 gap-2">
                             <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
                               <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
-                                Total Pendapatan
+                                {lang === "EN" ? "Total Revenue" : "Total Pendapatan"}
                               </div>
                               <div className="mt-0.5 font-mono text-sm font-bold text-amber-600 dark:text-amber-400">
                                 $1.264.762
@@ -1147,7 +1206,7 @@ export default function PortfolioPage() {
                             </div>
                             <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
                               <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
-                                Total Pesanan
+                                {lang === "EN" ? "Total Orders" : "Total Pesanan"}
                               </div>
                               <div className="mt-0.5 font-mono text-sm font-bold text-slate-900 dark:text-white">
                                 1.200
@@ -1155,7 +1214,7 @@ export default function PortfolioPage() {
                             </div>
                             <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
                               <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
-                                Total Pelanggan
+                                {lang === "EN" ? "Total Customers" : "Total Pelanggan"}
                               </div>
                               <div className="mt-0.5 font-mono text-sm font-bold text-slate-900 dark:text-white">
                                 1.189
@@ -1163,7 +1222,7 @@ export default function PortfolioPage() {
                             </div>
                             <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
                               <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
-                                Total Barang Terjual
+                                {lang === "EN" ? "Total Items Sold" : "Total Barang Terjual"}
                               </div>
                               <div className="mt-0.5 font-mono text-sm font-bold text-slate-900 dark:text-white">
                                 3.535
@@ -1173,7 +1232,11 @@ export default function PortfolioPage() {
 
                           <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-3 text-xs">
                             <div className="flex items-center justify-between font-semibold text-slate-800 dark:text-slate-200">
-                              <span>Sumber Pelanggan &amp; Produk Terlaris</span>
+                              <span>
+                                {lang === "EN"
+                                  ? "Customer Sources & Top Products"
+                                  : "Sumber Pelanggan & Produk Terlaris"}
+                              </span>
                               <span className="font-mono text-[10px] text-amber-500">
                                 2023–2026
                               </span>
@@ -1204,7 +1267,7 @@ export default function PortfolioPage() {
                           <div className="grid grid-cols-2 gap-2">
                             <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
                               <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
-                                Jumlah Game
+                                {lang === "EN" ? "Total Games" : "Jumlah Game"}
                               </div>
                               <div className="mt-0.5 font-mono text-sm font-bold text-amber-600 dark:text-amber-400">
                                 16.327K
@@ -1212,7 +1275,7 @@ export default function PortfolioPage() {
                             </div>
                             <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
                               <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
-                                Jumlah Penjualan
+                                {lang === "EN" ? "Total Sales" : "Jumlah Penjualan"}
                               </div>
                               <div className="mt-0.5 font-mono text-sm font-bold text-slate-900 dark:text-white">
                                 797K
@@ -1220,7 +1283,7 @@ export default function PortfolioPage() {
                             </div>
                             <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
                               <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
-                                Jumlah Publisher
+                                {lang === "EN" ? "Total Publishers" : "Jumlah Publisher"}
                               </div>
                               <div className="mt-0.5 font-mono text-sm font-bold text-slate-900 dark:text-white">
                                 577
@@ -1228,7 +1291,7 @@ export default function PortfolioPage() {
                             </div>
                             <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-2.5">
                               <div className="text-[10px] font-medium text-slate-500 dark:text-slate-400">
-                                Jumlah Platform
+                                {lang === "EN" ? "Total Platforms" : "Jumlah Platform"}
                               </div>
                               <div className="mt-0.5 font-mono text-sm font-bold text-slate-900 dark:text-white">
                                 31
@@ -1238,7 +1301,9 @@ export default function PortfolioPage() {
 
                           <div className="rounded-lg border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-3">
                             <div className="flex items-center justify-between text-xs font-semibold text-slate-800 dark:text-slate-200">
-                              <span>Penjualan Berdasarkan Genre</span>
+                              <span>
+                                {lang === "EN" ? "Sales by Genre" : "Penjualan Berdasarkan Genre"}
+                              </span>
                               <span className="font-mono text-[10px] text-amber-500">
                                 Power BI
                               </span>
@@ -1317,13 +1382,13 @@ export default function PortfolioPage() {
                       )}
 
                       <div className="grid grid-cols-3 gap-2 border-t border-slate-200 dark:border-[#3d4254] pt-3">
-                        {project.metrics.map((m) => (
-                          <div key={m.label}>
+                        {project.metrics.map((m, idx) => (
+                          <div key={idx}>
                             <div className="text-[10px] text-slate-500 dark:text-slate-400">
-                              {m.label}
+                              {m.label[lang]}
                             </div>
                             <div className="font-mono text-[11px] font-semibold text-slate-800 dark:text-slate-200">
-                              {m.value}
+                              {typeof m.value === "string" ? m.value : m.value[lang]}
                             </div>
                           </div>
                         ))}
@@ -1358,14 +1423,14 @@ export default function PortfolioPage() {
                       <span className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-amber-500 bg-white dark:bg-[#232631]"></span>
                       <div className="flex flex-wrap items-center gap-2 text-xs">
                         <span className="rounded-md bg-slate-100 dark:bg-[#2c303d] px-2.5 py-0.5 font-mono font-medium text-slate-700 dark:text-slate-300">
-                          {exp.period}
+                          {typeof exp.period === "string" ? exp.period : exp.period[lang]}
                         </span>
                         <span className="rounded-md bg-amber-500/15 px-2.5 py-0.5 font-bold text-amber-600 dark:text-amber-400">
                           {exp.type[lang]}
                         </span>
                       </div>
                       <h3 className="mt-2 text-lg font-bold text-slate-900 dark:text-white">
-                        {exp.role}
+                        {exp.role[lang]}
                       </h3>
                       <p className="text-sm font-medium text-amber-600 dark:text-amber-400">
                         {exp.organization}
@@ -1393,10 +1458,10 @@ export default function PortfolioPage() {
                 <div className="mt-8 rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] p-6 shadow-sm">
                   <div className="flex items-center justify-between">
                     <span className="rounded-md bg-white dark:bg-[#232631] px-2.5 py-1 font-mono text-xs font-medium text-slate-700 dark:text-slate-300">
-                      {DATA.education.period}
+                      {DATA.education.period[lang]}
                     </span>
                     <span className="rounded-md bg-amber-500 px-2.5 py-1 font-mono text-xs font-extrabold text-zinc-950">
-                      GPA {DATA.education.gpa}
+                      {lang === "EN" ? "GPA" : "IPK"} {DATA.education.gpa}
                     </span>
                   </div>
 
@@ -1424,7 +1489,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* =====================================================================
-            CERTIFICATIONS GALLERY SECTION (7 Verified Certificates with Lightbox)
+            CERTIFICATIONS GALLERY SECTION
            ===================================================================== */}
         <section
           id="certifications"
@@ -1470,10 +1535,10 @@ export default function PortfolioPage() {
                     <div className="p-4">
                       <div className="flex items-center justify-between gap-2">
                         <span className="rounded bg-amber-500/15 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-600 dark:text-amber-400">
-                          {cert.badge}
+                          {cert.badge[lang]}
                         </span>
                         <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400">
-                          {cert.year}
+                          {cert.year[lang]}
                         </span>
                       </div>
                       <h3 className="mt-2.5 text-sm font-bold leading-snug text-slate-900 dark:text-white group-hover:text-amber-500">
@@ -1500,7 +1565,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* =====================================================================
-            CONTACT SECTION
+            CONTACT / KONTAK SECTION
            ===================================================================== */}
         <section
           id="contact"
@@ -1508,13 +1573,13 @@ export default function PortfolioPage() {
         >
           <div className="mx-auto max-w-4xl px-6 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
-              Contact
+              {lang === "EN" ? "Contact" : "Kontak"}
             </h2>
             <div className="mx-auto mt-2.5 h-1 w-14 rounded-full bg-amber-500" />
             <p className="mx-auto mt-4 max-w-xl text-sm sm:text-base text-slate-600 dark:text-slate-300">
               {lang === "EN"
                 ? "Available for Data Analyst, Business Intelligence, and Database Administrator opportunities. Let’s connect and discuss!"
-                : "Terbuka untuk peluang magang maupun kerja di bidang Data Analytics, Business Intelligence, dan Database Administration. Mari berdiskusi lebih lanjut!"}
+                : "Terbuka untuk peluang magang maupun kerja di bidang Analisis Data, Business Intelligence, dan Administrator Basis Data. Mari berdiskusi lebih lanjut!"}
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-3.5">
@@ -1583,10 +1648,10 @@ export default function PortfolioPage() {
               <div>
                 <div className="flex items-center gap-2">
                   <span className="rounded bg-amber-500/20 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-500">
-                    {selectedCert.badge}
+                    {selectedCert.badge[lang]}
                   </span>
                   <span className="font-mono text-xs text-slate-500 dark:text-slate-400">
-                    {selectedCert.year}
+                    {selectedCert.year[lang]}
                   </span>
                 </div>
                 <h3
@@ -1628,7 +1693,10 @@ export default function PortfolioPage() {
             <strong className="text-amber-600 dark:text-amber-400">
               Lukman Fatkhurozi
             </strong>
-            . Data Analyst &amp; Business Intelligence Portfolio.
+            .{" "}
+            {lang === "EN"
+              ? "Data Analyst & Business Intelligence Portfolio."
+              : "Portofolio Analis Data & Business Intelligence."}
           </div>
           <div className="flex items-center gap-4">
             <a
@@ -1654,7 +1722,7 @@ export default function PortfolioPage() {
               download="CV_Lukman_Fatkhurozi.pdf"
               className="font-bold text-amber-500 hover:underline"
             >
-              Download CV
+              {lang === "EN" ? "Download CV" : "Unduh CV"}
             </a>
           </div>
         </div>
