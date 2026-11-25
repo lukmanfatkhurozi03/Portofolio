@@ -36,10 +36,11 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
+      lang="id"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
     >
-      <body className="min-h-screen bg-[#FAFAFA] text-slate-900 selection:bg-blue-600 selection:text-white">
+      <body className="min-h-screen bg-background text-foreground selection:bg-blue-600 selection:text-white transition-colors duration-200">
         {children}
       </body>
     </html>

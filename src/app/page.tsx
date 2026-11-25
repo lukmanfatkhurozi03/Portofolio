@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 type Language = "EN" | "ID";
+type Theme = "light" | "dark";
 
 interface Certification {
   title: string;
@@ -12,6 +13,136 @@ interface Certification {
   credentialId: string;
   image: string;
 }
+
+/* Vector SVG Icons (UI/UX Pro Max Standard: No Emojis as Structural Icons) */
+const Icons = {
+  Sun: () => (
+    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+    </svg>
+  ),
+  Moon: () => (
+    <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+    </svg>
+  ),
+  MapPin: () => (
+    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  ),
+  Mail: () => (
+    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="20" height="16" x="2" y="4" rx="2" />
+      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+    </svg>
+  ),
+  Phone: () => (
+    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    </svg>
+  ),
+  LinkedIn: () => (
+    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+      <rect width="4" height="12" x="2" y="9" />
+      <circle cx="4" cy="4" r="2" />
+    </svg>
+  ),
+  GitHub: () => (
+    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+      <path d="M9 18c-4.51 2-5-2-7-2" />
+    </svg>
+  ),
+  Instagram: () => (
+    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+      <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+    </svg>
+  ),
+  Download: () => (
+    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+      <polyline points="7 10 12 15 17 10" />
+      <line x1="12" x2="12" y1="15" y2="3" />
+    </svg>
+  ),
+  ArrowRight: () => (
+    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M5 12h14" />
+      <path d="m12 5 7 7-7 7" />
+    </svg>
+  ),
+  ExternalLink: () => (
+    <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M7 7h10v10" />
+      <path d="M7 17 17 7" />
+    </svg>
+  ),
+  Code: () => (
+    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="16 18 22 12 16 6" />
+      <polyline points="8 6 2 12 8 18" />
+    </svg>
+  ),
+  BarChart: () => (
+    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="12" x2="12" y1="20" y2="10" />
+      <line x1="18" x2="18" y1="20" y2="4" />
+      <line x1="6" x2="6" y1="20" y2="16" />
+    </svg>
+  ),
+  Table: () => (
+    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect width="18" height="18" x="3" y="3" rx="2" />
+      <path d="M3 9h18" />
+      <path d="M3 15h18" />
+      <path d="M9 9v12" />
+    </svg>
+  ),
+  Database: () => (
+    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <ellipse cx="12" cy="5" rx="9" ry="3" />
+      <path d="M3 5V19A9 3 0 0 0 21 19V5" />
+      <path d="M3 12A9 3 0 0 0 21 12" />
+    </svg>
+  ),
+  PieChart: () => (
+    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+      <path d="M22 12A10 10 0 0 0 12 2v10z" />
+    </svg>
+  ),
+  Search: () => (
+    <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="8" />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+  ),
+  Check: () => (
+    <svg className="h-4 w-4 shrink-0 text-blue-600 dark:text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  ),
+  ZoomIn: () => (
+    <svg className="h-3.5 w-3.5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" x2="16.65" y1="21" y2="16.65" />
+      <line x1="11" x2="11" y1="8" y2="14" />
+      <line x1="8" x2="14" y1="11" y2="11" />
+    </svg>
+  ),
+  Close: () => (
+    <svg className="h-4 w-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  ),
+};
 
 const DATA = {
   profile: {
@@ -386,66 +517,166 @@ const DATA = {
 
 export default function PortfolioPage() {
   const [lang, setLang] = useState<Language>("ID");
+  const [theme, setTheme] = useState<Theme>("light");
   const [activeFilter, setActiveFilter] = useState<string>("ALL");
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
+
+  // Sync theme with localStorage and system preference on mount
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
+    if (savedTheme === "dark" || savedTheme === "light") {
+      setTheme(savedTheme);
+      document.documentElement.classList.toggle("dark", savedTheme === "dark");
+    } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      setTheme("dark");
+      document.documentElement.classList.add("dark");
+    }
+  }, []);
+
+  // Close certificate modal on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSelectedCert(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const toggleTheme = () => {
+    const nextTheme: Theme = theme === "light" ? "dark" : "light";
+    setTheme(nextTheme);
+    localStorage.setItem("portfolio-theme", nextTheme);
+    document.documentElement.classList.toggle("dark", nextTheme === "dark");
+  };
 
   const filteredProjects =
     activeFilter === "ALL"
       ? DATA.projects
       : DATA.projects.filter((p) => p.toolBadge === activeFilter);
 
+  const coreCompetencies = [
+    { icon: <Icons.Code />, title: "Python", sub: "Pandas, NumPy, Cleaning" },
+    { icon: <Icons.BarChart />, title: "Power BI", sub: "Power Query, DAX, KPI" },
+    { icon: <Icons.Table />, title: "Microsoft Excel", sub: "Pivot Table, Slicer, Lookup" },
+    { icon: <Icons.Database />, title: "SQL", sub: "BigQuery & MySQL" },
+    { icon: <Icons.PieChart />, title: "Data Visualization", sub: "Interactive Dashboards" },
+    {
+      icon: <Icons.Search />,
+      title: "Exploratory Data Analysis",
+      sub: "Pattern & Trend Discovery",
+    },
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAFAFA] text-slate-900">
+    <div className="min-h-screen flex flex-col bg-zinc-50 text-zinc-900 dark:bg-zinc-950 dark:text-zinc-100 transition-colors duration-200">
       {/* Sticky Minimal Navigation */}
-      <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-white/85 backdrop-blur-md">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+      <header className="sticky top-0 z-40 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white/85 dark:bg-zinc-950/85 backdrop-blur-md transition-colors duration-200">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3.5">
           <a
             href="#top"
-            className="flex items-center gap-2.5 text-sm font-semibold tracking-tight text-slate-900"
+            className="flex items-center gap-2.5 text-sm font-semibold tracking-tight text-zinc-900 dark:text-zinc-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 rounded-lg"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-slate-900 font-mono text-xs font-bold text-white">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-900 dark:bg-blue-600 font-mono text-xs font-bold text-white shadow-xs">
               LF
             </span>
             <span>Lukman Fatkhurozi</span>
           </a>
 
-          <nav className="hidden items-center gap-7 text-sm font-medium text-slate-600 md:flex">
-            <a href="#about" className="transition-colors hover:text-slate-900">
+          <nav
+            aria-label="Primary Navigation"
+            className="hidden items-center gap-7 text-sm font-medium text-zinc-600 dark:text-zinc-400 md:flex"
+          >
+            <a
+              href="#about"
+              className="transition-colors hover:text-zinc-950 dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 rounded"
+            >
               {lang === "EN" ? "About" : "Tentang"}
             </a>
-            <a href="#projects" className="transition-colors hover:text-slate-900">
+            <a
+              href="#projects"
+              className="transition-colors hover:text-zinc-950 dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 rounded"
+            >
               {lang === "EN" ? "Projects" : "Proyek"}
             </a>
-            <a href="#experience" className="transition-colors hover:text-slate-900">
+            <a
+              href="#experience"
+              className="transition-colors hover:text-zinc-950 dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 rounded"
+            >
               {lang === "EN" ? "Experience" : "Pengalaman"}
             </a>
-            <a href="#skills" className="transition-colors hover:text-slate-900">
-              {lang === "EN" ? "Skills & Certs" : "Sertifikasi"}
+            <a
+              href="#skills"
+              className="transition-colors hover:text-zinc-950 dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 rounded"
+            >
+              {lang === "EN" ? "Certifications" : "Sertifikasi"}
             </a>
-            <a href="#contact" className="transition-colors hover:text-slate-900">
+            <a
+              href="#contact"
+              className="transition-colors hover:text-zinc-950 dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600 rounded"
+            >
               {lang === "EN" ? "Contact" : "Kontak"}
             </a>
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5">
+            {/* Theme Toggle (Light / Dark) */}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              aria-label={
+                theme === "light"
+                  ? "Switch to Dark Mode"
+                  : "Switch to Light Mode"
+              }
+              title={
+                theme === "light"
+                  ? lang === "EN"
+                    ? "Switch to Dark theme"
+                    : "Ganti ke tema Gelap"
+                  : lang === "EN"
+                  ? "Switch to Light theme"
+                  : "Ganti ke tema Terang"
+              }
+              className="cursor-pointer inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-950 dark:hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
+            >
+              {theme === "light" ? <Icons.Moon /> : <Icons.Sun />}
+              <span className="hidden sm:inline">
+                {theme === "light"
+                  ? lang === "EN"
+                    ? "Dark"
+                    : "Gelap"
+                  : lang === "EN"
+                  ? "Light"
+                  : "Terang"}
+              </span>
+            </button>
+
             {/* Language Toggle */}
-            <div className="inline-flex rounded-lg border border-slate-200 bg-slate-100/80 p-0.5 text-xs font-medium">
+            <div
+              role="group"
+              aria-label="Language switcher"
+              className="inline-flex rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-100/80 dark:bg-zinc-900 p-0.5 text-xs font-medium"
+            >
               <button
+                type="button"
                 onClick={() => setLang("ID")}
-                className={`rounded-md px-2.5 py-1 transition-all ${
+                aria-pressed={lang === "ID"}
+                className={`cursor-pointer rounded-md px-2.5 py-1 transition-all ${
                   lang === "ID"
-                    ? "bg-white text-slate-900 shadow-xs"
-                    : "text-slate-500 hover:text-slate-800"
+                    ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-xs"
+                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
                 }`}
               >
                 ID
               </button>
               <button
+                type="button"
                 onClick={() => setLang("EN")}
-                className={`rounded-md px-2.5 py-1 transition-all ${
+                aria-pressed={lang === "EN"}
+                className={`cursor-pointer rounded-md px-2.5 py-1 transition-all ${
                   lang === "EN"
-                    ? "bg-white text-slate-900 shadow-xs"
-                    : "text-slate-500 hover:text-slate-800"
+                    ? "bg-white dark:bg-zinc-800 text-zinc-900 dark:text-white shadow-xs"
+                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-800 dark:hover:text-zinc-200"
                 }`}
               >
                 EN
@@ -455,10 +686,10 @@ export default function PortfolioPage() {
             <a
               href={DATA.profile.cvUrl}
               download="CV_Lukman_Fatkhurozi.pdf"
-              className="hidden rounded-lg bg-slate-900 px-3.5 py-2 text-xs font-medium text-white transition-colors hover:bg-slate-800 sm:inline-flex sm:items-center sm:gap-1.5"
+              className="hidden rounded-lg bg-zinc-900 dark:bg-blue-600 px-3.5 py-2 text-xs font-medium text-white transition-colors hover:bg-zinc-800 dark:hover:bg-blue-500 sm:inline-flex sm:items-center sm:gap-1.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
             >
               <span>{lang === "EN" ? "Download CV" : "Unduh CV"}</span>
-              <span aria-hidden="true">↓</span>
+              <Icons.Download />
             </a>
           </div>
         </div>
@@ -467,8 +698,8 @@ export default function PortfolioPage() {
       <main id="top" className="mx-auto w-full max-w-5xl flex-1 px-6 pt-12 pb-24">
         {/* HERO SECTION */}
         <section className="pb-16 pt-4 md:pb-24 md:pt-10">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50/70 px-3.5 py-1.5 text-xs font-medium text-blue-800">
-            <span className="h-2 w-2 rounded-full bg-blue-600"></span>
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-200 dark:border-blue-900/70 bg-blue-50/80 dark:bg-blue-950/60 px-3.5 py-1.5 text-xs font-medium text-blue-800 dark:text-blue-300">
+            <span className="h-2 w-2 rounded-full bg-blue-600 dark:bg-blue-400"></span>
             <span>
               {lang === "EN"
                 ? "Available for Data Analyst / BI / Database Opportunities"
@@ -476,42 +707,46 @@ export default function PortfolioPage() {
             </span>
           </div>
 
-          <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl md:text-6xl">
+          <h1 className="max-w-3xl text-4xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-5xl md:text-6xl">
             {DATA.profile.name}
           </h1>
-          <p className="mt-3 text-lg font-medium text-blue-700 sm:text-xl">
+          <p className="mt-3 text-lg font-medium text-blue-600 dark:text-blue-400 sm:text-xl">
             {DATA.profile.role[lang]}
           </p>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-zinc-600 dark:text-zinc-300 sm:text-lg">
             {DATA.profile.tagline[lang]}
           </p>
 
           {/* Location & Direct Links */}
-          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-slate-500">
-            <span className="inline-flex items-center gap-1.5">
-              <span className="text-slate-400">📍</span> {DATA.profile.location}
+          <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2.5 text-sm text-zinc-600 dark:text-zinc-400">
+            <span className="inline-flex items-center gap-2">
+              <Icons.MapPin />
+              <span>{DATA.profile.location}</span>
             </span>
             <a
               href={`mailto:${DATA.profile.email}`}
-              className="inline-flex items-center gap-1.5 hover:text-slate-900 underline-offset-4 hover:underline"
+              className="inline-flex items-center gap-2 hover:text-zinc-950 dark:hover:text-white underline-offset-4 hover:underline"
             >
-              <span className="text-slate-400">✉️</span> {DATA.profile.email}
+              <Icons.Mail />
+              <span>{DATA.profile.email}</span>
             </a>
             <a
               href={DATA.profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 hover:text-slate-900 underline-offset-4 hover:underline"
+              className="inline-flex items-center gap-2 hover:text-zinc-950 dark:hover:text-white underline-offset-4 hover:underline"
             >
-              <span className="text-slate-400">in</span> linkedin.com/in/lukman-fatkhurozi
+              <Icons.LinkedIn />
+              <span>linkedin.com/in/lukman-fatkhurozi</span>
             </a>
             <a
               href={DATA.profile.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 hover:text-slate-900 underline-offset-4 hover:underline"
+              className="inline-flex items-center gap-2 hover:text-zinc-950 dark:hover:text-white underline-offset-4 hover:underline"
             >
-              <span className="text-slate-400">📷</span> {DATA.profile.instagramHandle}
+              <Icons.Instagram />
+              <span>{DATA.profile.instagramHandle}</span>
             </a>
           </div>
 
@@ -519,23 +754,25 @@ export default function PortfolioPage() {
           <div className="mt-8 flex flex-wrap items-center gap-3.5">
             <a
               href="#projects"
-              className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-medium text-white shadow-xs transition-all hover:bg-slate-800"
+              className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 px-5 py-3 text-sm font-medium text-white shadow-xs transition-all focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
             >
               <span>{lang === "EN" ? "Explore Projects" : "Lihat Proyek Portofolio"}</span>
-              <span aria-hidden="true">→</span>
+              <Icons.ArrowRight />
             </a>
             <a
               href={DATA.profile.cvUrl}
               download="CV_Lukman_Fatkhurozi.pdf"
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition-all hover:border-slate-400 hover:bg-slate-50"
+              className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-5 py-3 text-sm font-medium text-zinc-800 dark:text-zinc-200 transition-all hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800/80"
             >
+              <Icons.Download />
               <span>{lang === "EN" ? "Download CV (PDF)" : "Unduh CV (PDF)"}</span>
             </a>
             <a
               href={DATA.profile.portfolioPdfUrl}
               download="Portofolio_Data_Analyst_Lukman_Fatkhurozi.pdf"
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition-all hover:border-slate-400 hover:bg-slate-50"
+              className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-5 py-3 text-sm font-medium text-zinc-800 dark:text-zinc-200 transition-all hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800/80"
             >
+              <Icons.Download />
               <span>
                 {lang === "EN"
                   ? "Download Portfolio Deck (PDF)"
@@ -549,58 +786,58 @@ export default function PortfolioPage() {
             {DATA.stats.map((stat, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl border border-slate-200/90 bg-white p-5 shadow-2xs"
+                className="rounded-2xl border border-zinc-200/90 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-5 shadow-2xs transition-colors"
               >
-                <div className="font-mono text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+                <div className="font-mono text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-3xl">
                   {stat.value}
                 </div>
-                <div className="mt-1 text-sm font-semibold text-slate-800">
+                <div className="mt-1 text-sm font-semibold text-zinc-800 dark:text-zinc-200">
                   {stat.label[lang]}
                 </div>
-                <div className="mt-0.5 text-xs text-slate-500">{stat.sub[lang]}</div>
+                <div className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+                  {stat.sub[lang]}
+                </div>
               </div>
             ))}
           </div>
         </section>
 
         {/* ABOUT & METHODOLOGY SECTION */}
-        <section id="about" className="scroll-mt-24 border-t border-slate-200 py-16">
+        <section
+          id="about"
+          className="scroll-mt-24 border-t border-zinc-200 dark:border-zinc-800/90 py-16"
+        >
           <div className="grid gap-10 md:grid-cols-12">
             <div className="md:col-span-4">
-              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-700">
+              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
                 01 / {lang === "EN" ? "ABOUT ME" : "TENTANG SAYA"}
               </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950">
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
                 {lang === "EN" ? "Get to Know Me Closer" : "Mengenal Lebih Dekat dengan Saya"}
               </h2>
             </div>
 
             <div className="space-y-6 md:col-span-8">
-              <p className="text-base leading-relaxed text-slate-600">
+              <p className="text-base leading-relaxed text-zinc-600 dark:text-zinc-300">
                 {DATA.profile.summary[lang]}
               </p>
 
-              {/* 6 Core Skills from Portfolio Slide 4 */}
-              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-                {[
-                  { icon: "🐍", title: "Python", sub: "Pandas, NumPy, Cleaning" },
-                  { icon: "📊", title: "Power BI", sub: "Power Query, DAX, KPI" },
-                  { icon: "📗", title: "Microsoft Excel", sub: "Pivot Table, Slicer, Lookup" },
-                  { icon: "🗄️", title: "SQL", sub: "BigQuery & MySQL" },
-                  { icon: "📈", title: "Data Visualization", sub: "Interactive Dashboards" },
-                  {
-                    icon: "🔍",
-                    title: "Exploratory Data Analysis",
-                    sub: "Pattern & Trend Discovery",
-                  },
-                ].map((item) => (
+              {/* 6 Core Skills from Portfolio Slide 4 with SVG Icons */}
+              <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3">
+                {coreCompetencies.map((item) => (
                   <div
                     key={item.title}
-                    className="rounded-xl border border-slate-200 bg-white p-3.5 shadow-2xs"
+                    className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 shadow-2xs transition-colors hover:border-blue-300 dark:hover:border-blue-800"
                   >
-                    <div className="text-lg">{item.icon}</div>
-                    <div className="mt-1.5 text-sm font-bold text-slate-900">{item.title}</div>
-                    <div className="mt-0.5 text-xs text-slate-500">{item.sub}</div>
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 dark:bg-blue-950/70">
+                      {item.icon}
+                    </div>
+                    <div className="mt-3 text-sm font-bold text-zinc-900 dark:text-zinc-100">
+                      {item.title}
+                    </div>
+                    <div className="mt-0.5 text-xs text-zinc-500 dark:text-zinc-400">
+                      {item.sub}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -609,13 +846,16 @@ export default function PortfolioPage() {
         </section>
 
         {/* PROJECTS SECTION */}
-        <section id="projects" className="scroll-mt-24 border-t border-slate-200 py-16">
+        <section
+          id="projects"
+          className="scroll-mt-24 border-t border-zinc-200 dark:border-zinc-800/90 py-16"
+        >
           <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
-              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-700">
+              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
                 02 / {lang === "EN" ? "PORTFOLIO PROJECTS" : "PROYEK PORTOFOLIO"}
               </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-3xl">
                 {lang === "EN"
                   ? "Featured Data Analyst Projects"
                   : "Proyek Analisis Data & Dashboard"}
@@ -623,15 +863,17 @@ export default function PortfolioPage() {
             </div>
 
             {/* Tool Filter */}
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-1.5" role="group" aria-label="Filter projects by tool">
               {["ALL", "Microsoft Excel", "Power BI", "Google BigQuery SQL"].map((filter) => (
                 <button
                   key={filter}
+                  type="button"
                   onClick={() => setActiveFilter(filter)}
-                  className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
+                  aria-pressed={activeFilter === filter}
+                  className={`cursor-pointer rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
                     activeFilter === filter
-                      ? "bg-slate-900 text-white"
-                      : "border border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-900"
+                      ? "bg-zinc-900 dark:bg-blue-600 text-white shadow-xs"
+                      : "border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:border-zinc-300 dark:hover:border-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100"
                   }`}
                 >
                   {filter === "ALL"
@@ -648,46 +890,46 @@ export default function PortfolioPage() {
             {filteredProjects.map((project) => (
               <article
                 key={project.id}
-                className="group overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-2xs transition-all hover:border-slate-300 hover:shadow-md sm:p-8"
+                className="group overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/90 p-6 shadow-2xs transition-all hover:border-zinc-300 dark:hover:border-zinc-700 hover:shadow-md sm:p-8"
               >
                 <div className="grid gap-8 lg:grid-cols-12">
                   {/* Left column: details & link lengkap pengerjaan */}
                   <div className="flex flex-col justify-between lg:col-span-7">
                     <div>
                       <div className="flex flex-wrap items-center gap-2.5 text-xs">
-                        <span className="rounded-md bg-slate-900 px-2.5 py-1 font-mono font-bold text-white">
+                        <span className="rounded-md bg-zinc-900 dark:bg-zinc-800 px-2.5 py-1 font-mono font-bold text-white dark:text-zinc-100">
                           {project.number}
                         </span>
-                        <span className="rounded-md bg-blue-50 px-2.5 py-1 font-mono font-semibold text-blue-700">
+                        <span className="rounded-md bg-blue-50 dark:bg-blue-950/80 px-2.5 py-1 font-mono font-semibold text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-800/60">
                           {project.toolBadge}
                         </span>
-                        <span className="font-medium text-slate-500">
+                        <span className="font-medium text-zinc-500 dark:text-zinc-400">
                           {project.category[lang]}
                         </span>
                       </div>
 
-                      <h3 className="mt-3.5 text-xl font-bold tracking-tight text-slate-950 sm:text-2xl">
+                      <h3 className="mt-3.5 text-xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-2xl">
                         {project.title[lang]}
                       </h3>
-                      <p className="mt-1.5 font-mono text-xs font-medium text-slate-500">
+                      <p className="mt-1.5 font-mono text-xs font-medium text-zinc-500 dark:text-zinc-400">
                         {project.subtitle[lang]}
                       </p>
 
-                      <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-slate-600">
+                      <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
                         {project.highlights[lang].map((point, idx) => (
                           <li key={idx} className="flex items-start gap-2.5">
-                            <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600"></span>
+                            <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-blue-600 dark:bg-blue-400"></span>
                             <span>{point}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    <div className="mt-6 space-y-4 border-t border-slate-100 pt-5">
+                    <div className="mt-6 space-y-4 border-t border-zinc-100 dark:border-zinc-800 pt-5">
                       {/* Link Lengkap Pengerjaan Call to Action */}
-                      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-blue-100 bg-blue-50/50 p-3.5">
+                      <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-blue-100 dark:border-blue-900/60 bg-blue-50/50 dark:bg-blue-950/30 p-3.5">
                         <div className="min-w-0">
-                          <div className="text-[11px] font-semibold uppercase tracking-wider text-blue-800">
+                          <div className="text-[11px] font-semibold uppercase tracking-wider text-blue-800 dark:text-blue-300">
                             {lang === "EN"
                               ? "Full Documentation Link"
                               : "Link Lengkap Pengerjaan"}
@@ -696,7 +938,7 @@ export default function PortfolioPage() {
                             href={project.externalLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="mt-0.5 block truncate font-mono text-xs text-blue-700 underline underline-offset-2 hover:text-blue-900"
+                            className="mt-0.5 block truncate font-mono text-xs text-blue-700 dark:text-blue-400 underline underline-offset-2 hover:text-blue-900 dark:hover:text-blue-300"
                           >
                             {project.externalLink}
                           </a>
@@ -705,10 +947,10 @@ export default function PortfolioPage() {
                           href={project.externalLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-blue-700 px-3.5 py-2 text-xs font-semibold text-white transition-colors hover:bg-blue-800"
+                          className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 px-3.5 py-2 text-xs font-semibold text-white transition-colors"
                         >
                           <span>{project.externalLabel[lang]}</span>
-                          <span aria-hidden="true">↗</span>
+                          <Icons.ExternalLink />
                         </a>
                       </div>
 
@@ -717,7 +959,7 @@ export default function PortfolioPage() {
                         {project.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 font-mono text-[11px] font-medium text-slate-600"
+                            className="rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 px-2.5 py-1 font-mono text-[11px] font-medium text-zinc-600 dark:text-zinc-400"
                           >
                             {tag}
                           </span>
@@ -727,14 +969,14 @@ export default function PortfolioPage() {
                   </div>
 
                   {/* Right column: Visual Replica of the Slides from Portfolio PDF */}
-                  <div className="flex flex-col justify-between rounded-xl border border-slate-200/80 bg-slate-50/70 p-5 lg:col-span-5">
-                    <div className="flex items-center justify-between border-b border-slate-200/70 pb-3">
+                  <div className="flex flex-col justify-between rounded-xl border border-zinc-200/80 dark:border-zinc-800 bg-zinc-50/80 dark:bg-zinc-950/80 p-5 lg:col-span-5">
+                    <div className="flex items-center justify-between border-b border-zinc-200/70 dark:border-zinc-800 pb-3">
                       <div className="flex items-center gap-1.5">
-                        <span className="h-2.5 w-2.5 rounded-full bg-slate-300"></span>
-                        <span className="h-2.5 w-2.5 rounded-full bg-slate-300"></span>
-                        <span className="h-2.5 w-2.5 rounded-full bg-slate-300"></span>
+                        <span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+                        <span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
+                        <span className="h-2.5 w-2.5 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
                       </div>
-                      <span className="font-mono text-[11px] font-semibold text-slate-500">
+                      <span className="font-mono text-[11px] font-semibold text-zinc-500 dark:text-zinc-400">
                         {project.number} • {project.platformBadge}
                       </span>
                     </div>
@@ -742,7 +984,7 @@ export default function PortfolioPage() {
                     {/* PROYEK 1 PREVIEW */}
                     {project.previewType === "excel" && (
                       <div className="my-4 space-y-3">
-                        <div className="rounded-lg bg-slate-900 p-3 font-mono text-[11px] text-slate-200">
+                        <div className="rounded-lg bg-zinc-900 dark:bg-black border border-zinc-800 p-3 font-mono text-[11px] text-zinc-200">
                           <div className="text-emerald-400">
                             # Cek Tipe data dan missing value
                           </div>
@@ -752,50 +994,52 @@ export default function PortfolioPage() {
                               <span className="text-amber-300">head</span>()
                             </span>
                             <span className="text-[10px] text-emerald-400">
-                              ✓ 1200 rows × 14 cols
+                              1200 rows × 14 cols
                             </span>
                           </div>
                         </div>
 
                         <div className="grid grid-cols-2 gap-2">
-                          <div className="rounded-lg border border-slate-200 bg-white p-2.5">
-                            <div className="text-[10px] font-medium text-slate-400">
+                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
+                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
                               Total Pendapatan
                             </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-slate-900">
+                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
                               $1.264.762
                             </div>
                           </div>
-                          <div className="rounded-lg border border-slate-200 bg-white p-2.5">
-                            <div className="text-[10px] font-medium text-slate-400">
+                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
+                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
                               Total Pesanan
                             </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-slate-900">
+                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
                               1.200
                             </div>
                           </div>
-                          <div className="rounded-lg border border-slate-200 bg-white p-2.5">
-                            <div className="text-[10px] font-medium text-slate-400">
+                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
+                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
                               Total Pelanggan
                             </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-slate-900">
+                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
                               1.189
                             </div>
                           </div>
-                          <div className="rounded-lg border border-slate-200 bg-white p-2.5">
-                            <div className="text-[10px] font-medium text-slate-400">
+                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
+                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
                               Total Barang Terjual
                             </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-slate-900">
+                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
                               3.535
                             </div>
                           </div>
                         </div>
 
-                        <div className="rounded-lg border border-slate-200 bg-white p-3 text-xs">
-                          <div className="flex items-center justify-between font-semibold text-slate-800">
+                        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-3 text-xs">
+                          <div className="flex items-center justify-between font-semibold text-zinc-800 dark:text-zinc-200">
                             <span>Sumber Pelanggan & Produk Terlaris</span>
-                            <span className="font-mono text-[10px] text-blue-700">2023–2026</span>
+                            <span className="font-mono text-[10px] text-blue-600 dark:text-blue-400">
+                              2023–2026
+                            </span>
                           </div>
                           <div className="mt-2 flex flex-wrap gap-1.5">
                             {[
@@ -807,7 +1051,7 @@ export default function PortfolioPage() {
                             ].map((src) => (
                               <span
                                 key={src}
-                                className="rounded bg-blue-50 px-2 py-0.5 font-mono text-[10px] font-medium text-blue-800"
+                                className="rounded bg-blue-50 dark:bg-blue-950/80 px-2 py-0.5 font-mono text-[10px] font-medium text-blue-800 dark:text-blue-300"
                               >
                                 {src}
                               </span>
@@ -821,44 +1065,46 @@ export default function PortfolioPage() {
                     {project.previewType === "powerbi" && (
                       <div className="my-4 space-y-3">
                         <div className="grid grid-cols-2 gap-2">
-                          <div className="rounded-lg border border-slate-200 bg-white p-2.5">
-                            <div className="text-[10px] font-medium text-slate-400">
+                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
+                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
                               Jumlah Game
                             </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-slate-900">
+                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
                               16.327K
                             </div>
                           </div>
-                          <div className="rounded-lg border border-slate-200 bg-white p-2.5">
-                            <div className="text-[10px] font-medium text-slate-400">
+                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
+                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
                               Jumlah Penjualan
                             </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-slate-900">
+                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
                               797K
                             </div>
                           </div>
-                          <div className="rounded-lg border border-slate-200 bg-white p-2.5">
-                            <div className="text-[10px] font-medium text-slate-400">
+                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
+                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
                               Jumlah Publisher
                             </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-slate-900">
+                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
                               577
                             </div>
                           </div>
-                          <div className="rounded-lg border border-slate-200 bg-white p-2.5">
-                            <div className="text-[10px] font-medium text-slate-400">
+                          <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-2.5">
+                            <div className="text-[10px] font-medium text-zinc-500 dark:text-zinc-400">
                               Jumlah Platform
                             </div>
-                            <div className="mt-0.5 font-mono text-sm font-bold text-slate-900">
+                            <div className="mt-0.5 font-mono text-sm font-bold text-zinc-900 dark:text-zinc-100">
                               31
                             </div>
                           </div>
                         </div>
 
-                        <div className="rounded-lg border border-slate-200 bg-white p-3">
-                          <div className="flex items-center justify-between text-xs font-semibold text-slate-800">
+                        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-3">
+                          <div className="flex items-center justify-between text-xs font-semibold text-zinc-800 dark:text-zinc-200">
                             <span>Penjualan Berdasarkan Genre</span>
-                            <span className="font-mono text-[10px] text-blue-700">Power BI</span>
+                            <span className="font-mono text-[10px] text-blue-600 dark:text-blue-400">
+                              Power BI
+                            </span>
                           </div>
                           <div className="mt-2.5 space-y-1.5">
                             {[
@@ -868,12 +1114,16 @@ export default function PortfolioPage() {
                               { genre: "Role-Playing", val: "80K", w: "w-[53%]" },
                             ].map((g) => (
                               <div key={g.genre}>
-                                <div className="flex justify-between text-[11px] text-slate-600">
+                                <div className="flex justify-between text-[11px] text-zinc-600 dark:text-zinc-400">
                                   <span>{g.genre}</span>
-                                  <span className="font-mono font-semibold">{g.val}</span>
+                                  <span className="font-mono font-semibold text-zinc-800 dark:text-zinc-200">
+                                    {g.val}
+                                  </span>
                                 </div>
-                                <div className="mt-0.5 h-1.5 w-full rounded-full bg-slate-100">
-                                  <div className={`h-1.5 ${g.w} rounded-full bg-blue-600`}></div>
+                                <div className="mt-0.5 h-1.5 w-full rounded-full bg-zinc-100 dark:bg-zinc-800">
+                                  <div
+                                    className={`h-1.5 ${g.w} rounded-full bg-blue-600 dark:bg-blue-500`}
+                                  ></div>
                                 </div>
                               </div>
                             ))}
@@ -885,7 +1135,7 @@ export default function PortfolioPage() {
                     {/* PROYEK 3 PREVIEW */}
                     {project.previewType === "sql" && (
                       <div className="my-4 space-y-2.5">
-                        <div className="rounded-lg bg-slate-900 p-3.5 font-mono text-[10.5px] leading-relaxed text-slate-200">
+                        <div className="rounded-lg bg-zinc-900 dark:bg-black border border-zinc-800 p-3.5 font-mono text-[10.5px] leading-relaxed text-zinc-200">
                           <div className="text-emerald-400">
                             -- Top 10 Kategori Berdasarkan revenue
                           </div>
@@ -929,11 +1179,13 @@ export default function PortfolioPage() {
                       </div>
                     )}
 
-                    <div className="grid grid-cols-3 gap-2 border-t border-slate-200/70 pt-3">
+                    <div className="grid grid-cols-3 gap-2 border-t border-zinc-200/70 dark:border-zinc-800 pt-3">
                       {project.metrics.map((m) => (
                         <div key={m.label}>
-                          <div className="text-[10px] text-slate-400">{m.label}</div>
-                          <div className="font-mono text-[11px] font-semibold text-slate-800">
+                          <div className="text-[10px] text-zinc-500 dark:text-zinc-400">
+                            {m.label}
+                          </div>
+                          <div className="font-mono text-[11px] font-semibold text-zinc-800 dark:text-zinc-200">
                             {m.value}
                           </div>
                         </div>
@@ -947,35 +1199,42 @@ export default function PortfolioPage() {
         </section>
 
         {/* EXPERIENCE & EDUCATION SECTION */}
-        <section id="experience" className="scroll-mt-24 border-t border-slate-200 py-16">
+        <section
+          id="experience"
+          className="scroll-mt-24 border-t border-zinc-200 dark:border-zinc-800/90 py-16"
+        >
           <div className="grid gap-12 lg:grid-cols-12">
             {/* Experience & Training Column */}
             <div className="lg:col-span-7">
-              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-700">
+              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
                 03 / {lang === "EN" ? "EXPERIENCE & TRAINING" : "PENGALAMAN & PELATIHAN"}
               </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950">
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
                 {lang === "EN" ? "Professional & Training Track" : "Pengalaman Kerja & Pelatihan"}
               </h2>
 
-              <div className="mt-8 space-y-8 border-l-2 border-slate-200 pl-6">
+              <div className="mt-8 space-y-8 border-l-2 border-zinc-200 dark:border-zinc-800 pl-6">
                 {DATA.experiences.map((exp, idx) => (
                   <div key={idx} className="relative">
-                    <span className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-blue-600 bg-white"></span>
+                    <span className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-blue-600 dark:border-blue-400 bg-white dark:bg-zinc-950"></span>
                     <div className="flex flex-wrap items-center gap-2 text-xs">
-                      <span className="rounded-md bg-slate-100 px-2.5 py-0.5 font-mono font-medium text-slate-700">
+                      <span className="rounded-md bg-zinc-100 dark:bg-zinc-800 px-2.5 py-0.5 font-mono font-medium text-zinc-700 dark:text-zinc-300">
                         {exp.period}
                       </span>
-                      <span className="rounded-md bg-blue-50 px-2.5 py-0.5 font-medium text-blue-700">
+                      <span className="rounded-md bg-blue-50 dark:bg-blue-950/80 px-2.5 py-0.5 font-medium text-blue-700 dark:text-blue-300">
                         {exp.type[lang]}
                       </span>
                     </div>
-                    <h3 className="mt-2 text-lg font-bold text-slate-950">{exp.role}</h3>
-                    <p className="text-sm font-medium text-slate-600">{exp.organization}</p>
-                    <ul className="mt-3 space-y-2 text-sm leading-relaxed text-slate-600">
+                    <h3 className="mt-2 text-lg font-bold text-zinc-950 dark:text-zinc-100">
+                      {exp.role}
+                    </h3>
+                    <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
+                      {exp.organization}
+                    </p>
+                    <ul className="mt-3 space-y-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
                       {exp.points[lang].map((pt, i) => (
-                        <li key={i} className="flex items-start gap-2">
-                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-slate-400"></span>
+                        <li key={i} className="flex items-start gap-2.5">
+                          <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-zinc-400 dark:bg-zinc-500"></span>
                           <span>{pt}</span>
                         </li>
                       ))}
@@ -987,34 +1246,36 @@ export default function PortfolioPage() {
 
             {/* Education Column */}
             <div className="lg:col-span-5">
-              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-700">
+              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
                 04 / {lang === "EN" ? "ACADEMIC BACKGROUND" : "PENDIDIKAN"}
               </p>
-              <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950">
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
                 {lang === "EN" ? "Education" : "Pendidikan"}
               </h2>
 
-              <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-2xs">
+              <div className="mt-8 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-6 shadow-2xs">
                 <div className="flex items-center justify-between">
-                  <span className="rounded-md bg-slate-100 px-2.5 py-1 font-mono text-xs font-medium text-slate-700">
+                  <span className="rounded-md bg-zinc-100 dark:bg-zinc-800 px-2.5 py-1 font-mono text-xs font-medium text-zinc-700 dark:text-zinc-300">
                     {DATA.education.period}
                   </span>
-                  <span className="rounded-md bg-emerald-50 px-2.5 py-1 font-mono text-xs font-bold text-emerald-700">
+                  <span className="rounded-md bg-emerald-50 dark:bg-emerald-950/70 border border-emerald-200/60 dark:border-emerald-800/60 px-2.5 py-1 font-mono text-xs font-bold text-emerald-700 dark:text-emerald-300">
                     GPA {DATA.education.gpa}
                   </span>
                 </div>
 
-                <h3 className="mt-4 text-lg font-bold text-slate-950">
+                <h3 className="mt-4 text-lg font-bold text-zinc-950 dark:text-zinc-100">
                   {DATA.education.institution}
                 </h3>
-                <p className="mt-1 text-sm font-medium text-blue-700">
+                <p className="mt-1 text-sm font-medium text-blue-600 dark:text-blue-400">
                   {DATA.education.degree[lang]}
                 </p>
 
-                <ul className="mt-5 space-y-2.5 border-t border-slate-100 pt-4 text-sm text-slate-600">
+                <ul className="mt-5 space-y-2.5 border-t border-zinc-100 dark:border-zinc-800 pt-4 text-sm text-zinc-600 dark:text-zinc-300">
                   {DATA.education.highlights[lang].map((item, idx) => (
                     <li key={idx} className="flex items-start gap-2.5">
-                      <span className="text-blue-600">✓</span>
+                      <span className="mt-0.5">
+                        <Icons.Check />
+                      </span>
                       <span>{item}</span>
                     </li>
                   ))}
@@ -1025,41 +1286,46 @@ export default function PortfolioPage() {
         </section>
 
         {/* SKILLS & CERTIFICATIONS SECTION (WITH CERTIFICATE IMAGES) */}
-        <section id="skills" className="scroll-mt-24 border-t border-slate-200 py-16">
-          <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-700">
+        <section
+          id="skills"
+          className="scroll-mt-24 border-t border-zinc-200 dark:border-zinc-800/90 py-16"
+        >
+          <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
             05 / {lang === "EN" ? "CERTIFICATIONS & SKILLS" : "SERTIFIKASI & KEAHLIAN"}
           </p>
-          <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+          <h2 className="mt-2 text-2xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50 sm:text-3xl">
             {lang === "EN"
               ? "Verified Certifications & Technical Skills"
               : "Sertifikasi Kompetensi & Keahlian Teknis"}
           </h2>
-          <p className="mt-2 text-sm text-slate-600">
+          <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
             {lang === "EN"
               ? "Click on any certificate card below to inspect the full-resolution certificate."
-              : "Klik pada gambar sertifikat di bawah ini untuk melihat tampilan sertifikat ukuran penuh."}
+              : "Klik pada kartu sertifikat di bawah ini untuk melihat gambar sertifikat ukuran penuh."}
           </p>
 
-          {/* Certifications Gallery Grid with Images */}
+          {/* Certifications Gallery Grid with Accessible Buttons */}
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {DATA.certifications.map((cert) => (
-              <div
+              <button
                 key={cert.title}
+                type="button"
                 onClick={() => setSelectedCert(cert)}
-                className="group cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xs transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:shadow-md flex flex-col justify-between"
+                className="group cursor-pointer text-left overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-2xs transition-all duration-200 hover:-translate-y-0.5 hover:border-blue-400 dark:hover:border-blue-600 hover:shadow-md flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
               >
-                <div>
+                <div className="w-full">
                   {/* Certificate Image Container */}
-                  <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-slate-100 bg-slate-100">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-zinc-100 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-950">
                     <img
                       src={cert.image}
                       alt={cert.title}
                       className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center bg-slate-900/0 opacity-0 transition-all group-hover:bg-slate-900/35 group-hover:opacity-100">
-                      <span className="rounded-lg bg-white/95 px-3 py-1.5 text-xs font-semibold text-slate-900 shadow-sm">
-                        🔍 {lang === "EN" ? "View Certificate" : "Lihat Sertifikat"}
+                    <div className="absolute inset-0 flex items-center justify-center bg-zinc-950/0 opacity-0 transition-all group-hover:bg-zinc-950/45 group-hover:opacity-100">
+                      <span className="inline-flex items-center gap-1.5 rounded-lg bg-white dark:bg-zinc-900 px-3 py-1.5 text-xs font-semibold text-zinc-900 dark:text-zinc-100 shadow-sm">
+                        <Icons.ZoomIn />
+                        <span>{lang === "EN" ? "View Certificate" : "Lihat Sertifikat"}</span>
                       </span>
                     </div>
                   </div>
@@ -1067,42 +1333,50 @@ export default function PortfolioPage() {
                   {/* Certificate Metadata */}
                   <div className="p-4">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="rounded bg-blue-50 px-2 py-0.5 font-mono text-[10px] font-semibold text-blue-700">
+                      <span className="rounded bg-blue-50 dark:bg-blue-950/80 px-2 py-0.5 font-mono text-[10px] font-semibold text-blue-700 dark:text-blue-300">
                         {cert.badge}
                       </span>
-                      <span className="font-mono text-[11px] text-slate-400">{cert.year}</span>
+                      <span className="font-mono text-[11px] text-zinc-500 dark:text-zinc-400">
+                        {cert.year}
+                      </span>
                     </div>
-                    <h3 className="mt-2.5 text-sm font-bold leading-snug text-slate-950 group-hover:text-blue-700">
+                    <h3 className="mt-2.5 text-sm font-bold leading-snug text-zinc-950 dark:text-zinc-100 group-hover:text-blue-600 dark:group-hover:text-blue-400">
                       {cert.title}
                     </h3>
-                    <p className="mt-1 text-xs font-medium text-slate-600">{cert.issuer}</p>
+                    <p className="mt-1 text-xs font-medium text-zinc-600 dark:text-zinc-400">
+                      {cert.issuer}
+                    </p>
                   </div>
                 </div>
 
-                <div className="border-t border-slate-100 bg-slate-50/60 px-4 py-2.5 flex items-center justify-between">
-                  <span className="truncate font-mono text-[10px] text-slate-500">
+                <div className="w-full border-t border-zinc-100 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-950/60 px-4 py-2.5 flex items-center justify-between">
+                  <span className="truncate font-mono text-[10px] text-zinc-500 dark:text-zinc-400">
                     {cert.credentialId}
                   </span>
-                  <span className="text-xs font-semibold text-blue-700">↗</span>
+                  <span className="text-blue-600 dark:text-blue-400">
+                    <Icons.ExternalLink />
+                  </span>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
 
           {/* Technical Stack & Soft Skills Below Certifications */}
           <div className="mt-14 grid gap-8 lg:grid-cols-12">
             <div className="space-y-4 lg:col-span-7">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                 {lang === "EN" ? "Core Technical Stack (Hard Skills)" : "Keahlian Teknis Utama"}
               </h3>
               <div className="space-y-3">
                 {DATA.skills.hardSkills.map((skill) => (
                   <div
                     key={skill.name}
-                    className="rounded-xl border border-slate-200 bg-white p-4 transition-colors hover:border-slate-300"
+                    className="rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-4 transition-colors hover:border-zinc-300 dark:hover:border-zinc-700"
                   >
-                    <div className="font-semibold text-slate-950">{skill.name}</div>
-                    <div className="mt-1 text-xs leading-relaxed text-slate-600">
+                    <div className="font-semibold text-zinc-950 dark:text-zinc-100">
+                      {skill.name}
+                    </div>
+                    <div className="mt-1 text-xs leading-relaxed text-zinc-600 dark:text-zinc-400">
                       {skill.detail}
                     </div>
                   </div>
@@ -1111,35 +1385,39 @@ export default function PortfolioPage() {
             </div>
 
             <div className="lg:col-span-5">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-slate-500">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                 {lang === "EN" ? "Soft Skills & Languages" : "Soft Skills & Bahasa"}
               </h3>
-              <div className="mt-4 rounded-xl border border-slate-200 bg-white p-5">
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-500">
+              <div className="mt-4 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-5">
+                <h4 className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                   {lang === "EN" ? "Professional Soft Skills" : "Soft Skills"}
                 </h4>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {DATA.skills.softSkills[lang].map((soft) => (
                     <span
                       key={soft}
-                      className="rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-medium text-slate-700"
+                      className="rounded-lg bg-zinc-100 dark:bg-zinc-800 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300"
                     >
                       {soft}
                     </span>
                   ))}
                 </div>
 
-                <h4 className="mt-6 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                <h4 className="mt-6 text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                   {lang === "EN" ? "Languages" : "Bahasa"}
                 </h4>
                 <div className="mt-2.5 grid grid-cols-2 gap-2.5">
                   {DATA.skills.languages.map((l) => (
                     <div
                       key={l.name}
-                      className="rounded-lg border border-slate-100 bg-slate-50 p-3"
+                      className="rounded-lg border border-zinc-100 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950 p-3"
                     >
-                      <div className="text-xs font-semibold text-slate-900">{l.name}</div>
-                      <div className="mt-0.5 text-[11px] text-slate-500">{l.level[lang]}</div>
+                      <div className="text-xs font-semibold text-zinc-900 dark:text-zinc-100">
+                        {l.name}
+                      </div>
+                      <div className="mt-0.5 text-[11px] text-zinc-500 dark:text-zinc-400">
+                        {l.level[lang]}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -1149,16 +1427,19 @@ export default function PortfolioPage() {
         </section>
 
         {/* CONTACT SECTION */}
-        <section id="contact" className="scroll-mt-24 border-t border-slate-200 pt-16">
-          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-2xs sm:p-12">
+        <section
+          id="contact"
+          className="scroll-mt-24 border-t border-zinc-200 dark:border-zinc-800/90 pt-16"
+        >
+          <div className="rounded-3xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-8 shadow-2xs sm:p-12">
             <div className="max-w-2xl">
-              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-700">
+              <p className="font-mono text-xs font-semibold uppercase tracking-widest text-blue-600 dark:text-blue-400">
                 06 / {lang === "EN" ? "CONTACT" : "KONTAK"}
               </p>
-              <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-950">
+              <h2 className="mt-2 text-3xl font-bold tracking-tight text-zinc-950 dark:text-zinc-50">
                 {lang === "EN" ? "Let’s discuss further." : "Mari Berdiskusi Lebih Lanjut."}
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+              <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300 sm:text-base">
                 {lang === "EN"
                   ? "I am actively looking for internship and entry-level opportunities in Data Analytics, Business Intelligence, and Database Administration in Jakarta or remote."
                   : "Saya terbuka untuk berdiskusi mengenai peluang magang maupun kerja di bidang Data Analytics, Business Intelligence, dan Database Administration."}
@@ -1167,41 +1448,46 @@ export default function PortfolioPage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href={`mailto:${DATA.profile.email}`}
-                  className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-slate-800"
+                  className="inline-flex items-center gap-2 rounded-xl bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-500 px-5 py-3 text-sm font-medium text-white transition-all"
                 >
-                  <span>✉️ {DATA.profile.email}</span>
+                  <Icons.Mail />
+                  <span>{DATA.profile.email}</span>
                 </a>
                 <a
                   href={DATA.profile.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition-all hover:border-slate-400 hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 transition-all hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 >
-                  <span>in linkedin.com/in/lukman-fatkhurozi</span>
+                  <Icons.LinkedIn />
+                  <span>linkedin.com/in/lukman-fatkhurozi</span>
                 </a>
                 <a
                   href={DATA.profile.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition-all hover:border-slate-400 hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 transition-all hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 >
-                  <span>💬 +62857 7646 1158</span>
+                  <Icons.Phone />
+                  <span>+62857 7646 1158</span>
                 </a>
                 <a
                   href={DATA.profile.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition-all hover:border-slate-400 hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 transition-all hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 >
-                  <span>📷 Instagram ({DATA.profile.instagramHandle})</span>
+                  <Icons.Instagram />
+                  <span>Instagram ({DATA.profile.instagramHandle})</span>
                 </a>
                 <a
                   href={DATA.profile.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-medium text-slate-700 transition-all hover:border-slate-400 hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 rounded-xl border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-200 transition-all hover:border-zinc-400 dark:hover:border-zinc-600 hover:bg-zinc-50 dark:hover:bg-zinc-800"
                 >
-                  <span>💻 GitHub (lukmanfatkhurozi03)</span>
+                  <Icons.GitHub />
+                  <span>GitHub (lukmanfatkhurozi03)</span>
                 </a>
               </div>
             </div>
@@ -1212,35 +1498,47 @@ export default function PortfolioPage() {
       {/* Lightbox Modal for Viewing Full-Resolution Certificate Image */}
       {selectedCert && (
         <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="cert-modal-title"
           onClick={() => setSelectedCert(null)}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/75 p-4 backdrop-blur-xs"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xs"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl flex flex-col"
+            className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-2xl flex flex-col"
           >
-            <div className="flex items-center justify-between border-b border-slate-200 px-5 py-3.5">
+            <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 px-5 py-3.5">
               <div>
                 <div className="flex items-center gap-2">
-                  <span className="rounded bg-blue-50 px-2 py-0.5 font-mono text-[10px] font-semibold text-blue-700">
+                  <span className="rounded bg-blue-50 dark:bg-blue-950 px-2 py-0.5 font-mono text-[10px] font-semibold text-blue-700 dark:text-blue-300">
                     {selectedCert.badge}
                   </span>
-                  <span className="font-mono text-xs text-slate-400">{selectedCert.year}</span>
+                  <span className="font-mono text-xs text-zinc-500 dark:text-zinc-400">
+                    {selectedCert.year}
+                  </span>
                 </div>
-                <h3 className="mt-1 text-base font-bold text-slate-950">{selectedCert.title}</h3>
-                <p className="text-xs text-slate-500">
+                <h3
+                  id="cert-modal-title"
+                  className="mt-1 text-base font-bold text-zinc-950 dark:text-zinc-50"
+                >
+                  {selectedCert.title}
+                </h3>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
                   {selectedCert.issuer} • {selectedCert.credentialId}
                 </p>
               </div>
               <button
+                type="button"
                 onClick={() => setSelectedCert(null)}
-                className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-100"
+                className="cursor-pointer inline-flex items-center gap-1.5 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 px-3 py-1.5 text-xs font-semibold text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-700"
               >
-                ✕ {lang === "EN" ? "Close" : "Tutup"}
+                <Icons.Close />
+                <span>{lang === "EN" ? "Close" : "Tutup"}</span>
               </button>
             </div>
 
-            <div className="flex-1 overflow-auto bg-slate-100 p-4 flex items-center justify-center">
+            <div className="flex-1 overflow-auto bg-zinc-100 dark:bg-zinc-950 p-4 flex items-center justify-center">
               <img
                 src={selectedCert.image}
                 alt={selectedCert.title}
@@ -1252,17 +1550,21 @@ export default function PortfolioPage() {
       )}
 
       {/* Minimal Footer */}
-      <footer className="border-t border-slate-200 bg-white py-8">
-        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 text-xs text-slate-500 sm:flex-row">
+      <footer className="border-t border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 py-8 transition-colors">
+        <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-6 text-xs text-zinc-500 dark:text-zinc-400 sm:flex-row">
           <div>
-            © 2026 <strong className="text-slate-800">Lukman Fatkhurozi</strong>. Built with Next.js & Tailwind CSS — Ready for Vercel.
+            © 2026{" "}
+            <strong className="text-zinc-800 dark:text-zinc-200">
+              Lukman Fatkhurozi
+            </strong>
+            . Built with Next.js & Tailwind CSS — Ready for Vercel.
           </div>
           <div className="flex items-center gap-4">
             <a
               href={DATA.profile.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-slate-900"
+              className="hover:text-zinc-900 dark:hover:text-zinc-100"
             >
               LinkedIn
             </a>
@@ -1271,7 +1573,7 @@ export default function PortfolioPage() {
               href={DATA.profile.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-slate-900"
+              className="hover:text-zinc-900 dark:hover:text-zinc-100"
             >
               GitHub
             </a>
@@ -1279,7 +1581,7 @@ export default function PortfolioPage() {
             <a
               href={DATA.profile.cvUrl}
               download="CV_Lukman_Fatkhurozi.pdf"
-              className="font-medium text-slate-700 hover:text-slate-950"
+              className="font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-white"
             >
               Download CV
             </a>
