@@ -109,6 +109,13 @@ const Icons = {
       <polyline points="20 6 9 17 4 12" />
     </svg>
   ),
+  Menu: () => (
+    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="4" x2="20" y1="6" y2="6" />
+      <line x1="4" x2="20" y1="12" y2="12" />
+      <line x1="4" x2="20" y1="18" y2="18" />
+    </svg>
+  ),
 };
 
 const DATA = {
@@ -611,6 +618,7 @@ export default function PortfolioPage() {
   const [theme, setTheme] = useState<Theme>("dark");
   const [activeFilter, setActiveFilter] = useState<string>("ALL");
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
@@ -622,7 +630,10 @@ export default function PortfolioPage() {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedCert(null);
+      if (e.key === "Escape") {
+        setSelectedCert(null);
+        setMobileMenuOpen(false);
+      }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
@@ -640,54 +651,52 @@ export default function PortfolioPage() {
       ? DATA.projects
       : DATA.projects.filter((p) => p.toolBadge === activeFilter);
 
+  const navLinks = [
+    { href: "#top", label: lang === "EN" ? "HOME" : "BERANDA", active: true },
+    { href: "#about", label: lang === "EN" ? "ABOUT" : "TENTANG" },
+    { href: "#skills", label: lang === "EN" ? "SKILLS" : "KEAHLIAN" },
+    { href: "#projects", label: lang === "EN" ? "PORTFOLIO" : "PORTOFOLIO" },
+    { href: "#certifications", label: lang === "EN" ? "CERTIFICATES" : "SERTIFIKASI" },
+    { href: "#contact", label: lang === "EN" ? "CONTACT" : "KONTAK" },
+  ];
+
   return (
-    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 dark:bg-[#232631] dark:text-slate-100 transition-colors duration-200">
-      {/* TOP NAVIGATION BAR (Fully translated for ID and EN) */}
-      <header className="sticky top-0 z-40 border-b border-slate-200/80 dark:border-[#343847] bg-white/90 dark:bg-[#232631]/90 backdrop-blur-md transition-colors duration-200">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+    <div className="min-h-screen flex flex-col overflow-x-hidden bg-slate-50 text-slate-900 dark:bg-[#232631] dark:text-slate-100 transition-colors duration-200">
+      {/* TOP NAVIGATION BAR (Responsive Desktop + Mobile Drawer) */}
+      <header className="sticky top-0 z-40 border-b border-slate-200/80 dark:border-[#343847] bg-white/95 dark:bg-[#232631]/95 backdrop-blur-md transition-colors duration-200">
+        <div className="mx-auto flex max-w-5xl items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4">
+          {/* Mobile Brand Badge (Visible on Mobile/Tablet) */}
+          <a
+            href="#top"
+            className="flex md:hidden items-center gap-2 text-sm font-extrabold tracking-tight text-slate-900 dark:text-white"
+          >
+            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-amber-500 font-mono text-xs font-black text-zinc-950">
+              LF
+            </span>
+            <span>Lukman.F</span>
+          </a>
+
+          {/* Desktop Navigation */}
           <nav
             aria-label="Primary Navigation"
-            className="flex items-center gap-4 sm:gap-8 text-xs sm:text-sm font-bold uppercase tracking-wider"
+            className="hidden md:flex items-center gap-7 text-xs sm:text-sm font-bold uppercase tracking-wider"
           >
-            <a
-              href="#top"
-              className="text-amber-500 transition-colors hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
-            >
-              {lang === "EN" ? "HOME" : "BERANDA"}
-            </a>
-            <a
-              href="#about"
-              className="text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
-            >
-              {lang === "EN" ? "ABOUT" : "TENTANG"}
-            </a>
-            <a
-              href="#skills"
-              className="hidden md:inline text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
-            >
-              {lang === "EN" ? "SKILLS" : "KEAHLIAN"}
-            </a>
-            <a
-              href="#projects"
-              className="text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
-            >
-              {lang === "EN" ? "PORTFOLIO" : "PORTOFOLIO"}
-            </a>
-            <a
-              href="#certifications"
-              className="hidden sm:inline text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
-            >
-              {lang === "EN" ? "CERTIFICATES" : "SERTIFIKASI"}
-            </a>
-            <a
-              href="#contact"
-              className="text-slate-700 dark:text-slate-200 transition-colors hover:text-amber-500 dark:hover:text-amber-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded"
-            >
-              {lang === "EN" ? "CONTACT" : "KONTAK"}
-            </a>
+            {navLinks.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={`${
+                  item.active
+                    ? "text-amber-500 hover:text-amber-400"
+                    : "text-slate-700 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400"
+                } transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded`}
+              >
+                {item.label}
+              </a>
+            ))}
           </nav>
 
-          {/* Theme & Language Controls */}
+          {/* Theme, Language & Mobile Hamburger Button */}
           <div className="flex items-center gap-2">
             <button
               type="button"
@@ -698,7 +707,7 @@ export default function PortfolioPage() {
               className="cursor-pointer inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-[#3d4254] bg-slate-100 dark:bg-[#2c303d] px-2.5 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 transition-colors hover:border-amber-500/60 hover:text-amber-500"
             >
               {theme === "light" ? <Icons.Moon /> : <Icons.Sun />}
-              <span className="hidden md:inline">
+              <span className="hidden sm:inline">
                 {theme === "light"
                   ? lang === "EN"
                     ? "Dark"
@@ -739,62 +748,98 @@ export default function PortfolioPage() {
                 EN
               </button>
             </div>
+
+            {/* Hamburger Toggle for Mobile (<768px) */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen((prev) => !prev)}
+              aria-expanded={mobileMenuOpen}
+              aria-label="Toggle navigation menu"
+              className="cursor-pointer inline-flex md:hidden items-center justify-center rounded-lg border border-slate-200 dark:border-[#3d4254] bg-slate-100 dark:bg-[#2c303d] p-1.5 text-slate-700 dark:text-slate-200 hover:border-amber-500 hover:text-amber-500"
+            >
+              {mobileMenuOpen ? <Icons.Close /> : <Icons.Menu />}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Dropdown Navigation Drawer */}
+        {mobileMenuOpen && (
+          <nav
+            aria-label="Mobile Navigation"
+            className="md:hidden border-t border-slate-200/80 dark:border-[#343847] bg-white dark:bg-[#232631] px-4 py-3 shadow-lg"
+          >
+            <div className="grid grid-cols-2 gap-2">
+              {navLinks.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`rounded-lg px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors ${
+                    item.active
+                      ? "bg-amber-500/15 text-amber-500"
+                      : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#2c303d]"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          </nav>
+        )}
       </header>
 
       <main id="top" className="flex-1">
         {/* =====================================================================
-            HERO SECTION (Fully Bilingual: ID = "Halo, Saya Lukman Fatkhurozi" / EN = "Hello, I Am Lukman Fatkhurozi")
+            HERO SECTION (Responsive Mobile Centered + Desktop 2-Column)
            ===================================================================== */}
-        <section className="relative overflow-hidden bg-white dark:bg-[#232631] pt-10 pb-16 md:py-20 transition-colors duration-200">
-          <div className="mx-auto max-w-5xl px-6">
-            <div className="grid items-center gap-12 md:grid-cols-12">
-              {/* Left Column */}
-              <div className="md:col-span-7 order-2 md:order-1">
-                <p className="text-2xl sm:text-3xl font-medium text-slate-700 dark:text-slate-200">
+        <section className="relative overflow-hidden bg-white dark:bg-[#232631] pt-6 pb-14 sm:pt-10 sm:pb-16 md:py-20 transition-colors duration-200">
+          <div className="mx-auto max-w-5xl px-4 sm:px-6">
+            <div className="grid items-center gap-8 sm:gap-12 md:grid-cols-12">
+              {/* Left Column (Centered on Mobile, Left-aligned on Desktop) */}
+              <div className="md:col-span-7 order-2 md:order-1 text-center md:text-left">
+                <p className="text-xl sm:text-3xl font-medium text-slate-700 dark:text-slate-200">
                   {DATA.profile.greeting[lang]}
                 </p>
-                <h1 className="mt-1 text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+                <h1 className="mt-1 text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
                   {DATA.profile.iamPrefix[lang]} {DATA.profile.name}
                 </h1>
 
-                <p className="mt-3 text-sm sm:text-base font-medium text-slate-600 dark:text-slate-300">
+                <p className="mt-3 text-xs sm:text-base font-medium text-slate-600 dark:text-slate-300 leading-relaxed">
                   {DATA.profile.rolesLine[lang]}
                 </p>
-                <p className="mt-1 text-sm sm:text-base text-slate-600 dark:text-slate-300">
+                <p className="mt-1.5 text-xs sm:text-base text-slate-600 dark:text-slate-300">
                   {DATA.profile.experienceHighlight[lang].prefix}
                   <span className="font-bold text-amber-500">
                     {DATA.profile.experienceHighlight[lang].accent}
                   </span>
                 </p>
 
-                {/* Primary Orange Button */}
-                <div className="mt-7 flex flex-wrap items-center gap-3.5">
+                {/* Primary Orange Button & Secondary Action */}
+                <div className="mt-6 sm:mt-7 flex flex-col sm:flex-row items-stretch sm:items-center justify-center md:justify-start gap-3">
                   <a
                     href="#contact"
-                    className="inline-flex items-center gap-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 px-6 py-3 text-sm font-bold text-zinc-950 shadow-md shadow-amber-500/15 transition-all hover:-translate-y-0.5"
+                    className="inline-flex items-center justify-center gap-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 px-6 py-3 text-sm font-bold text-zinc-950 shadow-md shadow-amber-500/15 transition-all hover:-translate-y-0.5"
                   >
                     <span>{lang === "EN" ? "Let's Talk" : "Hubungi Saya"}</span>
                     <Icons.ArrowRight />
                   </a>
                   <a
                     href="#projects"
-                    className="inline-flex items-center gap-2 rounded-lg border border-slate-300 dark:border-slate-600 px-5 py-3 text-sm font-semibold text-slate-700 dark:text-slate-200 transition-colors hover:border-amber-500 hover:text-amber-500"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 dark:border-slate-600 px-5 py-3 text-sm font-semibold text-slate-700 dark:text-slate-200 transition-colors hover:border-amber-500 hover:text-amber-500"
                   >
                     <span>{lang === "EN" ? "View Projects" : "Lihat Proyek"}</span>
                   </a>
                 </div>
 
                 {/* Social Icons Row + Download CV */}
-                <div className="mt-12 space-y-3">
-                  <div className="flex items-center gap-4 text-slate-600 dark:text-slate-200">
+                <div className="mt-8 sm:mt-12 space-y-3">
+                  <div className="flex items-center justify-center md:justify-start gap-5 text-slate-600 dark:text-slate-200">
                     <a
                       href={DATA.profile.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="LinkedIn"
-                      className="transition-colors hover:text-amber-500"
+                      className="p-1 transition-colors hover:text-amber-500"
                     >
                       <Icons.LinkedIn />
                     </a>
@@ -803,7 +848,7 @@ export default function PortfolioPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="GitHub"
-                      className="transition-colors hover:text-amber-500"
+                      className="p-1 transition-colors hover:text-amber-500"
                     >
                       <Icons.GitHub />
                     </a>
@@ -812,20 +857,20 @@ export default function PortfolioPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Instagram"
-                      className="transition-colors hover:text-amber-500"
+                      className="p-1 transition-colors hover:text-amber-500"
                     >
                       <Icons.Instagram />
                     </a>
                     <a
                       href={`mailto:${DATA.profile.email}`}
                       aria-label="Email"
-                      className="transition-colors hover:text-amber-500"
+                      className="p-1 transition-colors hover:text-amber-500"
                     >
                       <Icons.Mail />
                     </a>
                   </div>
 
-                  <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+                  <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center md:justify-start gap-x-4 gap-y-1.5 text-sm">
                     <a
                       href={DATA.profile.cvUrl}
                       download="CV_Lukman_Fatkhurozi.pdf"
@@ -838,7 +883,7 @@ export default function PortfolioPage() {
                         Curriculum Vitae (CV)
                       </span>
                     </a>
-                    <span className="text-slate-300 dark:text-slate-600">|</span>
+                    <span className="hidden sm:inline text-slate-300 dark:text-slate-600">|</span>
                     <a
                       href={DATA.profile.portfolioPdfUrl}
                       download="Portofolio_Data_Analyst_Lukman_Fatkhurozi.pdf"
@@ -854,13 +899,13 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              {/* Right Column: Circular Orange Backdrop + Lukman Cutout Photo (Full Head Visible) */}
+              {/* Right Column: Circular Orange Backdrop + Lukman Cutout Photo (Responsive Sizing) */}
               <div className="md:col-span-5 order-1 md:order-2 flex justify-center pt-10 sm:pt-12">
                 <div className="relative flex items-center justify-center">
                   {/* Orange Circle Backdrop */}
-                  <div className="h-64 w-64 sm:h-76 sm:w-76 rounded-full bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 shadow-2xl shadow-amber-500/20" />
-                  {/* Cutout Container with extra top headroom (-top-24) so the top of the head is never clipped */}
-                  <div className="pointer-events-none absolute inset-x-0 -top-24 bottom-0 flex items-end justify-center overflow-hidden rounded-b-full">
+                  <div className="h-52 w-52 sm:h-68 sm:w-68 md:h-76 md:w-76 rounded-full bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 shadow-2xl shadow-amber-500/20" />
+                  {/* Cutout Container with extra top headroom (-top-20 sm:-top-24) */}
+                  <div className="pointer-events-none absolute inset-x-0 -top-20 sm:-top-24 bottom-0 flex items-end justify-center overflow-hidden rounded-b-full">
                     <img
                       src={DATA.profile.photo}
                       alt={DATA.profile.name}
@@ -1108,7 +1153,7 @@ export default function PortfolioPage() {
                       </div>
 
                       <div className="mt-6 space-y-4 border-t border-slate-100 dark:border-[#343847] pt-5">
-                        <div className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5">
                           <div className="min-w-0">
                             <div className="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
                               {lang === "EN"
@@ -1128,7 +1173,7 @@ export default function PortfolioPage() {
                             href={project.externalLink}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 px-3.5 py-2 text-xs font-bold text-zinc-950 transition-colors"
+                            className="inline-flex w-full sm:w-auto justify-center shrink-0 items-center gap-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 px-3.5 py-2.5 sm:py-2 text-xs font-bold text-zinc-950 transition-colors"
                           >
                             <span>{project.externalLabel[lang]}</span>
                             <Icons.ExternalLink />
@@ -1323,7 +1368,7 @@ export default function PortfolioPage() {
                       {/* PROYEK 3 PREVIEW */}
                       {project.previewType === "sql" && (
                         <div className="my-4 space-y-2.5">
-                          <div className="rounded-lg bg-[#191b24] border border-[#3d4254] p-3.5 font-mono text-[10.5px] leading-relaxed text-slate-200">
+                          <div className="overflow-x-auto rounded-lg bg-[#191b24] border border-[#3d4254] p-3.5 font-mono text-[10px] sm:text-[10.5px] leading-relaxed text-slate-200">
                             <div className="text-emerald-400">
                               -- Top 10 Kategori Berdasarkan revenue
                             </div>
@@ -1336,12 +1381,12 @@ export default function PortfolioPage() {
                               <span className="text-sky-300">SUM</span>(oi.sale_price), 2){" "}
                               <span className="text-amber-400">AS</span> total_revenue
                             </div>
-                            <div>
+                            <div className="break-all sm:break-normal">
                               <span className="text-amber-400">FROM</span>{" "}
                               `bigquery-public-data.thelook_ecommerce.order_items`{" "}
                               <span className="text-amber-400">AS</span> oi
                             </div>
-                            <div>
+                            <div className="break-all sm:break-normal">
                               <span className="text-amber-400">INNER JOIN</span>{" "}
                               `bigquery-public-data.thelook_ecommerce.products`{" "}
                               <span className="text-amber-400">AS</span> p
@@ -1568,28 +1613,28 @@ export default function PortfolioPage() {
                 : "Terbuka untuk peluang magang maupun kerja di bidang Analisis Data, Business Intelligence, dan Administrator Basis Data. Mari berdiskusi lebih lanjut!"}
             </p>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-3.5">
+            <div className="mt-8 grid grid-cols-1 sm:flex sm:flex-wrap justify-center gap-3 sm:gap-3.5">
               <a
                 href={`mailto:${DATA.profile.email}`}
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-5 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-4 sm:px-5 py-3.5 sm:py-3 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
               >
                 <Icons.Mail />
-                <span>{DATA.profile.email}</span>
+                <span className="truncate">{DATA.profile.email}</span>
               </a>
               <a
                 href={DATA.profile.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-5 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-4 sm:px-5 py-3.5 sm:py-3 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
               >
                 <Icons.LinkedIn />
-                <span>linkedin.com/in/lukman-fatkhurozi</span>
+                <span className="truncate">linkedin.com/in/lukman-fatkhurozi</span>
               </a>
               <a
                 href={DATA.profile.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-5 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-4 sm:px-5 py-3.5 sm:py-3 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
               >
                 <Icons.Instagram />
                 <span>{DATA.profile.instagramHandle}</span>
@@ -1598,7 +1643,7 @@ export default function PortfolioPage() {
                 href={DATA.profile.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-5 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-4 sm:px-5 py-3.5 sm:py-3 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
               >
                 <Icons.GitHub />
                 <span>GitHub (lukmanfatkhurozi03)</span>
