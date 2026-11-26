@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 type Language = "EN" | "ID";
 type Theme = "light" | "dark";
@@ -12,6 +12,48 @@ interface Certification {
   badge: { EN: string; ID: string };
   credentialId: string;
   image: string;
+}
+
+/* Scroll-Triggered Reveal Wrapper (UI/UX Pro Max: Subtle 14px Y-offset + Stagger Delay) */
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(el);
+        }
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -30px 0px" }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      style={{ transitionDelay: `${delay}ms` }}
+      className={`transition-all duration-700 ease-out will-change-transform ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3.5"
+      } ${className}`}
+    >
+      {children}
+    </div>
+  );
 }
 
 /* Vector SVG Icons (UI/UX Pro Max Standard: Clean SVG Icons) */
@@ -619,6 +661,8 @@ export default function PortfolioPage() {
   const [activeFilter, setActiveFilter] = useState<string>("ALL");
   const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
+  const [activeSection, setActiveSection] = useState<string>("#top");
+  const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
@@ -626,6 +670,34 @@ export default function PortfolioPage() {
       savedTheme === "light" || savedTheme === "dark" ? savedTheme : "dark";
     setTheme(initialTheme);
     document.documentElement.classList.toggle("dark", initialTheme === "dark");
+  }, []);
+
+  // Scroll Progress Bar & Active Section Spy
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const pct = docHeight > 0 ? Math.min(100, (scrollTop / docHeight) * 100) : 0;
+      setScrollProgress(pct);
+
+      const sectionIds = ["contact", "certifications", "projects", "skills", "about"];
+      let current = "#top";
+      for (const id of sectionIds) {
+        const el = document.getElementById(id);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          if (rect.top <= 160) {
+            current = `#${id}`;
+            break;
+          }
+        }
+      }
+      setActiveSection(current);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -652,7 +724,7 @@ export default function PortfolioPage() {
       : DATA.projects.filter((p) => p.toolBadge === activeFilter);
 
   const navLinks = [
-    { href: "#top", label: lang === "EN" ? "HOME" : "BERANDA", active: true },
+    { href: "#top", label: lang === "EN" ? "HOME" : "BERANDA" },
     { href: "#about", label: lang === "EN" ? "ABOUT" : "TENTANG" },
     { href: "#skills", label: lang === "EN" ? "SKILLS" : "KEAHLIAN" },
     { href: "#projects", label: lang === "EN" ? "PORTFOLIO" : "PORTOFOLIO" },
@@ -662,8 +734,16 @@ export default function PortfolioPage() {
 
   return (
     <div className="min-h-screen flex flex-col overflow-x-hidden bg-slate-50 text-slate-900 dark:bg-[#232631] dark:text-slate-100 transition-colors duration-200">
-      {/* TOP NAVIGATION BAR (Responsive Desktop + Mobile Drawer) */}
+      {/* TOP NAVIGATION BAR (Responsive Desktop + Mobile Drawer + Scroll Progress) */}
       <header className="sticky top-0 z-40 border-b border-slate-200/80 dark:border-[#343847] bg-white/95 dark:bg-[#232631]/95 backdrop-blur-md transition-colors duration-200">
+        {/* Top Scroll Progress Indicator */}
+        <div className="h-0.5 w-full bg-transparent overflow-hidden">
+          <div
+            className="h-full bg-gradient-to-r from-amber-500 via-amber-400 to-orange-500 transition-all duration-150 ease-out"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+
         <div className="mx-auto flex max-w-5xl items-center justify-between px-4 sm:px-6 py-3.5 sm:py-4">
           {/* Mobile Brand Badge (Visible on Mobile/Tablet) */}
           <a
@@ -676,24 +756,32 @@ export default function PortfolioPage() {
             <span>Lukman.F</span>
           </a>
 
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation with Animated Active Underline */}
           <nav
             aria-label="Primary Navigation"
             className="hidden md:flex items-center gap-7 text-xs sm:text-sm font-bold uppercase tracking-wider"
           >
-            {navLinks.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`${
-                  item.active
-                    ? "text-amber-500 hover:text-amber-400"
-                    : "text-slate-700 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400"
-                } transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded`}
-              >
-                {item.label}
-              </a>
-            ))}
+            {navLinks.map((item) => {
+              const isActive = activeSection === item.href;
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`relative py-1 transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-amber-500 rounded ${
+                    isActive
+                      ? "text-amber-500"
+                      : "text-slate-700 dark:text-slate-200 hover:text-amber-500 dark:hover:text-amber-400"
+                  }`}
+                >
+                  {item.label}
+                  <span
+                    className={`absolute inset-x-0 -bottom-0.5 h-0.5 rounded-full bg-amber-500 transition-transform duration-300 origin-left ${
+                      isActive ? "scale-x-100" : "scale-x-0"
+                    }`}
+                  />
+                </a>
+              );
+            })}
           </nav>
 
           {/* Theme, Language & Mobile Hamburger Button */}
@@ -766,23 +854,26 @@ export default function PortfolioPage() {
         {mobileMenuOpen && (
           <nav
             aria-label="Mobile Navigation"
-            className="md:hidden border-t border-slate-200/80 dark:border-[#343847] bg-white dark:bg-[#232631] px-4 py-3 shadow-lg"
+            className="md:hidden border-t border-slate-200/80 dark:border-[#343847] bg-white dark:bg-[#232631] px-4 py-3 shadow-lg animate-modal-in"
           >
             <div className="grid grid-cols-2 gap-2">
-              {navLinks.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`rounded-lg px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors ${
-                    item.active
-                      ? "bg-amber-500/15 text-amber-500"
-                      : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#2c303d]"
-                  }`}
-                >
-                  {item.label}
-                </a>
-              ))}
+              {navLinks.map((item) => {
+                const isActive = activeSection === item.href;
+                return (
+                  <a
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`rounded-lg px-3 py-2.5 text-xs font-bold uppercase tracking-wider transition-colors ${
+                      isActive
+                        ? "bg-amber-500/15 text-amber-500"
+                        : "text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#2c303d]"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
             </div>
           </nav>
         )}
@@ -790,56 +881,58 @@ export default function PortfolioPage() {
 
       <main id="top" className="flex-1">
         {/* =====================================================================
-            HERO SECTION (Responsive Mobile Centered + Desktop 2-Column)
+            HERO SECTION (Staggered Entrance Animation + Interactive Photo Ring)
            ===================================================================== */}
         <section className="relative overflow-hidden bg-white dark:bg-[#232631] pt-6 pb-14 sm:pt-10 sm:pb-16 md:py-20 transition-colors duration-200">
           <div className="mx-auto max-w-5xl px-4 sm:px-6">
             <div className="grid items-center gap-8 sm:gap-12 md:grid-cols-12">
               {/* Left Column (Centered on Mobile, Left-aligned on Desktop) */}
               <div className="md:col-span-7 order-2 md:order-1 text-center md:text-left">
-                <p className="text-xl sm:text-3xl font-medium text-slate-700 dark:text-slate-200">
+                <p className="animate-hero-1 text-xl sm:text-3xl font-medium text-slate-700 dark:text-slate-200">
                   {DATA.profile.greeting[lang]}
                 </p>
-                <h1 className="mt-1 text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+                <h1 className="animate-hero-1 mt-1 text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
                   {DATA.profile.iamPrefix[lang]} {DATA.profile.name}
                 </h1>
 
-                <p className="mt-3 text-xs sm:text-base font-medium text-slate-600 dark:text-slate-300 leading-relaxed">
+                <p className="animate-hero-2 mt-3 text-xs sm:text-base font-medium text-slate-600 dark:text-slate-300 leading-relaxed">
                   {DATA.profile.rolesLine[lang]}
                 </p>
-                <p className="mt-1.5 text-xs sm:text-base text-slate-600 dark:text-slate-300">
+                <p className="animate-hero-2 mt-1.5 text-xs sm:text-base text-slate-600 dark:text-slate-300">
                   {DATA.profile.experienceHighlight[lang].prefix}
                   <span className="font-bold text-amber-500">
                     {DATA.profile.experienceHighlight[lang].accent}
                   </span>
                 </p>
 
-                {/* Primary Orange Button & Secondary Action */}
-                <div className="mt-6 sm:mt-7 flex flex-col sm:flex-row items-stretch sm:items-center justify-center md:justify-start gap-3">
+                {/* Primary Orange Button & Secondary Action with Micro-Interactions */}
+                <div className="animate-hero-3 mt-6 sm:mt-7 flex flex-col sm:flex-row items-stretch sm:items-center justify-center md:justify-start gap-3">
                   <a
                     href="#contact"
-                    className="inline-flex items-center justify-center gap-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 px-6 py-3 text-sm font-bold text-zinc-950 shadow-md shadow-amber-500/15 transition-all hover:-translate-y-0.5"
+                    className="group relative overflow-hidden inline-flex items-center justify-center gap-2.5 rounded-lg bg-amber-500 hover:bg-amber-400 active:scale-[0.98] px-6 py-3 text-sm font-bold text-zinc-950 shadow-md shadow-amber-500/20 hover:shadow-lg hover:shadow-amber-500/30 transition-all duration-200 hover:-translate-y-0.5"
                   >
                     <span>{lang === "EN" ? "Let's Talk" : "Hubungi Saya"}</span>
-                    <Icons.ArrowRight />
+                    <span className="transition-transform duration-200 group-hover:translate-x-1">
+                      <Icons.ArrowRight />
+                    </span>
                   </a>
                   <a
                     href="#projects"
-                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 dark:border-slate-600 px-5 py-3 text-sm font-semibold text-slate-700 dark:text-slate-200 transition-colors hover:border-amber-500 hover:text-amber-500"
+                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 dark:border-slate-600 px-5 py-3 text-sm font-semibold text-slate-700 dark:text-slate-200 transition-all duration-200 hover:-translate-y-0.5 hover:border-amber-500 hover:text-amber-500 active:scale-[0.98]"
                   >
                     <span>{lang === "EN" ? "View Projects" : "Lihat Proyek"}</span>
                   </a>
                 </div>
 
                 {/* Social Icons Row + Download CV */}
-                <div className="mt-8 sm:mt-12 space-y-3">
+                <div className="animate-hero-4 mt-8 sm:mt-12 space-y-3">
                   <div className="flex items-center justify-center md:justify-start gap-5 text-slate-600 dark:text-slate-200">
                     <a
                       href={DATA.profile.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="LinkedIn"
-                      className="p-1 transition-colors hover:text-amber-500"
+                      className="p-1.5 rounded-lg transition-all duration-200 hover:-translate-y-1 hover:text-amber-500 hover:bg-amber-500/10"
                     >
                       <Icons.LinkedIn />
                     </a>
@@ -848,7 +941,7 @@ export default function PortfolioPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="GitHub"
-                      className="p-1 transition-colors hover:text-amber-500"
+                      className="p-1.5 rounded-lg transition-all duration-200 hover:-translate-y-1 hover:text-amber-500 hover:bg-amber-500/10"
                     >
                       <Icons.GitHub />
                     </a>
@@ -857,14 +950,14 @@ export default function PortfolioPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Instagram"
-                      className="p-1 transition-colors hover:text-amber-500"
+                      className="p-1.5 rounded-lg transition-all duration-200 hover:-translate-y-1 hover:text-amber-500 hover:bg-amber-500/10"
                     >
                       <Icons.Instagram />
                     </a>
                     <a
                       href={`mailto:${DATA.profile.email}`}
                       aria-label="Email"
-                      className="p-1 transition-colors hover:text-amber-500"
+                      className="p-1.5 rounded-lg transition-all duration-200 hover:-translate-y-1 hover:text-amber-500 hover:bg-amber-500/10"
                     >
                       <Icons.Mail />
                     </a>
@@ -887,7 +980,7 @@ export default function PortfolioPage() {
                     <a
                       href={DATA.profile.portfolioPdfUrl}
                       download="Portofolio_Data_Analyst_Lukman_Fatkhurozi.pdf"
-                      className="inline-flex items-center gap-1.5 font-semibold text-xs text-slate-500 dark:text-slate-400 hover:text-amber-500"
+                      className="inline-flex items-center gap-1.5 font-semibold text-xs text-slate-500 dark:text-slate-400 hover:text-amber-500 transition-colors"
                     >
                       <span>
                         {lang === "EN"
@@ -899,17 +992,19 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              {/* Right Column: Circular Orange Backdrop + Lukman Cutout Photo (Responsive Sizing) */}
-              <div className="md:col-span-5 order-1 md:order-2 flex justify-center pt-10 sm:pt-12">
-                <div className="relative flex items-center justify-center">
+              {/* Right Column: Circular Orange Backdrop + Lukman Cutout Photo */}
+              <div className="animate-hero-5 md:col-span-5 order-1 md:order-2 flex justify-center pt-10 sm:pt-12">
+                <div className="group relative flex items-center justify-center">
+                  {/* Subtle outer decorative ring on hover */}
+                  <div className="absolute -inset-3 rounded-full border border-amber-500/20 scale-95 opacity-0 transition-all duration-500 group-hover:scale-105 group-hover:opacity-100" />
                   {/* Orange Circle Backdrop */}
-                  <div className="h-52 w-52 sm:h-68 sm:w-68 md:h-76 md:w-76 rounded-full bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 shadow-2xl shadow-amber-500/20" />
+                  <div className="h-52 w-52 sm:h-68 sm:w-68 md:h-76 md:w-76 rounded-full bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 shadow-2xl shadow-amber-500/25 transition-all duration-500 group-hover:shadow-amber-500/40" />
                   {/* Cutout Container with extra top headroom (-top-20 sm:-top-24) */}
                   <div className="pointer-events-none absolute inset-x-0 -top-20 sm:-top-24 bottom-0 flex items-end justify-center overflow-hidden rounded-b-full">
                     <img
                       src={DATA.profile.photo}
                       alt={DATA.profile.name}
-                      className="h-[118%] w-auto max-w-none object-contain object-bottom drop-shadow-[0_14px_24px_rgba(0,0,0,0.45)] transition-transform duration-300"
+                      className="h-[118%] w-auto max-w-none object-contain object-bottom drop-shadow-[0_14px_24px_rgba(0,0,0,0.45)] transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                     />
                   </div>
                 </div>
@@ -925,11 +1020,11 @@ export default function PortfolioPage() {
           id="about"
           className="scroll-mt-16 bg-slate-100/90 dark:bg-[#2c303d] py-16 md:py-20 border-y border-slate-200/80 dark:border-[#363b4b] transition-colors duration-200"
         >
-          <div className="mx-auto max-w-3xl px-6 text-center">
+          <Reveal className="mx-auto max-w-3xl px-6 text-center">
             <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
               {lang === "EN" ? "About Me" : "Tentang Saya"}
             </h2>
-            <div className="mx-auto mt-2.5 h-1 w-14 rounded-full bg-slate-400 dark:bg-slate-300" />
+            <div className="mx-auto mt-2.5 h-1 w-14 rounded-full bg-amber-500" />
 
             <p className="mt-7 text-sm sm:text-base font-semibold italic text-amber-600 dark:text-amber-400">
               {DATA.profile.quote[lang]}
@@ -982,7 +1077,7 @@ export default function PortfolioPage() {
                 credential and thrive in collaborative, data-driven environments.
               </p>
             )}
-          </div>
+          </Reveal>
         </section>
 
         {/* =====================================================================
@@ -993,74 +1088,74 @@ export default function PortfolioPage() {
           className="scroll-mt-16 bg-white dark:bg-[#232631] py-16 md:py-20 transition-colors duration-200"
         >
           <div className="mx-auto max-w-4xl px-6">
-            <div className="text-center">
+            <Reveal className="text-center">
               <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white">
                 {lang === "EN" ? "Skill" : "Keahlian Utama"}
               </h2>
-              <div className="mx-auto mt-2.5 h-1 w-12 rounded-full bg-slate-400 dark:bg-slate-300" />
-            </div>
+              <div className="mx-auto mt-2.5 h-1 w-12 rounded-full bg-amber-500" />
+            </Reveal>
 
-            {/* 2-Row Colorful Tool Badge Grid */}
+            {/* 2-Row Colorful Tool Badge Grid with Staggered Reveal */}
             <div className="mt-10 grid grid-cols-3 gap-4 sm:grid-cols-6 sm:gap-5">
-              {DATA.skillBadges.map((badge) => (
-                <div
-                  key={badge.code}
-                  className="group flex flex-col items-center text-center"
-                >
-                  <div
-                    className={`flex h-16 w-16 sm:h-18 sm:w-18 items-center justify-center border-2 ${
-                      badge.shape === "circle" ? "rounded-full" : "rounded-2xl"
-                    } ${badge.bg} ${badge.text} font-mono text-lg sm:text-xl font-extrabold shadow-md transition-transform duration-200 group-hover:-translate-y-1`}
-                  >
-                    {badge.code}
+              {DATA.skillBadges.map((badge, index) => (
+                <Reveal key={badge.code} delay={index * 35}>
+                  <div className="group flex flex-col items-center text-center">
+                    <div
+                      className={`flex h-16 w-16 sm:h-18 sm:w-18 items-center justify-center border-2 ${
+                        badge.shape === "circle" ? "rounded-full" : "rounded-2xl"
+                      } ${badge.bg} ${badge.text} font-mono text-lg sm:text-xl font-extrabold shadow-md transition-all duration-300 group-hover:-translate-y-1.5 group-hover:scale-105 group-hover:shadow-lg`}
+                    >
+                      {badge.code}
+                    </div>
+                    <div className="mt-2 text-xs font-bold text-slate-800 dark:text-slate-100 transition-colors group-hover:text-amber-500">
+                      {badge.name[lang]}
+                    </div>
+                    <div className="text-[10px] text-slate-500 dark:text-slate-400">
+                      {badge.sub[lang]}
+                    </div>
                   </div>
-                  <div className="mt-2 text-xs font-bold text-slate-800 dark:text-slate-100">
-                    {badge.name[lang]}
-                  </div>
-                  <div className="text-[10px] text-slate-500 dark:text-slate-400">
-                    {badge.sub[lang]}
-                  </div>
-                </div>
+                </Reveal>
               ))}
             </div>
 
-            {/* 3 Vertical Service Pillar Cards */}
+            {/* 3 Vertical Service Pillar Cards with Staggered Reveal */}
             <div className="mt-14 grid gap-6 sm:grid-cols-3">
-              {DATA.serviceCards.map((card) => (
-                <div
-                  key={card.id}
-                  className={`rounded-xl p-7 transition-all duration-200 hover:-translate-y-1 ${
-                    card.featured
-                      ? "bg-amber-500 text-zinc-950 shadow-xl shadow-amber-500/20"
-                      : "border border-slate-200 dark:border-[#3c4153] bg-slate-100 dark:bg-[#323645] text-slate-900 dark:text-white shadow-sm"
-                  }`}
-                >
+              {DATA.serviceCards.map((card, index) => (
+                <Reveal key={card.id} delay={index * 90}>
                   <div
-                    className={`${
+                    className={`group h-full rounded-xl p-7 transition-all duration-300 hover:-translate-y-1.5 ${
                       card.featured
-                        ? "text-zinc-950"
-                        : "text-amber-500 dark:text-slate-100"
+                        ? "bg-amber-500 text-zinc-950 shadow-xl shadow-amber-500/20 hover:shadow-2xl hover:shadow-amber-500/35"
+                        : "border border-slate-200 dark:border-[#3c4153] bg-slate-100 dark:bg-[#323645] text-slate-900 dark:text-white shadow-sm hover:border-amber-500/60 hover:shadow-lg"
                     }`}
                   >
-                    {card.icon === "monitor" && <Icons.AnalyticsMonitor />}
-                    {card.icon === "dashboard" && <Icons.DashboardLayout />}
-                    {card.icon === "database" && <Icons.DatabaseServer />}
+                    <div
+                      className={`inline-block transition-transform duration-300 group-hover:scale-110 ${
+                        card.featured
+                          ? "text-zinc-950"
+                          : "text-amber-500 dark:text-slate-100"
+                      }`}
+                    >
+                      {card.icon === "monitor" && <Icons.AnalyticsMonitor />}
+                      {card.icon === "dashboard" && <Icons.DashboardLayout />}
+                      {card.icon === "database" && <Icons.DatabaseServer />}
+                    </div>
+
+                    <h3 className="mt-5 whitespace-pre-line text-xl font-extrabold leading-tight">
+                      {card.title[lang]}
+                    </h3>
+
+                    <p
+                      className={`mt-3 text-xs leading-relaxed ${
+                        card.featured
+                          ? "font-medium text-zinc-900"
+                          : "text-slate-600 dark:text-slate-300"
+                      }`}
+                    >
+                      {card.desc[lang]}
+                    </p>
                   </div>
-
-                  <h3 className="mt-5 whitespace-pre-line text-xl font-extrabold leading-tight">
-                    {card.title[lang]}
-                  </h3>
-
-                  <p
-                    className={`mt-3 text-xs leading-relaxed ${
-                      card.featured
-                        ? "font-medium text-zinc-900"
-                        : "text-slate-600 dark:text-slate-300"
-                    }`}
-                  >
-                    {card.desc[lang]}
-                  </p>
-                </div>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -1114,11 +1209,9 @@ export default function PortfolioPage() {
             </div>
 
             <div className="mt-10 space-y-8">
-              {filteredProjects.map((project) => (
-                <article
-                  key={project.id}
-                  className="overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-6 shadow-md transition-all hover:border-amber-500/60 sm:p-8"
-                >
+              {filteredProjects.map((project, index) => (
+                <Reveal key={project.id} delay={index * 100}>
+                  <article className="group overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/70 hover:shadow-xl sm:p-8">
                   <div className="grid gap-8 lg:grid-cols-12">
                     {/* Left column */}
                     <div className="flex flex-col justify-between lg:col-span-7">
@@ -1426,7 +1519,8 @@ export default function PortfolioPage() {
                       </div>
                     </div>
                   </div>
-                </article>
+                  </article>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -1540,13 +1634,13 @@ export default function PortfolioPage() {
             </div>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {DATA.certifications.map((cert) => (
-                <button
-                  key={cert.title}
-                  type="button"
-                  onClick={() => setSelectedCert(cert)}
-                  className="group cursor-pointer text-left overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-amber-500 hover:shadow-lg flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
-                >
+              {DATA.certifications.map((cert, index) => (
+                <Reveal key={cert.title} delay={index * 60}>
+                  <button
+                    type="button"
+                    onClick={() => setSelectedCert(cert)}
+                    className="group h-full w-full cursor-pointer text-left overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-amber-500 hover:shadow-xl flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
+                  >
                   <div className="w-full">
                     <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-slate-100 dark:border-[#343847] bg-slate-100 dark:bg-[#1b1e26]">
                       <img
@@ -1585,11 +1679,12 @@ export default function PortfolioPage() {
                     <span className="truncate font-mono text-[10px] text-slate-500 dark:text-slate-400">
                       {cert.credentialId}
                     </span>
-                    <span className="text-amber-500">
+                    <span className="text-amber-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
                       <Icons.ExternalLink />
                     </span>
                   </div>
-                </button>
+                  </button>
+                </Reveal>
               ))}
             </div>
           </div>
@@ -1664,7 +1759,7 @@ export default function PortfolioPage() {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] shadow-2xl flex flex-col"
+            className="animate-modal-in relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] shadow-2xl flex flex-col"
           >
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#343847] px-5 py-3.5">
               <div>

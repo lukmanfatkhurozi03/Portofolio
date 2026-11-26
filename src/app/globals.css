@@ -48,6 +48,58 @@ body {
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
 }
 
+/* Smooth Keyframe Animations (UI/UX Pro Max Standard) */
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes modalZoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-120%) skewX(-15deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-15deg);
+  }
+}
+
+.animate-hero-1 {
+  animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+.animate-hero-2 {
+  animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.14s both;
+}
+.animate-hero-3 {
+  animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.23s both;
+}
+.animate-hero-4 {
+  animation: heroFadeUp 0.55s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+}
+.animate-hero-5 {
+  animation: heroFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.18s both;
+}
+
+.animate-modal-in {
+  animation: modalZoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
