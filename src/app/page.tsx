@@ -65,11 +65,6 @@ const Icons = {
       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
     </svg>
   ),
-  WhatsApp: () => (
-    <svg className="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-    </svg>
-  ),
   AnalyticsMonitor: () => (
     <svg className="h-10 w-10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
       <rect width="20" height="14" x="2" y="3" rx="2" />
@@ -148,8 +143,6 @@ const DATA = {
     },
     location: "Jakarta Selatan, DKI Jakarta",
     email: "lukmanfatkhurozi@gmail.com",
-    phone: "+6285776461158",
-    whatsapp: "https://wa.me/6285776461158",
     linkedin: "https://linkedin.com/in/lukman-fatkhurozi",
     github: "https://github.com/lukmanfatkhurozi03",
     instagram: "https://instagram.com/lukman.ftr",
@@ -829,15 +822,6 @@ export default function PortfolioPage() {
                       className="transition-colors hover:text-amber-500"
                     >
                       <Icons.Mail />
-                    </a>
-                    <a
-                      href={DATA.profile.whatsapp}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label="WhatsApp"
-                      className="transition-colors hover:text-amber-500"
-                    >
-                      <Icons.WhatsApp />
                     </a>
                   </div>
 
@@ -1591,15 +1575,6 @@ export default function PortfolioPage() {
               >
                 <Icons.Mail />
                 <span>{DATA.profile.email}</span>
-              </a>
-              <a
-                href={DATA.profile.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-5 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
-              >
-                <Icons.WhatsApp />
-                <span>+62857 7646 1158</span>
               </a>
               <a
                 href={DATA.profile.linkedin}
