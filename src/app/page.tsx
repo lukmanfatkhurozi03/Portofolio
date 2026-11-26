@@ -870,15 +870,17 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              {/* Right Column: Circular Orange Backdrop + Lukman Cutout Photo */}
-              <div className="md:col-span-5 order-1 md:order-2 flex justify-center">
+              {/* Right Column: Circular Orange Backdrop + Lukman Cutout Photo (Full Head Visible) */}
+              <div className="md:col-span-5 order-1 md:order-2 flex justify-center pt-10 sm:pt-12">
                 <div className="relative flex items-center justify-center">
+                  {/* Orange Circle Backdrop */}
                   <div className="h-64 w-64 sm:h-76 sm:w-76 rounded-full bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 shadow-2xl shadow-amber-500/20" />
-                  <div className="absolute inset-x-0 -top-8 bottom-0 flex items-end justify-center overflow-hidden rounded-b-full">
+                  {/* Cutout Container with extra top headroom (-top-24) so the top of the head is never clipped */}
+                  <div className="pointer-events-none absolute inset-x-0 -top-24 bottom-0 flex items-end justify-center overflow-hidden rounded-b-full">
                     <img
                       src={DATA.profile.photo}
                       alt={DATA.profile.name}
-                      className="h-[115%] w-auto max-w-none object-contain object-bottom drop-shadow-[0_14px_24px_rgba(0,0,0,0.45)] transition-transform duration-300 hover:scale-[1.02]"
+                      className="h-[118%] w-auto max-w-none object-contain object-bottom drop-shadow-[0_14px_24px_rgba(0,0,0,0.45)] transition-transform duration-300"
                     />
                   </div>
                 </div>
