@@ -1587,7 +1587,7 @@ export default function PortfolioPage() {
             <div className="mt-8 flex flex-wrap justify-center gap-3.5">
               <a
                 href={`mailto:${DATA.profile.email}`}
-                className="inline-flex items-center gap-2 rounded-xl bg-amber-500 hover:bg-amber-400 px-6 py-3 text-sm font-bold text-zinc-950 shadow-md shadow-amber-500/15 transition-all"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-5 py-3 text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
               >
                 <Icons.Mail />
                 <span>{DATA.profile.email}</span>
