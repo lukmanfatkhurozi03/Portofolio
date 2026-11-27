@@ -733,9 +733,9 @@ export default function PortfolioPage() {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col overflow-x-hidden bg-slate-50 text-slate-900 dark:bg-[#232631] dark:text-slate-100 transition-colors duration-200">
-      {/* TOP NAVIGATION BAR (Responsive Desktop + Mobile Drawer + Scroll Progress) */}
-      <header className="sticky top-0 z-40 border-b border-slate-200/80 dark:border-[#343847] bg-white/95 dark:bg-[#232631]/95 backdrop-blur-md transition-colors duration-200">
+    <div className="min-h-screen flex flex-col overflow-x-clip bg-slate-50 text-slate-900 dark:bg-[#232631] dark:text-slate-100 transition-colors duration-200">
+      {/* TOP NAVIGATION BAR (Fixed to Top Viewport + Scroll Progress) */}
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 dark:border-[#343847] bg-white/95 dark:bg-[#232631]/95 backdrop-blur-md shadow-sm transition-colors duration-200">
         {/* Top Scroll Progress Indicator */}
         <div className="h-0.5 w-full bg-transparent overflow-hidden">
           <div
@@ -879,7 +879,7 @@ export default function PortfolioPage() {
         )}
       </header>
 
-      <main id="top" className="flex-1">
+      <main id="top" className="flex-1 pt-14 sm:pt-16">
         {/* =====================================================================
             HERO SECTION (Staggered Entrance Animation + Interactive Photo Ring)
            ===================================================================== */}
