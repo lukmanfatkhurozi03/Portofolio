@@ -100,6 +100,29 @@ body {
   animation: modalZoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
+/* Infinite Horizontal Marquee for Certifications (UI/UX Pro Max) */
+@keyframes marqueeScroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-cert-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-cert-marquee:hover,
+.animate-cert-marquee:focus-within,
+.animate-cert-marquee.is-paused {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
