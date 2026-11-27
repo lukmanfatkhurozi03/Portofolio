@@ -663,8 +663,6 @@ export default function PortfolioPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false);
   const [activeSection, setActiveSection] = useState<string>("#top");
   const [scrollProgress, setScrollProgress] = useState<number>(0);
-  const [marqueePaused, setMarqueePaused] = useState<boolean>(false);
-  const [showAllCertsGrid, setShowAllCertsGrid] = useState<boolean>(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("portfolio-theme") as Theme | null;
@@ -1633,212 +1631,92 @@ export default function PortfolioPage() {
                   ? "Official professional certifications in Database Administration, SQL, Python, and Business Intelligence."
                   : "Kredensial dan sertifikasi resmi di bidang Database Administration, SQL, Python, dan Business Intelligence."}
               </p>
-
-              {/* Marquee Interactive Controls + Quick Numbered Pills to Inspect 1-by-1 */}
-              <div className="mt-5 flex flex-wrap items-center justify-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setMarqueePaused((p) => !p)}
-                  aria-pressed={marqueePaused}
-                  className={`cursor-pointer inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-bold transition-all ${
-                    marqueePaused
-                      ? "border-amber-500 bg-amber-500 text-zinc-950 shadow-sm"
-                      : "border-slate-300 dark:border-[#43485b] bg-white dark:bg-[#232631] text-slate-700 dark:text-slate-200 hover:border-amber-500"
-                  }`}
-                >
-                  <span>{marqueePaused ? "▶" : "⏸"}</span>
-                  <span>
-                    {marqueePaused
-                      ? lang === "EN"
-                        ? "Resume Stream"
-                        : "Putar Lagi"
-                      : lang === "EN"
-                      ? "Pause Stream"
-                      : "Jeda Animasi"}
-                  </span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setShowAllCertsGrid((g) => !g)}
-                  aria-pressed={showAllCertsGrid}
-                  className={`cursor-pointer inline-flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-xs font-bold transition-all ${
-                    showAllCertsGrid
-                      ? "border-amber-500 bg-amber-500 text-zinc-950 shadow-sm"
-                      : "border-slate-300 dark:border-[#43485b] bg-white dark:bg-[#232631] text-slate-700 dark:text-slate-200 hover:border-amber-500"
-                  }`}
-                >
-                  <span>
-                    {showAllCertsGrid
-                      ? lang === "EN"
-                        ? "Switch to Infinite Marquee"
-                        : "Mode Marquee Berjalan"
-                      : lang === "EN"
-                      ? "View All in Grid (7)"
-                      : "Lihat Semua Grid (7)"}
-                  </span>
-                </button>
-              </div>
-
-              {/* Quick Jump Chips to Check Each Certificate One by One */}
-              <div className="mt-3.5 flex flex-wrap items-center justify-center gap-1.5">
-                {DATA.certifications.map((cert, idx) => (
-                  <button
-                    key={cert.title}
-                    type="button"
-                    onClick={() => setSelectedCert(cert)}
-                    className="cursor-pointer rounded-full border border-slate-300/80 dark:border-[#43485b] bg-white/80 dark:bg-[#232631]/80 px-2.5 py-1 font-mono text-[11px] font-semibold text-slate-700 dark:text-slate-300 transition-all hover:border-amber-500 hover:bg-amber-500 hover:text-zinc-950"
-                  >
-                    #{idx + 1} {cert.issuer.split(" ")[0]}
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
 
-          {!showAllCertsGrid ? (
-            /* INFINITE HORIZONTAL MARQUEE TRACK */
-            <div className="relative mt-9 w-full">
-              {/* Soft Left & Right Edge Gradient Fade Masks */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 sm:w-20 bg-gradient-to-r from-slate-100 dark:from-[#2c303d] to-transparent"
-              />
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 sm:w-20 bg-gradient-to-l from-slate-100 dark:from-[#2c303d] to-transparent"
-              />
+          {/* INFINITE HORIZONTAL MARQUEE TRACK */}
+          <div className="relative mt-9 w-full">
+            {/* Soft Left & Right Edge Gradient Fade Masks */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-8 sm:w-20 bg-gradient-to-r from-slate-100 dark:from-[#2c303d] to-transparent"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-8 sm:w-20 bg-gradient-to-l from-slate-100 dark:from-[#2c303d] to-transparent"
+            />
 
-              <div className="overflow-hidden py-3">
-                <div
-                  className={`animate-cert-marquee gap-5 px-3 ${
-                    marqueePaused || selectedCert !== null ? "is-paused" : ""
-                  }`}
-                >
-                  {[...DATA.certifications, ...DATA.certifications].map((cert, idx) => {
-                    const isClone = idx >= DATA.certifications.length;
-                    const originalIndex = idx % DATA.certifications.length;
-                    return (
-                      <button
-                        key={`${cert.title}-${idx}`}
-                        type="button"
-                        tabIndex={isClone ? -1 : 0}
-                        aria-hidden={isClone ? true : undefined}
-                        onClick={() => setSelectedCert(cert)}
-                        className="group w-[285px] sm:w-[330px] shrink-0 cursor-pointer text-left overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] shadow-md transition-all duration-300 hover:-translate-y-2 hover:border-amber-500 hover:shadow-xl flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
-                      >
-                        <div className="w-full">
-                          <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-slate-100 dark:border-[#343847] bg-slate-100 dark:bg-[#1b1e26]">
-                            <span className="absolute left-2.5 top-2.5 z-10 rounded-md bg-zinc-950/80 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-400 backdrop-blur-xs">
-                              {originalIndex + 1} / {DATA.certifications.length}
+            <div className="overflow-hidden py-3">
+              <div
+                className={`animate-cert-marquee gap-5 px-3 ${
+                  selectedCert !== null ? "is-paused" : ""
+                }`}
+              >
+                {[...DATA.certifications, ...DATA.certifications].map((cert, idx) => {
+                  const isClone = idx >= DATA.certifications.length;
+                  const originalIndex = idx % DATA.certifications.length;
+                  return (
+                    <button
+                      key={`${cert.title}-${idx}`}
+                      type="button"
+                      tabIndex={isClone ? -1 : 0}
+                      aria-hidden={isClone ? true : undefined}
+                      onClick={() => setSelectedCert(cert)}
+                      className="group w-[285px] sm:w-[330px] shrink-0 cursor-pointer text-left overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] shadow-md transition-all duration-300 hover:-translate-y-2 hover:border-amber-500 hover:shadow-xl flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
+                    >
+                      <div className="w-full">
+                        <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-slate-100 dark:border-[#343847] bg-slate-100 dark:bg-[#1b1e26]">
+                          <span className="absolute left-2.5 top-2.5 z-10 rounded-md bg-zinc-950/80 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-400 backdrop-blur-xs">
+                            {originalIndex + 1} / {DATA.certifications.length}
+                          </span>
+                          <img
+                            src={cert.image}
+                            alt={cert.title}
+                            className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/50 group-hover:opacity-100">
+                            <span className="inline-flex items-center gap-1.5 rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-bold text-zinc-950 shadow-sm">
+                              <Icons.ZoomIn />
+                              <span>
+                                {lang === "EN" ? "Inspect Certificate" : "Cek Sertifikat"}
+                              </span>
                             </span>
-                            <img
-                              src={cert.image}
-                              alt={cert.title}
-                              className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
-                              loading="lazy"
-                            />
-                            <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/50 group-hover:opacity-100">
-                              <span className="inline-flex items-center gap-1.5 rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-bold text-zinc-950 shadow-sm">
-                                <Icons.ZoomIn />
-                                <span>
-                                  {lang === "EN" ? "Inspect Certificate" : "Cek Sertifikat"}
-                                </span>
-                              </span>
-                            </div>
-                          </div>
-
-                          <div className="p-4">
-                            <div className="flex items-center justify-between gap-2">
-                              <span className="rounded bg-amber-500/15 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-600 dark:text-amber-400">
-                                {cert.badge[lang]}
-                              </span>
-                              <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400">
-                                {cert.year[lang]}
-                              </span>
-                            </div>
-                            <h3 className="mt-2.5 line-clamp-2 text-sm font-bold leading-snug text-slate-900 dark:text-white group-hover:text-amber-500">
-                              {cert.title}
-                            </h3>
-                            <p className="mt-1 truncate text-xs font-medium text-slate-600 dark:text-slate-400">
-                              {cert.issuer}
-                            </p>
                           </div>
                         </div>
 
-                        <div className="w-full border-t border-slate-100 dark:border-[#343847] bg-slate-50 dark:bg-[#1e212b] px-4 py-2.5 flex items-center justify-between">
-                          <span className="truncate font-mono text-[10px] text-slate-500 dark:text-slate-400">
-                            {cert.credentialId}
-                          </span>
-                          <span className="text-amber-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                            <Icons.ExternalLink />
-                          </span>
+                        <div className="p-4">
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="rounded bg-amber-500/15 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-600 dark:text-amber-400">
+                              {cert.badge[lang]}
+                            </span>
+                            <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400">
+                              {cert.year[lang]}
+                            </span>
+                          </div>
+                          <h3 className="mt-2.5 line-clamp-2 text-sm font-bold leading-snug text-slate-900 dark:text-white group-hover:text-amber-500">
+                            {cert.title}
+                          </h3>
+                          <p className="mt-1 truncate text-xs font-medium text-slate-600 dark:text-slate-400">
+                            {cert.issuer}
+                          </p>
                         </div>
-                      </button>
-                    );
-                  })}
-                </div>
+                      </div>
+
+                      <div className="w-full border-t border-slate-100 dark:border-[#343847] bg-slate-50 dark:bg-[#1e212b] px-4 py-2.5 flex items-center justify-between">
+                        <span className="truncate font-mono text-[10px] text-slate-500 dark:text-slate-400">
+                          {cert.credentialId}
+                        </span>
+                        <span className="text-amber-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                          <Icons.ExternalLink />
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
             </div>
-          ) : (
-            /* STATIC GRID FALLBACK WHEN USER CLICKS "LIHAT SEMUA GRID (7)" */
-            <div className="mx-auto mt-10 max-w-5xl px-4 sm:px-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {DATA.certifications.map((cert, index) => (
-                <button
-                  key={cert.title}
-                  type="button"
-                  onClick={() => setSelectedCert(cert)}
-                  className="group h-full w-full cursor-pointer text-left overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-amber-500 hover:shadow-xl flex flex-col justify-between focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-500"
-                >
-                  <div className="w-full">
-                    <div className="relative aspect-[4/3] w-full overflow-hidden border-b border-slate-100 dark:border-[#343847] bg-slate-100 dark:bg-[#1b1e26]">
-                      <span className="absolute left-2.5 top-2.5 z-10 rounded-md bg-zinc-950/80 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-400">
-                        {index + 1} / {DATA.certifications.length}
-                      </span>
-                      <img
-                        src={cert.image}
-                        alt={cert.title}
-                        className="h-full w-full object-contain p-2 transition-transform duration-300 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/50 group-hover:opacity-100">
-                        <span className="inline-flex items-center gap-1.5 rounded-lg bg-amber-500 px-3 py-1.5 text-xs font-bold text-zinc-950 shadow-sm">
-                          <Icons.ZoomIn />
-                          <span>{lang === "EN" ? "View Certificate" : "Lihat Sertifikat"}</span>
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="p-4">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="rounded bg-amber-500/15 px-2 py-0.5 font-mono text-[10px] font-bold text-amber-600 dark:text-amber-400">
-                          {cert.badge[lang]}
-                        </span>
-                        <span className="font-mono text-[11px] text-slate-500 dark:text-slate-400">
-                          {cert.year[lang]}
-                        </span>
-                      </div>
-                      <h3 className="mt-2.5 text-sm font-bold leading-snug text-slate-900 dark:text-white group-hover:text-amber-500">
-                        {cert.title}
-                      </h3>
-                      <p className="mt-1 text-xs font-medium text-slate-600 dark:text-slate-400">
-                        {cert.issuer}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="w-full border-t border-slate-100 dark:border-[#343847] bg-slate-50 dark:bg-[#1e212b] px-4 py-2.5 flex items-center justify-between">
-                    <span className="truncate font-mono text-[10px] text-slate-500 dark:text-slate-400">
-                      {cert.credentialId}
-                    </span>
-                    <span className="text-amber-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                      <Icons.ExternalLink />
-                    </span>
-                  </div>
-                </button>
-              ))}
-            </div>
-          )}
+          </div>
         </section>
 
         {/* =====================================================================
