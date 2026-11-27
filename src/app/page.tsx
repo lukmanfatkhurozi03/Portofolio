@@ -992,19 +992,17 @@ export default function PortfolioPage() {
                 </div>
               </div>
 
-              {/* Right Column: Circular Orange Backdrop + Lukman Cutout Photo */}
-              <div className="animate-hero-5 md:col-span-5 order-1 md:order-2 flex justify-center pt-10 sm:pt-12">
+              {/* Right Column: Circular Orange Backdrop + Lukman Cutout Photo (Full Head Visible) */}
+              <div className="animate-hero-5 md:col-span-5 order-1 md:order-2 flex justify-center pt-6 sm:pt-8">
                 <div className="group relative flex items-center justify-center">
                   {/* Subtle outer decorative ring on hover */}
                   <div className="absolute -inset-3 rounded-full border border-amber-500/20 scale-95 opacity-0 transition-all duration-500 group-hover:scale-105 group-hover:opacity-100" />
-                  {/* Orange Circle Backdrop */}
-                  <div className="h-52 w-52 sm:h-68 sm:w-68 md:h-76 md:w-76 rounded-full bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 shadow-2xl shadow-amber-500/25 transition-all duration-500 group-hover:shadow-amber-500/40" />
-                  {/* Cutout Container with extra top headroom (-top-20 sm:-top-24) */}
-                  <div className="pointer-events-none absolute inset-x-0 -top-20 sm:-top-24 bottom-0 flex items-end justify-center overflow-hidden rounded-b-full">
+                  {/* Orange Circle Backdrop with generous top clip-path so head is never cropped */}
+                  <div className="relative h-56 w-56 sm:h-72 sm:w-72 md:h-80 md:w-80 rounded-full bg-gradient-to-tr from-amber-600 via-amber-500 to-amber-400 shadow-2xl shadow-amber-500/25 transition-all duration-500 group-hover:shadow-amber-500/40 overflow-hidden flex items-end justify-center">
                     <img
                       src={DATA.profile.photo}
                       alt={DATA.profile.name}
-                      className="h-[118%] w-auto max-w-none object-contain object-bottom drop-shadow-[0_14px_24px_rgba(0,0,0,0.45)] transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                      className="h-[96%] w-full object-contain object-bottom drop-shadow-[0_14px_24px_rgba(0,0,0,0.45)] transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                     />
                   </div>
                 </div>
