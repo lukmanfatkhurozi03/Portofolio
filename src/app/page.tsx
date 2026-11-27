@@ -1630,8 +1630,8 @@ export default function PortfolioPage() {
               <div className="mx-auto mt-2.5 h-1 w-14 rounded-full bg-amber-500" />
               <p className="mt-3 text-xs sm:text-sm text-slate-600 dark:text-slate-300">
                 {lang === "EN"
-                  ? "Hover or tap to pause the stream • Click any certificate card to inspect it one by one in full screen."
-                  : "Arahkan kursor atau sentuh untuk menjeda • Klik kartu mana saja untuk mengecek sertifikat satu per satu."}
+                  ? "Official professional certifications in Database Administration, SQL, Python, and Business Intelligence."
+                  : "Kredensial dan sertifikasi resmi di bidang Database Administration, SQL, Python, dan Business Intelligence."}
               </p>
 
               {/* Marquee Interactive Controls + Quick Numbered Pills to Inspect 1-by-1 */}
