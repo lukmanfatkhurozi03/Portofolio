@@ -718,6 +718,21 @@ export default function PortfolioPage() {
     document.documentElement.classList.toggle("dark", nextTheme === "dark");
   };
 
+  // Smart Email Handler: Opens native mail/Gmail app on Mobile, or Gmail Web Compose in a new tab on Desktop
+  const handleEmailClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    const isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+    if (!isMobile) {
+      e.preventDefault();
+      window.open(
+        `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+          DATA.profile.email
+        )}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
+    }
+  };
+
   const filteredProjects =
     activeFilter === "ALL"
       ? DATA.projects
@@ -956,6 +971,7 @@ export default function PortfolioPage() {
                     </a>
                     <a
                       href={`mailto:${DATA.profile.email}`}
+                      onClick={handleEmailClick}
                       aria-label="Email"
                       className="p-1.5 rounded-lg transition-all duration-200 hover:-translate-y-1 hover:text-amber-500 hover:bg-amber-500/10"
                     >
@@ -1740,6 +1756,7 @@ export default function PortfolioPage() {
             <div className="mt-8 grid grid-cols-1 sm:flex sm:flex-wrap justify-center gap-3 sm:gap-3.5">
               <a
                 href={`mailto:${DATA.profile.email}`}
+                onClick={handleEmailClick}
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-300 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] px-4 sm:px-5 py-3.5 sm:py-3 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-100 transition-all hover:border-amber-500 hover:text-amber-500"
               >
                 <Icons.Mail />
