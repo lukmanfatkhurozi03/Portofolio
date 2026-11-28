@@ -1209,43 +1209,45 @@ export default function PortfolioPage() {
             <div className="mt-10 space-y-8">
               {filteredProjects.map((project, index) => (
                 <Reveal key={project.id} delay={index * 100}>
-                  <article className="group overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-6 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/70 hover:shadow-xl sm:p-8">
-                  <div className="grid gap-8 lg:grid-cols-12">
-                    {/* Left column */}
-                    <div className="flex flex-col justify-between lg:col-span-7">
-                      <div>
-                        <div className="flex flex-wrap items-center gap-2.5 text-xs">
+                  <article className="group overflow-hidden rounded-2xl border border-slate-200 dark:border-[#3d4254] bg-white dark:bg-[#232631] p-4 sm:p-8 shadow-md transition-all duration-300 hover:-translate-y-1 hover:border-amber-500/70 hover:shadow-xl">
+                  <div className="grid gap-6 sm:gap-8 lg:grid-cols-12">
+                    {/* Left column (min-w-0 prevents long code/URL tokens from blowing out CSS Grid on mobile) */}
+                    <div className="min-w-0 flex flex-col justify-between lg:col-span-7">
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 text-xs">
                           <span className="rounded-md bg-amber-500 px-2.5 py-1 font-mono font-extrabold text-zinc-950">
                             {project.number[lang]}
                           </span>
                           <span className="rounded-md bg-slate-100 dark:bg-[#2c303d] px-2.5 py-1 font-mono font-semibold text-amber-600 dark:text-amber-400 border border-slate-200 dark:border-[#3d4254]">
                             {project.toolBadge}
                           </span>
-                          <span className="font-medium text-slate-500 dark:text-slate-400">
+                          <span className="font-medium text-slate-500 dark:text-slate-400 break-words">
                             {project.category[lang]}
                           </span>
                         </div>
 
-                        <h3 className="mt-3.5 text-xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-2xl">
+                        <h3 className="mt-3.5 text-lg sm:text-2xl font-bold tracking-tight text-slate-900 dark:text-white break-words">
                           {project.title[lang]}
                         </h3>
-                        <p className="mt-1.5 font-mono text-xs font-medium text-slate-500 dark:text-slate-400">
+                        <p className="mt-1.5 font-mono text-xs font-medium text-slate-500 dark:text-slate-400 break-all sm:break-words">
                           {project.subtitle[lang]}
                         </p>
 
                         <ul className="mt-4 space-y-2.5 text-sm leading-relaxed text-slate-600 dark:text-slate-300">
                           {project.highlights[lang].map((point, idx) => (
-                            <li key={idx} className="flex items-start gap-2.5">
+                            <li key={idx} className="flex items-start gap-2.5 min-w-0">
                               <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500"></span>
-                              <span>{point}</span>
+                              <span className="min-w-0 break-words [overflow-wrap:anywhere]">
+                                {point}
+                              </span>
                             </li>
                           ))}
                         </ul>
                       </div>
 
-                      <div className="mt-6 space-y-4 border-t border-slate-100 dark:border-[#343847] pt-5">
-                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5">
-                          <div className="min-w-0">
+                      <div className="mt-6 space-y-4 border-t border-slate-100 dark:border-[#343847] pt-5 min-w-0">
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 rounded-xl border border-amber-500/30 bg-amber-500/10 p-3.5 min-w-0">
+                          <div className="min-w-0 w-full">
                             <div className="text-[11px] font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
                               {lang === "EN"
                                 ? "Full Documentation Link"
@@ -1285,7 +1287,7 @@ export default function PortfolioPage() {
                     </div>
 
                     {/* Right column */}
-                    <div className="flex flex-col justify-between rounded-xl border border-slate-200 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] p-5 lg:col-span-5">
+                    <div className="min-w-0 flex flex-col justify-between rounded-xl border border-slate-200 dark:border-[#3d4254] bg-slate-50 dark:bg-[#2c303d] p-4 sm:p-5 lg:col-span-5">
                       <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#3d4254] pb-3">
                         <div className="flex items-center gap-1.5">
                           <span className="h-2.5 w-2.5 rounded-full bg-rose-400/80"></span>
@@ -1505,11 +1507,11 @@ export default function PortfolioPage() {
 
                       <div className="grid grid-cols-3 gap-2 border-t border-slate-200 dark:border-[#3d4254] pt-3">
                         {project.metrics.map((m, idx) => (
-                          <div key={idx}>
-                            <div className="text-[10px] text-slate-500 dark:text-slate-400">
+                          <div key={idx} className="min-w-0">
+                            <div className="text-[10px] text-slate-500 dark:text-slate-400 truncate">
                               {m.label[lang]}
                             </div>
-                            <div className="font-mono text-[11px] font-semibold text-slate-800 dark:text-slate-200">
+                            <div className="font-mono text-[10.5px] sm:text-[11px] font-semibold text-slate-800 dark:text-slate-200 break-words">
                               {typeof m.value === "string" ? m.value : m.value[lang]}
                             </div>
                           </div>
